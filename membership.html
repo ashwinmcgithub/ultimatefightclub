@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Membership — Ultimate Fight Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080808;--bg2:#0f0f0f;--card:#141414;--card2:#1c1c1c;
+  --red:#DC143C;--red-dk:#8B0000;--red-glow:rgba(220,20,60,0.25);
+  --gold:#FFD700;--gold-dk:#B8860B;--gold-glow:rgba(255,215,0,0.2);
+  --text:#FAFAFA;--muted:rgba(255,255,255,0.55);--dim:rgba(255,255,255,0.25);
+  --border:rgba(255,255,255,0.07);
+  --gradient:linear-gradient(135deg,#DC143C 0%,#FFD700 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Rajdhani',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;letter-spacing:2px}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+::selection{background:rgba(220,20,60,0.35);color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:3px}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:55px 55px;pointer-events:none;z-index:0}
+
+/* ===== MMA FLOATING BG ===== */
+.mma-bg{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.mma-elem{position:absolute;will-change:transform}
+.oct-a{width:520px;height:520px;top:-80px;right:-100px;animation:mmaD1 20s ease-in-out infinite}
+.oct-b{width:400px;height:400px;bottom:2%;left:-90px;animation:mmaD2 26s ease-in-out infinite}
+.oct-c{width:220px;height:220px;top:42%;left:38%;animation:mmaD3 15s ease-in-out infinite}
+.oct-d{width:680px;height:680px;bottom:-120px;right:15%;animation:mmaD4 34s ease-in-out infinite}
+.oct-e{width:160px;height:160px;top:22%;left:18%;animation:mmaD3 19s ease-in-out infinite reverse}
+.ftr-a{width:170px;height:300px;top:10%;right:6%;animation:mmaF1 22s ease-in-out infinite;opacity:.11}
+.ftr-b{width:170px;height:300px;bottom:8%;left:4%;animation:mmaF2 28s ease-in-out infinite;opacity:.09}
+@keyframes mmaD1{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(-35px,50px) rotate(9deg)}50%{transform:translate(-18px,80px) rotate(4deg)}75%{transform:translate(22px,35px) rotate(-6deg)}100%{transform:translate(0,0) rotate(0deg)}}
+@keyframes mmaD2{0%{transform:translate(0,0) rotate(0deg) scale(1)}33%{transform:translate(55px,-45px) rotate(-12deg) scale(1.06)}66%{transform:translate(25px,-75px) rotate(-6deg) scale(0.96)}100%{transform:translate(0,0) rotate(0deg) scale(1)}}
+@keyframes mmaD3{0%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-55px,-45px) rotate(180deg)}100%{transform:translate(0,0) rotate(360deg)}}
+@keyframes mmaD4{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(-45px,-35px) rotate(6deg)}75%{transform:translate(35px,-55px) rotate(-9deg)}100%{transform:translate(0,0) rotate(0deg)}}
+@keyframes mmaF1{0%{transform:translateY(0) translateX(0);opacity:.11}25%{transform:translateY(-45px) translateX(-10px);opacity:.17}50%{transform:translateY(-22px) translateX(8px);opacity:.09}75%{transform:translateY(-65px) translateX(-5px);opacity:.14}100%{transform:translateY(0) translateX(0);opacity:.11}}
+@keyframes mmaF2{0%{transform:translateY(0) scaleX(-1);opacity:.09}33%{transform:translateY(-55px) scaleX(-1);opacity:.15}66%{transform:translateY(-28px) scaleX(-1);opacity:.07}100%{transform:translateY(0) scaleX(-1);opacity:.09}}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,8,8,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(220,20,60,0.15);transition:all .3s}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 24px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-badge{width:46px;height:46px;background:var(--gradient);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:#000;letter-spacing:0;line-height:1;flex-shrink:0}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-main{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-sub{font-size:.58rem;color:var(--muted);letter-spacing:2px;font-weight:500;text-transform:uppercase;font-family:'Rajdhani',sans-serif;-webkit-text-fill-color:var(--muted)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:.82rem;font-weight:600;color:var(--muted);transition:color .3s;letter-spacing:1.5px;text-transform:uppercase}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.btn-join{background:var(--gradient);color:#000!important;font-weight:700;font-size:.78rem;padding:10px 22px;border-radius:8px;letter-spacing:1px;font-family:'Rajdhani',sans-serif;transition:all .3s;display:inline-block;text-transform:uppercase}
+.btn-join:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--red-glow)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-toggle span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+/* ===== PAGE HERO ===== */
+.page-hero{min-height:42vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;width:800px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(220,20,60,.15),rgba(255,215,0,.07),transparent 70%);pointer-events:none;animation:gGlow 8s ease-in-out infinite}
+@keyframes gGlow{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}}
+.ph-content{position:relative;z-index:2}
+.ph-label{font-size:.72rem;font-weight:600;color:var(--red);letter-spacing:3px;text-transform:uppercase;margin-bottom:.75rem;display:block}
+.page-hero h1{font-size:clamp(3rem,7vw,5.5rem);letter-spacing:4px;margin-bottom:1rem;line-height:1}
+.page-hero h1 .gold{color:var(--gold)}
+.page-hero h1 .outline{-webkit-text-stroke:1.5px rgba(255,255,255,0.18);-webkit-text-fill-color:transparent}
+.page-hero p{color:var(--muted);font-size:1.05rem;max-width:520px;margin:0 auto;font-weight:400}
+
+/* ===== SECTION ===== */
+section{padding:clamp(4rem,8vw,7rem) 24px;position:relative;z-index:2}
+.sec-label{font-size:.72rem;font-weight:600;color:var(--red);letter-spacing:3px;text-transform:uppercase;margin-bottom:.75rem;display:block}
+.sec-header{text-align:center;margin-bottom:clamp(2.5rem,5vw,4rem)}
+.sec-header h2{font-size:clamp(2.2rem,4.5vw,3.5rem);letter-spacing:3px;margin-bottom:.75rem;line-height:1.05}
+.sec-header h2 .outline{-webkit-text-stroke:1.5px rgba(255,255,255,0.18);-webkit-text-fill-color:transparent}
+.sec-header h2 .gold{color:var(--gold)}
+.sec-header h2 .red{color:var(--red)}
+.sec-header p{color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto;font-weight:400}
+
+/* ===== MEMBERSHIP PLANS ===== */
+.plans-wrap{max-width:1100px;margin:0 auto}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+.plan-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:clamp(1.75rem,3vw,2.75rem);position:relative;overflow:hidden;transition:all .4s cubic-bezier(.25,.46,.45,.94)}
+.plan-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
+.plan-card:hover{transform:translateY(-8px);box-shadow:0 28px 80px rgba(0,0,0,.55)}
+.plan-card.featured{border-color:rgba(255,215,0,0.25);background:linear-gradient(135deg,rgba(220,20,60,0.06),rgba(255,215,0,0.04))}
+.plan-card.featured::before{height:4px;background:var(--gold);box-shadow:0 0 20px var(--gold-glow)}
+.plan-badge{position:absolute;top:20px;right:20px;background:var(--gradient);color:#000;font-size:.65rem;font-weight:700;padding:5px 14px;border-radius:100px;letter-spacing:1px;text-transform:uppercase;font-family:'Rajdhani',sans-serif}
+.plan-icon{font-size:2.5rem;margin-bottom:1.25rem;display:block}
+.plan-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2.5px;color:var(--text);display:block;margin-bottom:.35rem}
+.plan-days{font-size:.78rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:1.5rem;display:block}
+.plan-price-wrap{display:flex;align-items:baseline;gap:.35rem;margin-bottom:.35rem}
+.plan-price{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;color:var(--gold)}
+.plan-currency{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--gold);opacity:.75}
+.plan-period{font-size:.82rem;color:var(--muted);font-weight:500}
+.plan-gender-note{font-size:.75rem;color:var(--muted);margin-bottom:2rem;padding:.5rem .75rem;background:rgba(255,255,255,0.04);border-radius:8px;border-left:2px solid var(--red)}
+.plan-features{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+.plan-feat{display:flex;align-items:center;gap:.65rem;font-size:.9rem;color:var(--muted);font-weight:500}
+.feat-check{width:18px;height:18px;border-radius:50%;background:rgba(220,20,60,0.15);border:1px solid rgba(220,20,60,0.3);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--red);flex-shrink:0}
+.feat-check.gold{background:rgba(255,215,0,0.1);border-color:rgba(255,215,0,0.3);color:var(--gold)}
+.plan-cta{display:block;text-align:center;background:var(--gradient);color:#000;font-weight:700;font-size:.9rem;padding:14px 24px;border-radius:10px;letter-spacing:1px;text-transform:uppercase;font-family:'Rajdhani',sans-serif;transition:all .3s}
+.plan-cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px var(--red-glow)}
+.plan-cta.outline-cta{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.15)}
+.plan-cta.outline-cta:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 10px 30px var(--gold-glow)}
+.gender-split{margin-top:1.5rem;padding:1.25rem;background:rgba(255,255,255,0.03);border-radius:12px;border:1px solid rgba(255,255,255,0.06)}
+.gender-row{display:flex;align-items:center;justify-content:space-between;padding:.5rem 0}
+.gender-row+.gender-row{border-top:1px solid rgba(255,255,255,0.06)}
+.gender-name{font-size:.85rem;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:.5rem}
+.gender-price{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--gold);letter-spacing:1px}
+
+/* ===== INCLUSIONS ===== */
+.inclusions-wrap{max-width:1000px;margin:0 auto}
+.incl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.incl-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:1.5rem 1rem;text-align:center;transition:all .3s}
+.incl-item:hover{background:rgba(255,255,255,0.06);border-color:rgba(220,20,60,0.2);transform:translateY(-4px)}
+.incl-icon{font-size:2.2rem;margin-bottom:.75rem;display:block}
+.incl-item h4{font-size:.95rem;letter-spacing:1.5px;margin-bottom:.35rem}
+.incl-item p{font-size:.78rem;color:var(--muted);line-height:1.5;font-weight:400;font-family:'Rajdhani',sans-serif}
+
+/* ===== FAQ ===== */
+.faq-wrap{max-width:800px;margin:0 auto}
+.faq-item{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:.75rem;transition:border-color .3s}
+.faq-item.open{border-color:rgba(220,20,60,0.25)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 1.5rem;cursor:pointer;font-size:1rem;font-weight:600;letter-spacing:.5px;transition:all .3s;background:rgba(255,255,255,0.02)}
+.faq-q:hover{background:rgba(255,255,255,0.04)}
+.faq-item.open .faq-q{color:var(--gold)}
+.faq-arrow{font-size:.9rem;transition:transform .3s;color:var(--muted);flex-shrink:0;margin-left:1rem}
+.faq-item.open .faq-arrow{transform:rotate(180deg);color:var(--gold)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;padding:0 1.5rem;color:var(--muted);font-size:.9rem;line-height:1.75;font-weight:400}
+.faq-item.open .faq-a{max-height:200px;padding:.75rem 1.5rem 1.5rem}
+
+/* ===== CONTACT ===== */
+.contact-section{background:var(--bg2);border-top:1px solid rgba(220,20,60,0.1)}
+.contact-wrap{max-width:1100px;margin:0 auto}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.contact-info-col h2{font-size:clamp(2.2rem,4vw,3.2rem);letter-spacing:2px;margin-bottom:1rem;line-height:1.05}
+.contact-info-col h2 .gold{color:var(--gold)}
+.contact-info-col .sub{color:var(--muted);font-size:.98rem;margin-bottom:2rem;line-height:1.75;font-weight:400}
+.cinfo-cards{display:flex;flex-direction:column;gap:1rem}
+.cinfo-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:all .3s}
+.cinfo-card:hover{border-color:rgba(220,20,60,0.25);transform:translateX(5px)}
+.cinfo-icon{font-size:1.5rem;flex-shrink:0;margin-top:.1rem}
+.cinfo-body .cinfo-label{font-size:.68rem;color:var(--red);letter-spacing:2px;text-transform:uppercase;font-weight:700;display:block;margin-bottom:.2rem}
+.cinfo-body .cinfo-val{font-size:.95rem;font-weight:600;color:var(--text);line-height:1.6}
+.cinfo-body .cinfo-val a{color:var(--text);transition:color .3s}
+.cinfo-body .cinfo-val a:hover{color:var(--gold)}
+
+/* ===== CONTACT FORM ===== */
+.contact-form-col{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:clamp(1.75rem,3vw,3rem)}
+.contact-form-col h3{font-size:1.8rem;letter-spacing:2px;margin-bottom:.5rem}
+.contact-form-col .form-sub{color:var(--muted);font-size:.88rem;margin-bottom:2rem;font-weight:400}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.form-group label{font-size:.75rem;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
+.form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:.85rem 1rem;color:var(--text);font-size:.9rem;font-family:'Rajdhani',sans-serif;font-weight:500;outline:none;transition:border-color .3s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(220,20,60,0.4);background:rgba(220,20,60,0.04)}
+.form-group select option{background:var(--card)}
+.form-group textarea{resize:vertical;min-height:110px;line-height:1.6}
+.btn-submit{width:100%;background:var(--gradient);color:#000;font-weight:700;font-size:1rem;padding:15px 24px;border-radius:10px;border:none;cursor:pointer;letter-spacing:1.5px;text-transform:uppercase;font-family:'Rajdhani',sans-serif;transition:all .3s}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 12px 40px var(--red-glow)}
+.form-note{font-size:.75rem;color:var(--dim);text-align:center;margin-top:.75rem}
+
+/* ===== MAP ===== */
+.map-section{position:relative;z-index:2}
+.map-header{text-align:center;margin-bottom:2.5rem}
+.map-header h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:3px;margin-bottom:.5rem}
+.map-tabs{display:flex;justify-content:center;gap:.75rem;margin-bottom:2rem}
+.map-tab{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:10px 28px;font-size:.82rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .3s;font-family:'Rajdhani',sans-serif;letter-spacing:1px}
+.map-tab.active{background:var(--gradient);color:#000;border-color:transparent}
+.map-frame-wrap{border-radius:18px;overflow:hidden;border:1px solid rgba(220,20,60,0.15);max-width:900px;margin:0 auto;height:380px}
+.map-placeholder{width:100%;height:100%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem}
+.map-placeholder .mp-icon{font-size:3rem}
+.map-placeholder h4{font-size:1.2rem;letter-spacing:2px;color:var(--gold)}
+.map-placeholder p{font-size:.85rem;color:var(--muted);text-align:center;max-width:280px;line-height:1.6;font-weight:400}
+.map-locations{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:900px;margin:2rem auto 0}
+.map-loc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:all .3s}
+.map-loc:hover{border-color:rgba(255,215,0,0.2)}
+.map-loc-icon{font-size:1.8rem;flex-shrink:0}
+.map-loc h4{font-size:1rem;letter-spacing:1.5px;color:var(--gold);margin-bottom:.3rem}
+.map-loc p{font-size:.85rem;color:var(--muted);line-height:1.65;font-weight:400}
+.map-loc .ml-phone{font-size:.82rem;color:var(--red);font-weight:600;margin-top:.35rem;display:block}
+
+/* ===== FOOTER ===== */
+footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp(2rem,4vw,3rem) 24px;position:relative;z-index:2}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-links a{font-size:.82rem;color:var(--muted);transition:color .3s}
+.footer-links a:hover{color:var(--text)}
+
+/* ===== REVEAL ===== */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal.v{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-55px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal-l.v{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(55px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal-r.v{opacity:1;transform:translateX(0)}
+.reveal-s{opacity:0;transform:scale(.92);transition:opacity .85s,transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal-s.v{opacity:1;transform:scale(1)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){.incl-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.plans-grid{grid-template-columns:1fr}.plan-card.featured{order:-1}.contact-grid{grid-template-columns:1fr}.map-locations{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(8,8,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.25rem;border-bottom:1px solid rgba(220,20,60,.15)}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:flex}
+  .footer-inner{flex-direction:column;text-align:center}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:480px){.incl-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- MMA FLOATING BACKGROUND -->
+<div class="mma-bg" aria-hidden="true">
+  <svg class="mma-elem oct-a" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="66,3 154,3 217,66 217,154 154,217 66,217 3,154 3,66" stroke="rgba(220,20,60,0.2)" stroke-width="2.5"/>
+    <polygon points="78,15 142,15 205,78 205,142 142,205 78,205 15,142 15,78" stroke="rgba(220,20,60,0.08)" stroke-width="1.5"/>
+  </svg>
+  <svg class="mma-elem oct-b" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="54,3 126,3 177,54 177,126 126,177 54,177 3,126 3,54" stroke="rgba(255,215,0,0.16)" stroke-width="2"/>
+    <polygon points="64,13 116,13 167,64 167,116 116,167 64,167 13,116 13,64" stroke="rgba(255,215,0,0.06)" stroke-width="1"/>
+  </svg>
+  <svg class="mma-elem oct-c" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="33,3 77,3 107,33 107,77 77,107 33,107 3,77 3,33" fill="rgba(220,20,60,0.04)" stroke="rgba(220,20,60,0.14)" stroke-width="2"/>
+  </svg>
+  <svg class="mma-elem oct-d" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="90,3 210,3 297,90 297,210 210,297 90,297 3,210 3,90" stroke="rgba(255,215,0,0.07)" stroke-width="1.5"/>
+  </svg>
+  <svg class="mma-elem oct-e" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="27,3 63,3 87,27 87,63 63,87 27,87 3,63 3,27" stroke="rgba(220,20,60,0.1)" stroke-width="2"/>
+  </svg>
+  <svg class="mma-elem ftr-a" viewBox="0 0 110 200" fill="rgba(220,20,60,0.85)" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="55" cy="16" r="13"/>
+    <path d="M44,29 L66,29 L62,70 L48,70 Z"/>
+    <path d="M44,36 L18,26 L13,36 L25,44 L44,42 Z"/>
+    <path d="M66,34 L84,22 L90,30 L76,44 L66,42 Z"/>
+    <path d="M48,70 L42,104 L38,140 L44,140 L48,104 L52,70 Z"/>
+    <path d="M62,70 L82,52 L104,32 L110,38 L88,60 L66,78 Z"/>
+    <path d="M104,32 L112,26 L113,35 L106,40 Z"/>
+  </svg>
+  <svg class="mma-elem ftr-b" viewBox="0 0 110 200" fill="rgba(255,215,0,0.75)" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="48" cy="18" r="13"/>
+    <path d="M36,40 L66,38 L70,78 L30,80 Z"/>
+    <path d="M36,46 L12,56 L9,68 L22,70 L36,58 Z"/>
+    <path d="M66,42 L84,28 L107,26 L108,38 L86,40 L68,52 Z"/>
+    <rect x="100" y="22" width="14" height="18" rx="5"/>
+    <path d="M38,80 L30,114 L28,152 L36,152 L38,116 L46,80 Z"/>
+    <path d="M56,80 L64,114 L66,152 L74,152 L70,116 L60,80 Z"/>
+  </svg>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-badge" style="background:transparent;border-radius:0;padding:0;width:52px;height:52px;"><img src="images/logo-new-nobg.png" alt="UFC Logo" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 6px rgba(255,215,0,0.25));"></div>
+      <div class="logo-text">
+        <span class="logo-main">ULTIMATE FIGHT CLUB</span>
+        <span class="logo-sub">Kerala's Premier Martial Arts Academy</span>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="index.html#disciplines">Disciplines</a>
+      <a href="index.html#coach">Coaches</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="membership.html" class="active">Membership</a>
+      <a href="#contact" class="btn-join">JOIN NOW</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="hero-glow"></div>
+  <div class="ph-content">
+    <span class="ph-label">Start Your Journey</span>
+    <h1><span class="gold">JOIN</span><br><span class="outline">THE CLUB</span></h1>
+    <p>Flexible membership plans designed for every warrior. No contracts, no hidden fees — just pure training.</p>
+  </div>
+</div>
+
+<!-- MEMBERSHIP PLANS -->
+<section>
+  <div class="plans-wrap">
+    <div class="sec-header reveal">
+      <span class="sec-label">Membership Plans</span>
+      <h2>CHOOSE YOUR<br><span class="gold">BATTLE PLAN</span></h2>
+      <p>Transparent pricing. Championship training. First class absolutely free — walk in today.</p>
+    </div>
+    <div class="plans-grid">
+
+      <!-- Plan 1: 3 Days -->
+      <div class="plan-card reveal">
+        <span class="plan-icon">🥊</span>
+        <span class="plan-name">WARRIOR</span>
+        <span class="plan-days">3 Days / Week &bull; 1 Month</span>
+        <div class="plan-price-wrap">
+          <span class="plan-currency">₹</span>
+          <span class="plan-price">2000</span>
+        </div>
+        <span class="plan-period">per month &bull; All Genders</span>
+        <div class="plan-gender-note">&#128099; Flat rate for all members — Male &amp; Female</div>
+        <div class="plan-features">
+          <div class="plan-feat"><span class="feat-check">✓</span>3 sessions per week</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>Access to all disciplines</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>Certified coach-led classes</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>Locker &amp; changing room</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>First class free trial</div>
+        </div>
+        <a href="#contact" class="plan-cta outline-cta">GET STARTED</a>
+      </div>
+
+      <!-- Plan 2: 6 Days Female (Featured) -->
+      <div class="plan-card featured reveal">
+        <span class="plan-badge">Most Popular</span>
+        <span class="plan-icon">⚡</span>
+        <span class="plan-name">CHAMPION</span>
+        <span class="plan-days">6 Days / Week &bull; 1 Month</span>
+        <div class="plan-price-wrap">
+          <span class="plan-currency">₹</span>
+          <span class="plan-price">3000</span>
+        </div>
+        <span class="plan-period">per month &bull; Female Members</span>
+        <div class="plan-gender-note">♀ Special rate for female warriors — join our growing women's batch!</div>
+        <div class="plan-features">
+          <div class="plan-feat"><span class="feat-check gold">✓</span>6 sessions per week</div>
+          <div class="plan-feat"><span class="feat-check gold">✓</span>All disciplines included</div>
+          <div class="plan-feat"><span class="feat-check gold">✓</span>Dedicated women's batches</div>
+          <div class="plan-feat"><span class="feat-check gold">✓</span>Personal progress tracking</div>
+          <div class="plan-feat"><span class="feat-check gold">✓</span>Safe &amp; respectful environment</div>
+          <div class="plan-feat"><span class="feat-check gold">✓</span>Competition preparation</div>
+        </div>
+        <a href="#contact" class="plan-cta">JOIN NOW &rarr;</a>
+      </div>
+
+      <!-- Plan 3: 6 Days Male -->
+      <div class="plan-card reveal">
+        <span class="plan-icon">🏆</span>
+        <span class="plan-name">ELITE</span>
+        <span class="plan-days">6 Days / Week &bull; 1 Month</span>
+        <div class="plan-price-wrap">
+          <span class="plan-currency">₹</span>
+          <span class="plan-price">3500</span>
+        </div>
+        <span class="plan-period">per month &bull; Male Members</span>
+        <div class="plan-gender-note">&#128104; Full access plan for male warriors — maximum training frequency</div>
+        <div class="plan-features">
+          <div class="plan-feat"><span class="feat-check">✓</span>6 sessions per week</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>All disciplines included</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>Sparring &amp; competition prep</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>Personal progress tracking</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>Access to both branches</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>Championship pathway program</div>
+        </div>
+        <a href="#contact" class="plan-cta outline-cta">JOIN NOW</a>
+      </div>
+
+    </div>
+
+    <!-- Quick comparison note -->
+    <div class="reveal" style="max-width:700px;margin:2.5rem auto 0;background:rgba(255,215,0,0.04);border:1px solid rgba(255,215,0,0.15);border-radius:16px;padding:1.5rem 2rem;text-align:center">
+      <p style="font-size:.9rem;color:var(--muted);line-height:1.7"><span style="color:var(--gold);font-weight:700">🎁 First Class FREE</span> — Try any discipline before committing. No experience needed. Walk-ins welcome at Aluva &amp; Kolenchery branches.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section style="background:var(--bg2);border-top:1px solid rgba(220,20,60,0.08)">
+  <div class="inclusions-wrap">
+    <div class="sec-header reveal">
+      <span class="sec-label">All Plans Include</span>
+      <h2>EVERYTHING YOU<br><span class="red">NEED TO WIN</span></h2>
+      <p>Every membership gives you access to professional-grade facilities and champion-level coaching.</p>
+    </div>
+    <div class="incl-grid">
+      <div class="incl-item reveal">
+        <span class="incl-icon">🥋</span>
+        <h4>ALL DISCIPLINES</h4>
+        <p>MMA, Boxing, Kickboxing, Karate, Kung Fu, Judo and Self-Defence</p>
+      </div>
+      <div class="incl-item reveal">
+        <span class="incl-icon">👨‍🏫</span>
+        <h4>EXPERT COACHING</h4>
+        <p>Trained directly under our national champion head coach &amp; certified instructors</p>
+      </div>
+      <div class="incl-item reveal">
+        <span class="incl-icon">🏟️</span>
+        <h4>PRO FACILITIES</h4>
+        <p>MMA cage, boxing ring, Xpeed heavy bags, matted grappling zone &amp; strength area</p>
+      </div>
+      <div class="incl-item reveal">
+        <span class="incl-icon">📍</span>
+        <h4>BOTH BRANCHES</h4>
+        <p>Train at Aluva or Kolenchery — your membership is valid at both locations</p>
+      </div>
+      <div class="incl-item reveal">
+        <span class="incl-icon">📊</span>
+        <h4>PROGRESS TRACKING</h4>
+        <p>Regular assessments and belt progression to keep you motivated and growing</p>
+      </div>
+      <div class="incl-item reveal">
+        <span class="incl-icon">🏆</span>
+        <h4>COMPETITION PATH</h4>
+        <p>Opportunity to represent UFC in district, state and national championships</p>
+      </div>
+      <div class="incl-item reveal">
+        <span class="incl-icon">🧒</span>
+        <h4>KIDS BATCHES</h4>
+        <p>Dedicated kids and teens classes with patient age-appropriate instruction</p>
+      </div>
+      <div class="incl-item reveal">
+        <span class="incl-icon">🛡️</span>
+        <h4>SAFE ENVIRONMENT</h4>
+        <p>CCTV monitored, fully supervised sessions with discipline and respect at all times</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="faq-wrap">
+    <div class="sec-header reveal">
+      <span class="sec-label">FAQ</span>
+      <h2>COMMON<br><span class="gold">QUESTIONS</span></h2>
+    </div>
+    <div class="faq-item reveal" id="f1">
+      <div class="faq-q" onclick="toggleFaq('f1')">
+        Do I need any prior experience to join? <span class="faq-arrow">&#9660;</span>
+      </div>
+      <div class="faq-a">Absolutely not! We welcome complete beginners at all ages. Our coaches are trained to work with everyone from zero to advanced level. The first class is always free so you can experience it before committing.</div>
+    </div>
+    <div class="faq-item reveal" id="f2">
+      <div class="faq-q" onclick="toggleFaq('f2')">
+        Can women join? Are there women-only batches? <span class="faq-arrow">&#9660;</span>
+      </div>
+      <div class="faq-a">Yes! We have dedicated women's batches with a safe, respectful and encouraging training environment. Our female membership plan is specially priced at ₹3000/month for the 6-day program. Many of our top performers are female athletes.</div>
+    </div>
+    <div class="faq-item reveal" id="f3">
+      <div class="faq-q" onclick="toggleFaq('f3')">
+        Can I train at both Aluva and Kolenchery branches? <span class="faq-arrow">&#9660;</span>
+      </div>
+      <div class="faq-a">Yes, your membership is valid across both of our branches. You can train at whichever location is most convenient for you on any given day.</div>
+    </div>
+    <div class="faq-item reveal" id="f4">
+      <div class="faq-q" onclick="toggleFaq('f4')">
+        What is the minimum age for membership? <span class="faq-arrow">&#9660;</span>
+      </div>
+      <div class="faq-a">We accept children from age 5 onwards in our kids and teens program. Adults of any age are welcome. Martial arts has tremendous benefits for all age groups — from toddlers to seniors.</div>
+    </div>
+    <div class="faq-item reveal" id="f5">
+      <div class="faq-q" onclick="toggleFaq('f5')">
+        Will I get to compete in tournaments? <span class="faq-arrow">&#9660;</span>
+      </div>
+      <div class="faq-a">Yes! We actively prepare interested students for district, state, and national level competitions. Our track record of 4 national champions and 7 state champions speaks for itself. However, competition is completely optional — many members train purely for fitness, discipline, and self-defence.</div>
+    </div>
+    <div class="faq-item reveal" id="f6">
+      <div class="faq-q" onclick="toggleFaq('f6')">
+        What equipment do I need to bring? <span class="faq-arrow">&#9660;</span>
+      </div>
+      <div class="faq-a">For your first free trial class, just come in comfortable workout clothes. Basic equipment like gloves and wraps are available at the club. As you progress, we'll guide you on what personal gear to invest in.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-wrap">
+    <div class="sec-header reveal">
+      <span class="sec-label">Get In Touch</span>
+      <h2>CONTACT &amp; <span class="gold">JOIN US</span></h2>
+      <p>Fill in the form and our team will reach out to confirm your free trial class.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info-col reveal-l">
+        <h2>REACH US<br><span class="gold">DIRECTLY</span></h2>
+        <p class="sub">Walk-ins are always welcome. Drop by any branch during training hours and our coaches will welcome you. Alternatively, call us or fill the form.</p>
+        <div class="cinfo-cards">
+          <div class="cinfo-card">
+            <span class="cinfo-icon">📞</span>
+            <div class="cinfo-body">
+              <span class="cinfo-label">Phone / WhatsApp</span>
+              <span class="cinfo-val">
+                <a href="tel:+917736376100">+91 77363 76100</a><br>
+                <a href="tel:+919846194667">+91 98461 94667</a>
+              </span>
+            </div>
+          </div>
+          <div class="cinfo-card">
+            <span class="cinfo-icon">📍</span>
+            <div class="cinfo-body">
+              <span class="cinfo-label">Aluva Branch</span>
+              <span class="cinfo-val">Main Road, Aluva<br>Ernakulam, Kerala — 683101</span>
+            </div>
+          </div>
+          <div class="cinfo-card">
+            <span class="cinfo-icon">📍</span>
+            <div class="cinfo-body">
+              <span class="cinfo-label">Kolenchery Branch</span>
+              <span class="cinfo-val">Near Town Square, Kolenchery<br>Ernakulam, Kerala — 682311</span>
+            </div>
+          </div>
+          <div class="cinfo-card">
+            <span class="cinfo-icon">🕐</span>
+            <div class="cinfo-body">
+              <span class="cinfo-label">Training Hours</span>
+              <span class="cinfo-val">Morning: 6:00 AM – 9:00 AM<br>Evening: 5:00 PM – 9:00 PM<br>All Days including Sundays</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-col reveal-r">
+        <h3>BOOK FREE TRIAL</h3>
+        <p class="form-sub">First class is on us. No commitment required.</p>
+        <form id="contactForm" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" placeholder="+91 XXXXX XXXXX" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Age</label>
+              <input type="number" placeholder="Your age" min="5" max="99">
+            </div>
+            <div class="form-group">
+              <label>Gender</label>
+              <select>
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Preferred Branch</label>
+            <select>
+              <option value="">Any Branch</option>
+              <option>Aluva Branch</option>
+              <option>Kolenchery Branch</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Interested In</label>
+            <select>
+              <option>MMA</option>
+              <option>Boxing</option>
+              <option>Kickboxing</option>
+              <option>Karate</option>
+              <option>Kung Fu</option>
+              <option>Judo</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message (Optional)</label>
+            <textarea placeholder="Any questions or special requirements..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">BOOK MY FREE CLASS &rarr;</button>
+          <p class="form-note" id="formNote">We'll call you within 24 hours to confirm your booking.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP / LOCATIONS -->
+<section class="map-section">
+  <div class="map-header reveal">
+    <span class="sec-label">Find Us</span>
+    <h2 style="font-size:clamp(2rem,4vw,3rem);letter-spacing:3px">OUR <span style="color:var(--gold)">LOCATIONS</span></h2>
+  </div>
+  <div style="max-width:900px;margin:0 auto">
+    <div class="map-locations">
+      <div class="map-loc reveal-l">
+        <span class="map-loc-icon">🏟️</span>
+        <div>
+          <h4>ALUVA BRANCH</h4>
+          <p>Main Road, Aluva<br>Ernakulam District, Kerala<br>PIN: 683101</p>
+          <span class="ml-phone">📞 +91 77363 76100</span>
+        </div>
+      </div>
+      <div class="map-loc reveal-r">
+        <span class="map-loc-icon">🏟️</span>
+        <div>
+          <h4>KOLENCHERY BRANCH</h4>
+          <p>Near Town Square, Kolenchery<br>Ernakulam District, Kerala<br>PIN: 682311</p>
+          <span class="ml-phone">📞 +91 98461 94667</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem" class="reveal">
+      <a href="https://maps.google.com/?q=Aluva,Kerala" target="_blank" class="plan-cta" style="display:inline-flex;align-items:center;gap:.6rem;padding:14px 32px;background:var(--gradient);color:#000;font-weight:700;font-size:.88rem;border-radius:10px;letter-spacing:1px;font-family:'Rajdhani',sans-serif;text-transform:uppercase;transition:all .3s">📍 Open in Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo">ULTIMATE FIGHT CLUB</span>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#disciplines">Disciplines</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="membership.html">Membership</a>
+    </div>
+    <p style="font-size:.75rem;color:var(--dim)">&copy; 2026 Ultimate Fight Club &mdash; Designed by WebCraft Studio</p>
+  </div>
+</footer>
+
+<script>
+// ---- Mobile Nav ----
+const tog=document.getElementById('navToggle'),nl=document.getElementById('navLinks');
+tog.addEventListener('click',()=>{
+  nl.classList.toggle('open');
+  const s=tog.querySelectorAll('span');
+  if(nl.classList.contains('open')){s[0].style.transform='rotate(45deg) translate(5px,5px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(5px,-5px)'}
+  else{s[0].style.transform='';s[1].style.opacity='1';s[2].style.transform=''}
+});
+nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nl.classList.remove('open');tog.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='1'})}));
+
+// ---- FAQ ----
+function toggleFaq(id){
+  const el=document.getElementById(id);
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+
+// ---- Form Submit ----
+function submitForm(e){
+  e.preventDefault();
+  const btn=document.getElementById('submitBtn');
+  const note=document.getElementById('formNote');
+  btn.textContent='✓ BOOKING CONFIRMED!';
+  btn.style.background='linear-gradient(135deg,#28a745,#20c997)';
+  btn.disabled=true;
+  note.textContent='✓ Thank you! Our team will call you within 24 hours to confirm your free class.';
+  note.style.color='rgba(40,167,69,0.9)';
+  note.style.fontWeight='600';
+}
+
+// ---- Scroll Reveal ----
+const revEls=document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.reveal-s');
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('v'),i*70);obs.unobserve(e.target)}});
+},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+revEls.forEach(el=>obs.observe(el));
+
+// ---- Stagger plan cards ----
+document.querySelectorAll('.plan-card.reveal').forEach((c,i)=>c.style.transitionDelay=i*.12+'s');
+document.querySelectorAll('.incl-item.reveal').forEach((c,i)=>c.style.transitionDelay=i*.07+'s');
+</script>
+</body>
+</html>

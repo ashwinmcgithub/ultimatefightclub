@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Ultimate Fight Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080808;--bg2:#0f0f0f;--card:#141414;
+  --red:#DC143C;--red-dk:#8B0000;--red-glow:rgba(220,20,60,0.25);
+  --gold:#FFD700;--gold-dk:#B8860B;
+  --text:#FAFAFA;--muted:rgba(255,255,255,0.55);--dim:rgba(255,255,255,0.25);
+  --border:rgba(255,255,255,0.07);
+  --gradient:linear-gradient(135deg,#DC143C 0%,#FFD700 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Rajdhani',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;letter-spacing:2px}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+::selection{background:rgba(220,20,60,0.35);color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:3px}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:55px 55px;pointer-events:none;z-index:0}
+
+/* ===== MMA FLOATING BG ===== */
+.mma-bg{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.mma-elem{position:absolute;will-change:transform}
+.oct-a{width:520px;height:520px;top:-80px;right:-100px;animation:mmaD1 20s ease-in-out infinite}
+.oct-b{width:400px;height:400px;bottom:2%;left:-90px;animation:mmaD2 26s ease-in-out infinite}
+.oct-c{width:220px;height:220px;top:42%;left:38%;animation:mmaD3 15s ease-in-out infinite}
+.oct-d{width:680px;height:680px;bottom:-120px;right:15%;animation:mmaD4 34s ease-in-out infinite}
+.oct-e{width:160px;height:160px;top:22%;left:18%;animation:mmaD3 19s ease-in-out infinite reverse}
+.ftr-a{width:170px;height:300px;top:10%;right:6%;animation:mmaF1 22s ease-in-out infinite;opacity:.11}
+.ftr-b{width:170px;height:300px;bottom:8%;left:4%;animation:mmaF2 28s ease-in-out infinite;opacity:.09}
+@keyframes mmaD1{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(-35px,50px) rotate(9deg)}50%{transform:translate(-18px,80px) rotate(4deg)}75%{transform:translate(22px,35px) rotate(-6deg)}100%{transform:translate(0,0) rotate(0deg)}}
+@keyframes mmaD2{0%{transform:translate(0,0) rotate(0deg) scale(1)}33%{transform:translate(55px,-45px) rotate(-12deg) scale(1.06)}66%{transform:translate(25px,-75px) rotate(-6deg) scale(0.96)}100%{transform:translate(0,0) rotate(0deg) scale(1)}}
+@keyframes mmaD3{0%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-55px,-45px) rotate(180deg)}100%{transform:translate(0,0) rotate(360deg)}}
+@keyframes mmaD4{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(-45px,-35px) rotate(6deg)}75%{transform:translate(35px,-55px) rotate(-9deg)}100%{transform:translate(0,0) rotate(0deg)}}
+@keyframes mmaF1{0%{transform:translateY(0) translateX(0);opacity:.11}25%{transform:translateY(-45px) translateX(-10px);opacity:.17}50%{transform:translateY(-22px) translateX(8px);opacity:.09}75%{transform:translateY(-65px) translateX(-5px);opacity:.14}100%{transform:translateY(0) translateX(0);opacity:.11}}
+@keyframes mmaF2{0%{transform:translateY(0) scaleX(-1);opacity:.09}33%{transform:translateY(-55px) scaleX(-1);opacity:.15}66%{transform:translateY(-28px) scaleX(-1);opacity:.07}100%{transform:translateY(0) scaleX(-1);opacity:.09}}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,8,8,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(220,20,60,0.15);transition:all .3s}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 24px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-badge{width:46px;height:46px;background:var(--gradient);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:#000;letter-spacing:0;line-height:1;flex-shrink:0}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-main{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-sub{font-size:.58rem;color:var(--muted);letter-spacing:2px;font-weight:500;text-transform:uppercase;font-family:'Rajdhani',sans-serif;-webkit-text-fill-color:var(--muted)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:.82rem;font-weight:600;color:var(--muted);transition:color .3s;letter-spacing:1.5px;text-transform:uppercase}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.btn-join{background:var(--gradient);color:#000!important;font-weight:700;font-size:.78rem;padding:10px 22px;border-radius:8px;letter-spacing:1px;font-family:'Rajdhani',sans-serif;transition:all .3s;display:inline-block;text-transform:uppercase}
+.btn-join:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--red-glow)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-toggle span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+/* ===== PAGE HERO ===== */
+.page-hero{min-height:45vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;width:800px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(220,20,60,.15),rgba(255,215,0,.07),transparent 70%);pointer-events:none;animation:gGlow 8s ease-in-out infinite}
+@keyframes gGlow{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
+.page-hero-content{position:relative;z-index:2}
+.ph-label{font-size:.72rem;font-weight:600;color:var(--red);letter-spacing:3px;text-transform:uppercase;margin-bottom:.75rem;display:block}
+.page-hero h1{font-size:clamp(3rem,7vw,5.5rem);letter-spacing:4px;margin-bottom:1rem;line-height:1}
+.page-hero h1 .outline{-webkit-text-stroke:1.5px rgba(255,255,255,0.2);-webkit-text-fill-color:transparent}
+.page-hero h1 .gold{color:var(--gold)}
+.page-hero p{color:var(--muted);font-size:clamp(.9rem,1.5vw,1.1rem);max-width:520px;margin:0 auto;font-weight:400}
+
+/* ===== FILTER TABS ===== */
+.filter-bar{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;padding:0 24px 3rem;position:relative;z-index:2}
+.filter-btn{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:10px 24px;font-size:.82rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .3s;font-family:'Rajdhani',sans-serif;letter-spacing:1px;text-transform:uppercase}
+.filter-btn:hover{border-color:rgba(220,20,60,0.3);color:var(--text);background:rgba(220,20,60,0.07)}
+.filter-btn.active{background:var(--gradient);color:#000;border-color:transparent}
+
+/* ===== GALLERY GRID ===== */
+.gallery-section{padding:0 24px clamp(4rem,8vw,7rem);position:relative;z-index:2}
+.gallery-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;grid-auto-rows:220px;grid-auto-flow:dense}
+.g-item{border-radius:14px;overflow:hidden;position:relative;cursor:pointer;background:var(--card)}
+.g-item.wide{grid-column:span 2}
+.g-item.tall{grid-row:span 2}
+.g-item.big{grid-column:span 2;grid-row:span 2}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .65s,filter .4s;filter:brightness(.85)}
+.g-item:hover img{transform:scale(1.08);filter:brightness(1)}
+.g-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 55%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:1.25rem}
+.g-item:hover .g-overlay{opacity:1}
+.g-tag{font-size:.65rem;color:var(--red);letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:.3rem;display:block}
+.g-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:1.5px;color:var(--text);display:block}
+.g-zoom{position:absolute;top:14px;right:14px;width:36px;height:36px;background:rgba(0,0,0,.65);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;opacity:0;transition:opacity .3s;backdrop-filter:blur(6px)}
+.g-item:hover .g-zoom{opacity:1}
+
+/* ===== LIGHTBOX ===== */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(10px)}
+.lightbox.open{display:flex}
+.lb-img-wrap{position:relative;max-width:1000px;width:100%;max-height:85vh;display:flex;align-items:center;justify-content:center}
+.lb-img{max-width:100%;max-height:85vh;border-radius:12px;object-fit:contain;display:block}
+.lb-close{position:fixed;top:24px;right:28px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:50%;width:46px;height:46px;cursor:pointer;font-size:1.3rem;color:var(--text);display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:10}
+.lb-close:hover{background:rgba(220,20,60,.3);border-color:var(--red)}
+.lb-prev,.lb-next{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:50%;width:52px;height:52px;cursor:pointer;font-size:1.4rem;color:var(--text);display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:10}
+.lb-prev:hover,.lb-next:hover{background:rgba(220,20,60,.3);border-color:var(--red)}
+.lb-prev{left:20px}
+.lb-next{right:20px}
+.lb-info{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:8px 24px;font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:.75rem;backdrop-filter:blur(10px)}
+.lb-count{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--gold)}
+
+/* ===== ACHIEVEMENTS STRIP ===== */
+.strip{position:relative;z-index:2;padding:clamp(3rem,6vw,5rem) 24px;background:var(--bg2);border-top:1px solid rgba(220,20,60,0.1);border-bottom:1px solid rgba(220,20,60,0.1)}
+.strip-inner{max-width:900px;margin:0 auto;text-align:center}
+.strip-inner h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:3px;margin-bottom:1rem}
+.strip-inner h2 .red{color:var(--red)}
+.strip-inner p{color:var(--muted);font-size:1rem;margin-bottom:2.5rem;font-weight:400}
+.strip-stats{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
+.sstat{text-align:center}
+.sstat-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;color:var(--gold);display:block}
+.sstat-lbl{font-size:.78rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;font-weight:600}
+
+/* ===== FOOTER ===== */
+footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp(2rem,4vw,3rem) 24px;position:relative;z-index:2}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-links a{font-size:.82rem;color:var(--muted);transition:color .3s}
+.footer-links a:hover{color:var(--text)}
+
+/* ===== REVEAL ===== */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal.v{opacity:1;transform:translateY(0)}
+.reveal-s{opacity:0;transform:scale(.92);transition:opacity .85s,transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal-s.v{opacity:1;transform:scale(1)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){.gallery-grid{grid-template-columns:repeat(2,1fr)}.g-item.big{grid-column:span 2}}
+@media(max-width:768px){
+  .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(8,8,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.25rem;border-bottom:1px solid rgba(220,20,60,.15)}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:flex}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}
+  .g-item.wide,.g-item.big{grid-column:span 2}
+}
+@media(max-width:480px){.gallery-grid{grid-template-columns:1fr;grid-auto-rows:200px}.g-item.wide,.g-item.big,.g-item.tall{grid-column:span 1;grid-row:span 1}}
+</style>
+</head>
+<body>
+
+<!-- MMA FLOATING BACKGROUND -->
+<div class="mma-bg" aria-hidden="true">
+  <svg class="mma-elem oct-a" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="66,3 154,3 217,66 217,154 154,217 66,217 3,154 3,66" stroke="rgba(220,20,60,0.2)" stroke-width="2.5"/>
+    <polygon points="78,15 142,15 205,78 205,142 142,205 78,205 15,142 15,78" stroke="rgba(220,20,60,0.08)" stroke-width="1.5"/>
+  </svg>
+  <svg class="mma-elem oct-b" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="54,3 126,3 177,54 177,126 126,177 54,177 3,126 3,54" stroke="rgba(255,215,0,0.16)" stroke-width="2"/>
+    <polygon points="64,13 116,13 167,64 167,116 116,167 64,167 13,116 13,64" stroke="rgba(255,215,0,0.06)" stroke-width="1"/>
+  </svg>
+  <svg class="mma-elem oct-c" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="33,3 77,3 107,33 107,77 77,107 33,107 3,77 3,33" fill="rgba(220,20,60,0.04)" stroke="rgba(220,20,60,0.14)" stroke-width="2"/>
+  </svg>
+  <svg class="mma-elem oct-d" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="90,3 210,3 297,90 297,210 210,297 90,297 3,210 3,90" stroke="rgba(255,215,0,0.07)" stroke-width="1.5"/>
+  </svg>
+  <svg class="mma-elem oct-e" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="27,3 63,3 87,27 87,63 63,87 27,87 3,63 3,27" stroke="rgba(220,20,60,0.1)" stroke-width="2"/>
+  </svg>
+  <svg class="mma-elem ftr-a" viewBox="0 0 110 200" fill="rgba(220,20,60,0.85)" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="55" cy="16" r="13"/>
+    <path d="M44,29 L66,29 L62,70 L48,70 Z"/>
+    <path d="M44,36 L18,26 L13,36 L25,44 L44,42 Z"/>
+    <path d="M66,34 L84,22 L90,30 L76,44 L66,42 Z"/>
+    <path d="M48,70 L42,104 L38,140 L44,140 L48,104 L52,70 Z"/>
+    <path d="M62,70 L82,52 L104,32 L110,38 L88,60 L66,78 Z"/>
+    <path d="M104,32 L112,26 L113,35 L106,40 Z"/>
+  </svg>
+  <svg class="mma-elem ftr-b" viewBox="0 0 110 200" fill="rgba(255,215,0,0.75)" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="48" cy="18" r="13"/>
+    <path d="M36,40 L66,38 L70,78 L30,80 Z"/>
+    <path d="M36,46 L12,56 L9,68 L22,70 L36,58 Z"/>
+    <path d="M66,42 L84,28 L107,26 L108,38 L86,40 L68,52 Z"/>
+    <rect x="100" y="22" width="14" height="18" rx="5"/>
+    <path d="M38,80 L30,114 L28,152 L36,152 L38,116 L46,80 Z"/>
+    <path d="M56,80 L64,114 L66,152 L74,152 L70,116 L60,80 Z"/>
+  </svg>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-badge" style="background:transparent;border-radius:0;padding:0;width:52px;height:52px;"><img src="images/logo-new-nobg.png" alt="UFC Logo" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 6px rgba(255,215,0,0.25));"></div>
+      <div class="logo-text">
+        <span class="logo-main">ULTIMATE FIGHT CLUB</span>
+        <span class="logo-sub">Kerala's Premier Martial Arts Academy</span>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="index.html#disciplines">Disciplines</a>
+      <a href="index.html#coach">Coaches</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="membership.html">Membership</a>
+      <a href="membership.html#contact" class="btn-join">JOIN NOW</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="hero-glow"></div>
+  <div class="page-hero-content">
+    <span class="ph-label">Our Club in Action</span>
+    <h1><span class="gold">CLUB</span><br><span class="outline">GALLERY</span></h1>
+    <p>Get a glimpse of our world-class training facilities, competition victories, and the relentless spirit of our fighters.</p>
+  </div>
+</div>
+
+<!-- FILTER TABS -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="training">Training</button>
+  <button class="filter-btn" data-filter="competition">Competition</button>
+  <button class="filter-btn" data-filter="facilities">Facilities</button>
+  <button class="filter-btn" data-filter="events">Events</button>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery-section">
+  <div class="gallery-grid" id="galleryGrid">
+
+    <div class="g-item big" data-cat="facilities" data-img="images/inside-1.webp">
+      <img src="images/inside-1.webp" alt="Aluva MMA Cage">
+      <div class="g-overlay">
+        <span class="g-tag">Facilities</span>
+        <span class="g-title">Professional MMA Octagon — Aluva</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+    <div class="g-item" data-cat="training" data-img="images/gallery-4.webp">
+      <img src="images/gallery-4.webp" alt="Bag Training">
+      <div class="g-overlay">
+        <span class="g-tag">Training</span>
+        <span class="g-title">Live Bag Training Session</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+    <div class="g-item" data-cat="competition" data-img="images/gallery-2.webp">
+      <img src="images/gallery-2.webp" alt="Champion with Coach">
+      <div class="g-overlay">
+        <span class="g-tag">Competition</span>
+        <span class="g-title">Coach Bibin with State Champion</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+    <div class="g-item wide" data-cat="facilities" data-img="images/inside-0.webp">
+      <img src="images/inside-0.webp" alt="Kolenchery Branch">
+      <div class="g-overlay">
+        <span class="g-tag">Facilities</span>
+        <span class="g-title">Kolenchery Branch — Boxing Arena</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+    <div class="g-item tall" data-cat="competition" data-img="images/gallery-1.webp">
+      <img src="images/gallery-1.webp" alt="APFC India Event">
+      <div class="g-overlay">
+        <span class="g-tag">Competition</span>
+        <span class="g-title">APFC India — National MMA Event</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+    <div class="g-item" data-cat="facilities" data-img="images/inside-3.webp">
+      <img src="images/inside-3.webp" alt="Club Interior">
+      <div class="g-overlay">
+        <span class="g-tag">Facilities</span>
+        <span class="g-title">Club Wall — Legends Gallery</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+    <div class="g-item" data-cat="events" data-img="images/inside-7.webp">
+      <img src="images/inside-7.webp" alt="Team Trophy">
+      <div class="g-overlay">
+        <span class="g-tag">Events</span>
+        <span class="g-title">Team UFC — Championship Trophy</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+    <div class="g-item wide" data-cat="facilities" data-img="images/gallery-3.webp">
+      <img src="images/gallery-3.webp" alt="Heavy Bag Zone">
+      <div class="g-overlay">
+        <span class="g-tag">Facilities</span>
+        <span class="g-title">Xpeed Heavy Bag Training Zone</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+    <div class="g-item" data-cat="training" data-img="images/inside-2.webp">
+      <img src="images/inside-2.webp" alt="Speed Bag">
+      <div class="g-overlay">
+        <span class="g-tag">Training</span>
+        <span class="g-title">Xpeed Wobble Bag — Precision Training</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+    <div class="g-item" data-cat="competition" data-img="images/inside-9.webp">
+      <img src="images/inside-9.webp" alt="MMA Kerala Championship">
+      <div class="g-overlay">
+        <span class="g-tag">Competition</span>
+        <span class="g-title">MMA Kerala Championship Award</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+    <div class="g-item wide" data-cat="events" data-img="images/inside-8.webp">
+      <img src="images/inside-8.webp" alt="Team UFC">
+      <div class="g-overlay">
+        <span class="g-tag">Events</span>
+        <span class="g-title">Team UFC — Black &amp; Gold Warriors</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+    <div class="g-item" data-cat="events" data-img="images/inside-6.webp">
+      <img src="images/inside-6.webp" alt="Club Visit">
+      <div class="g-overlay">
+        <span class="g-tag">Events</span>
+        <span class="g-title">VIP Visit — Ultimate Fight Club Ring</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+    <div class="g-item" data-cat="events" data-img="images/inside-5.webp">
+      <img src="images/inside-5.webp" alt="YouTube Silver Play">
+      <div class="g-overlay">
+        <span class="g-tag">Events</span>
+        <span class="g-title">YouTube Silver Play Button — 100K+</span>
+      </div>
+      <div class="g-zoom">&#128269;</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS STRIP -->
+<div class="strip">
+  <div class="strip-inner reveal">
+    <h2>OUR FIGHTERS.<br>OUR <span class="red">LEGACY.</span></h2>
+    <p>From district competitions to national championships — Ultimate Fight Club athletes compete and win at every level.</p>
+    <div class="strip-stats">
+      <div class="sstat"><span class="sstat-num">4</span><span class="sstat-lbl">National Champions</span></div>
+      <div class="sstat"><span class="sstat-num">7</span><span class="sstat-lbl">State Champions</span></div>
+      <div class="sstat"><span class="sstat-num">20+</span><span class="sstat-lbl">District Titles</span></div>
+      <div class="sstat"><span class="sstat-num">500+</span><span class="sstat-lbl">Active Members</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">&#215;</button>
+  <button class="lb-prev" id="lbPrev">&#8249;</button>
+  <div class="lb-img-wrap">
+    <img src="" alt="Gallery" class="lb-img" id="lbImg">
+  </div>
+  <button class="lb-next" id="lbNext">&#8250;</button>
+  <div class="lb-info">
+    <span id="lbCaption" style="color:var(--text);font-weight:600"></span>
+    <span class="lb-count" id="lbCount">1 / 12</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo">ULTIMATE FIGHT CLUB</span>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#disciplines">Disciplines</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="membership.html">Membership</a>
+      <a href="membership.html#contact">Contact</a>
+    </div>
+    <p style="font-size:.75rem;color:var(--dim)">&copy; 2026 Ultimate Fight Club &mdash; Designed by WebCraft Studio</p>
+  </div>
+</footer>
+
+<script>
+// ---- Mobile Nav ----
+const tog=document.getElementById('navToggle'),nl=document.getElementById('navLinks');
+tog.addEventListener('click',()=>{
+  nl.classList.toggle('open');
+  const s=tog.querySelectorAll('span');
+  if(nl.classList.contains('open')){s[0].style.transform='rotate(45deg) translate(5px,5px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(5px,-5px)'}
+  else{s[0].style.transform='';s[1].style.opacity='1';s[2].style.transform=''}
+});
+
+// ---- Gallery Filter ----
+const items=document.querySelectorAll('.g-item');
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter=btn.dataset.filter;
+    items.forEach(item=>{
+      if(filter==='all'||item.dataset.cat===filter){
+        item.style.display='';
+        item.style.opacity='0';
+        setTimeout(()=>{item.style.opacity='1';item.style.transition='opacity .4s'},10);
+      } else {
+        item.style.display='none';
+      }
+    });
+  });
+});
+
+// ---- Lightbox ----
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lbImg');
+const lbCaption=document.getElementById('lbCaption');
+const lbCount=document.getElementById('lbCount');
+let allImgs=[],curIdx=0;
+
+function buildImgList(){
+  allImgs=[];
+  document.querySelectorAll('.g-item:not([style*="none"])').forEach(item=>{
+    const imgEl=item.querySelector('img');
+    const titleEl=item.querySelector('.g-title');
+    allImgs.push({src:item.dataset.img||imgEl.src,caption:titleEl?titleEl.textContent:''});
+  });
+}
+
+function openLightbox(idx){
+  buildImgList();
+  curIdx=Math.max(0,Math.min(idx,allImgs.length-1));
+  showLbImg();
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function showLbImg(){
+  lbImg.src=allImgs[curIdx].src;
+  lbCaption.textContent=allImgs[curIdx].caption;
+  lbCount.textContent=(curIdx+1)+' / '+allImgs.length;
+}
+
+items.forEach((item,idx)=>{
+  item.addEventListener('click',()=>{
+    buildImgList();
+    // find position in allImgs
+    const src=item.dataset.img||item.querySelector('img').src;
+    const pos=allImgs.findIndex(i=>i.src===src);
+    openLightbox(pos>=0?pos:0);
+  });
+});
+
+document.getElementById('lbClose').addEventListener('click',()=>{lb.classList.remove('open');document.body.style.overflow=''});
+document.getElementById('lbPrev').addEventListener('click',()=>{curIdx=(curIdx-1+allImgs.length)%allImgs.length;showLbImg()});
+document.getElementById('lbNext').addEventListener('click',()=>{curIdx=(curIdx+1)%allImgs.length;showLbImg()});
+lb.addEventListener('click',e=>{if(e.target===lb){lb.classList.remove('open');document.body.style.overflow=''}});
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape'){lb.classList.remove('open');document.body.style.overflow=''}
+  if(e.key==='ArrowLeft'){curIdx=(curIdx-1+allImgs.length)%allImgs.length;showLbImg()}
+  if(e.key==='ArrowRight'){curIdx=(curIdx+1)%allImgs.length;showLbImg()}
+});
+
+// ---- Scroll Reveal ----
+const revEls=document.querySelectorAll('.reveal,.reveal-s');
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target)}});
+},{threshold:.12,rootMargin:'0px 0px -50px 0px'});
+revEls.forEach(el=>obs.observe(el));
+
+// ---- Stagger gallery items on load ----
+items.forEach((item,i)=>{
+  item.style.opacity='0';item.style.transform='translateY(30px)';item.style.transition='opacity .6s,transform .6s';
+  setTimeout(()=>{item.style.opacity='1';item.style.transform='none'},100+i*60);
+});
+</script>
+</body>
+</html>
