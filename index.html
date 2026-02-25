@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ultimate Fight Club — Kerala's Premier Martial Arts Academy</title>
-<link rel="icon" type="image/png" href="images/logo-main.jpg">
-<link rel="apple-touch-icon" href="images/logo-main.jpg">
+<link rel="icon" type="image/png" href="images/logo-nobg.png">
+<link rel="apple-touch-icon" href="images/logo-nobg.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -97,6 +97,16 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .hstat-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4.5vw,3.2rem);line-height:1;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
 .hstat-lbl{font-size:.72rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-top:.2rem}
 .hsep{width:1px;height:52px;background:rgba(255,255,255,0.1);align-self:center}
+
+/* ===== AFFILIATIONS STRIP ===== */
+.aff-strip{overflow:hidden;padding:1.2rem 0;border-top:1px solid rgba(255,215,0,0.2);border-bottom:1px solid rgba(255,215,0,0.2);position:relative;z-index:2;background:rgba(0,0,0,0.45)}
+.aff-track{display:flex;gap:5rem;animation:scrollAff 22s linear infinite;width:max-content;align-items:center;padding:0 2.5rem}
+.aff-track:hover{animation-play-state:paused}
+@keyframes scrollAff{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.aff-logo{display:flex;flex-direction:column;align-items:center;gap:.4rem;flex-shrink:0}
+.aff-logo img{height:52px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(255,215,0,0.3));transition:all .3s}
+.aff-logo img:hover{transform:scale(1.12);filter:drop-shadow(0 0 14px rgba(255,215,0,0.6))}
+.aff-logo span{font-size:.58rem;color:rgba(255,215,0,0.6);letter-spacing:2px;text-transform:uppercase;font-weight:700;font-family:'Rajdhani',sans-serif}
 
 /* ===== MARQUEE ===== */
 .marquee{overflow:hidden;padding:1.6rem 0;border-top:1px solid rgba(220,20,60,0.15);border-bottom:1px solid rgba(220,20,60,0.15);position:relative;z-index:2;background:rgba(220,20,60,0.03)}
@@ -366,7 +376,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="logo">
-      <div class="logo-badge" style="background:transparent;border-radius:0;padding:0;width:52px;height:52px;"><img src="images/logo-main.jpg" alt="UFC Logo" style="width:100%;height:100%;object-fit:contain;border-radius:8px;"></div>
+      <div class="logo-badge" style="background:transparent;border-radius:0;padding:0;width:52px;height:52px;"><img src="images/logo-nobg.png" alt="UFC Logo" style="width:100%;height:100%;object-fit:contain;border-radius:8px;"></div>
       <div class="logo-text">
         <span class="logo-main">ULTIMATE FIGHT CLUB</span>
         <span class="logo-sub">Kerala's Premier Martial Arts Academy</span>
@@ -392,7 +402,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
   <div class="hero-glow-gold"></div>
   <div class="hero-content">
     <div style="margin-bottom:1.5rem" class="reveal">
-      <img src="images/logo-main.jpg" alt="Ultimate Fight Club Logo" style="width:140px;height:140px;object-fit:contain;margin:0 auto;border-radius:14px;box-shadow:0 0 30px rgba(255,215,0,0.3)">
+      <img src="images/logo-nobg.png" alt="Ultimate Fight Club Logo" style="width:140px;height:140px;object-fit:contain;margin:0 auto;border-radius:14px;box-shadow:0 0 30px rgba(255,215,0,0.3)">
     </div>
     <div class="hero-tag reveal">
       <span class="hero-tag-dot"></span>
@@ -414,6 +424,22 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
     </div>
   </div>
 </section>
+
+<!-- AFFILIATIONS SCROLLING STRIP -->
+<div class="aff-strip">
+  <div class="aff-track">
+    <div class="aff-logo"><img src="images/aff-aimmaf-nobg.png" alt="AIMMAF"><span>AIMMAF</span></div>
+    <div class="aff-logo"><img src="images/aff-emmaa-nobg.png" alt="EMMAA"><span>EMMAA</span></div>
+    <div class="aff-logo"><img src="images/aff-icw-nobg.png" alt="ICW"><span>Indian Cage War</span></div>
+    <div class="aff-logo"><img src="images/aff-martialtechie-nobg.png" alt="Martial Techie"><span>Martial Techie</span></div>
+    <div class="aff-logo"><img src="images/aff-uwmma-nobg.png" alt="UWMMA"><span>UWMMA</span></div>
+    <div class="aff-logo"><img src="images/aff-aimmaf-nobg.png" alt="AIMMAF"><span>AIMMAF</span></div>
+    <div class="aff-logo"><img src="images/aff-emmaa-nobg.png" alt="EMMAA"><span>EMMAA</span></div>
+    <div class="aff-logo"><img src="images/aff-icw-nobg.png" alt="ICW"><span>Indian Cage War</span></div>
+    <div class="aff-logo"><img src="images/aff-martialtechie-nobg.png" alt="Martial Techie"><span>Martial Techie</span></div>
+    <div class="aff-logo"><img src="images/aff-uwmma-nobg.png" alt="UWMMA"><span>UWMMA</span></div>
+  </div>
+</div>
 
 <!-- MARQUEE -->
 <div class="marquee">
@@ -520,7 +546,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       </div>
       <div class="disc-card reveal">
         <span class="disc-badge">Popular</span>
-        <img src="images/disc-kickboxing.jpg" alt="Kickboxing" class="disc-img">
+        <img src="images/disc-kickboxing.jpg" alt="Kickboxing" class="disc-img" loading="lazy">
         <div class="disc-body">
           <span class="disc-icon">⚡</span>
           <h3>KICKBOXING</h3>
@@ -554,7 +580,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       </div>
       <div class="disc-card reveal">
         <span class="disc-badge">New</span>
-        <img src="images/inside-11.webp" alt="Wrestling" class="disc-img">
+        <img src="images/disc-wrestling.jpg" alt="Wrestling" class="disc-img">
         <div class="disc-body">
           <span class="disc-icon">💪</span>
           <h3>WRESTLING</h3>
@@ -562,7 +588,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         </div>
       </div>
       <div class="disc-card reveal">
-        <img src="images/inside-12.webp" alt="Ushu" class="disc-img">
+        <img src="images/disc-ushu.jpg" alt="Ushu" class="disc-img">
         <div class="disc-body">
           <span class="disc-icon">🏅</span>
           <h3>USHU</h3>
@@ -587,7 +613,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       </div>
       <div class="disc-card reveal">
         <span class="disc-badge">Popular</span>
-        <img src="images/inside-13.webp" alt="Self Defence" class="disc-img">
+        <img src="images/disc-selfdefence.jpg" alt="Self Defence" class="disc-img">
         <div class="disc-body">
           <span class="disc-icon">🛡️</span>
           <h3>SELF DEFENCE</h3>
@@ -595,7 +621,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         </div>
       </div>
       <div class="disc-card reveal">
-        <img src="images/inside-14.webp" alt="Weight Loss" class="disc-img">
+        <img src="images/disc-weightloss.jpg" alt="Weight Loss" class="disc-img">
         <div class="disc-body">
           <span class="disc-icon">🔥</span>
           <h3>WEIGHT LOSS</h3>
@@ -603,7 +629,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         </div>
       </div>
       <div class="disc-card reveal">
-        <img src="images/inside-15.webp" alt="Cross Fit" class="disc-img">
+        <img src="images/disc-crossfit.jpg" alt="Cross Fit" class="disc-img">
         <div class="disc-body">
           <span class="disc-icon">⚡</span>
           <h3>CROSS FIT</h3>
@@ -721,38 +747,6 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
   </div>
 </section>
 
-<!-- AFFILIATIONS BANNER -->
-<div style="background:var(--bg2);border-top:1px solid rgba(255,215,0,0.1);border-bottom:1px solid rgba(255,215,0,0.1);padding:clamp(2.5rem,5vw,4rem) 24px;position:relative;z-index:2;overflow:hidden">
-  <div style="max-width:1100px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:2rem" class="reveal">
-      <span style="font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:3px;text-transform:uppercase;display:block;margin-bottom:.5rem">Recognized & Affiliated With</span>
-      <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);letter-spacing:3px">OUR <span style="color:var(--gold)">AFFILIATIONS</span></h2>
-    </div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap" class="reveal">
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,215,0,0.15);border-radius:16px;padding:1.25rem 1.75rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;transition:all .3s;min-width:140px" onmouseover="this.style.borderColor='rgba(255,215,0,0.4)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,215,0,0.15)';this.style.transform='none'">
-        <img src="images/aff-aimmaf.jpg" alt="AIMMAF" style="width:80px;height:80px;object-fit:contain;border-radius:8px;">
-        <span style="font-size:.68rem;color:var(--muted);letter-spacing:1px;text-align:center;font-weight:600;text-transform:uppercase">AIMMAF</span>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,215,0,0.15);border-radius:16px;padding:1.25rem 1.75rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;transition:all .3s;min-width:140px" onmouseover="this.style.borderColor='rgba(255,215,0,0.4)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,215,0,0.15)';this.style.transform='none'">
-        <img src="images/aff-emmaa.jpg" alt="Ernakulam MMA Association" style="width:80px;height:80px;object-fit:contain;border-radius:8px;">
-        <span style="font-size:.68rem;color:var(--muted);letter-spacing:1px;text-align:center;font-weight:600;text-transform:uppercase">EMMAA</span>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,215,0,0.15);border-radius:16px;padding:1.25rem 1.75rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;transition:all .3s;min-width:140px" onmouseover="this.style.borderColor='rgba(255,215,0,0.4)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,215,0,0.15)';this.style.transform='none'">
-        <img src="images/aff-icw.jpg" alt="Indian Cage War" style="width:80px;height:80px;object-fit:contain;border-radius:8px;">
-        <span style="font-size:.68rem;color:var(--muted);letter-spacing:1px;text-align:center;font-weight:600;text-transform:uppercase">ICW</span>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,215,0,0.15);border-radius:16px;padding:1.25rem 1.75rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;transition:all .3s;min-width:140px" onmouseover="this.style.borderColor='rgba(255,215,0,0.4)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,215,0,0.15)';this.style.transform='none'">
-        <img src="images/aff-martialtechie.jpg" alt="Martial Techie" style="width:80px;height:80px;object-fit:contain;border-radius:8px;">
-        <span style="font-size:.68rem;color:var(--muted);letter-spacing:1px;text-align:center;font-weight:600;text-transform:uppercase">Martial Techie</span>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,215,0,0.15);border-radius:16px;padding:1.25rem 1.75rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;transition:all .3s;min-width:140px" onmouseover="this.style.borderColor='rgba(255,215,0,0.4)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,215,0,0.15)';this.style.transform='none'">
-        <img src="images/aff-uwmma.jpg" alt="UWMMA" style="width:80px;height:80px;object-fit:contain;border-radius:8px;">
-        <span style="font-size:.68rem;color:var(--muted);letter-spacing:1px;text-align:center;font-weight:600;text-transform:uppercase">UWMMA</span>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- YOUTUBE CHANNEL -->
 <section class="yt-section">
   <div class="yt-ring"></div>
@@ -796,67 +790,58 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
   </div>
 </section>
 
-<!-- INSTAGRAM FEED -->
+<!-- INSTAGRAM ACCOUNTS -->
 <section class="insta-section">
   <div class="insta-inner">
     <div class="sec-header reveal">
       <span class="sec-label">Follow Us</span>
-      <h2>LIVE ON <span class="gold">INSTAGRAM</span></h2>
-      <p>Fresh from the cage — real moments, real champions, real training.</p>
+      <h2>OUR <span class="gold">INSTAGRAM</span> FAMILY</h2>
+      <p>6 accounts. One community. Follow all our channels for training content, events and highlights.</p>
     </div>
-    <div class="insta-profile-bar reveal">
-      <div class="insta-icon-wrap">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="2"/>
-          <circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/>
-          <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
-        </svg>
-      </div>
-      <div class="insta-name-block">
-        <span class="insta-handle"><span>@</span>ultimate_fight_club_ernakulam</span>
-        <span class="insta-sublabel">Ultimate Fight Club · Kerala</span>
-      </div>
-      <a href="https://www.instagram.com/ultimate_fight_club_ernakulam/" target="_blank" rel="noopener" class="insta-follow-btn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
-        Follow &nbsp;→
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:900px;margin:0 auto" class="reveal">
+
+      <a href="https://www.instagram.com/ultimate_fight_club_ernakulam/" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:.75rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:1.75rem 1rem;text-decoration:none;color:inherit;transition:all .35s" onmouseover="this.style.borderColor='rgba(220,20,60,0.5)';this.style.transform='translateY(-5px)';this.style.background='rgba(220,20,60,0.07)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='none';this.style.background='rgba(255,255,255,0.04)'">
+        <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg></div>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--text);text-align:center">UFC ERNAKULAM</span>
+        <span style="font-size:.72rem;color:var(--muted);letter-spacing:.5px">@ultimate_fight_club_ernakulam</span>
+        <span style="font-size:.72rem;font-weight:700;color:var(--red);letter-spacing:1px;text-transform:uppercase;border:1px solid rgba(220,20,60,0.4);border-radius:50px;padding:5px 16px">Follow →</span>
       </a>
-    </div>
-    <div class="insta-fallback reveal">
-      <a href="https://www.instagram.com/ultimate_fight_club_ernakulam/" target="_blank" rel="noopener" class="insta-post">
-        <img src="images/gallery-4.webp" alt="UFC Training" loading="lazy">
-        <div class="insta-post-overlay"><span class="ip-heart">♥ 142</span><span>💬 18</span></div>
+
+      <a href="https://www.instagram.com/ultimate_fight_club_kolenchery/" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:.75rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:1.75rem 1rem;text-decoration:none;color:inherit;transition:all .35s" onmouseover="this.style.borderColor='rgba(220,20,60,0.5)';this.style.transform='translateY(-5px)';this.style.background='rgba(220,20,60,0.07)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='none';this.style.background='rgba(255,255,255,0.04)'">
+        <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg></div>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--text);text-align:center">UFC KOLENCHERY</span>
+        <span style="font-size:.72rem;color:var(--muted);letter-spacing:.5px">@ultimate_fight_club_kolenchery</span>
+        <span style="font-size:.72rem;font-weight:700;color:var(--red);letter-spacing:1px;text-transform:uppercase;border:1px solid rgba(220,20,60,0.4);border-radius:50px;padding:5px 16px">Follow →</span>
       </a>
-      <a href="https://www.instagram.com/ultimate_fight_club_ernakulam/" target="_blank" rel="noopener" class="insta-post">
-        <img src="images/inside-1.webp" alt="UFC Aluva Branch" loading="lazy">
-        <div class="insta-post-overlay"><span class="ip-heart">♥ 214</span><span>💬 31</span></div>
+
+      <a href="https://www.instagram.com/martialtechie/" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:.75rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:1.75rem 1rem;text-decoration:none;color:inherit;transition:all .35s" onmouseover="this.style.borderColor='rgba(255,215,0,0.5)';this.style.transform='translateY(-5px)';this.style.background='rgba(255,215,0,0.05)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='none';this.style.background='rgba(255,255,255,0.04)'">
+        <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg></div>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--gold);text-align:center">MARTIAL TECHIE</span>
+        <span style="font-size:.72rem;color:var(--muted);letter-spacing:.5px">@martialtechie</span>
+        <span style="font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;border:1px solid rgba(255,215,0,0.4);border-radius:50px;padding:5px 16px">Follow →</span>
       </a>
-      <a href="https://www.instagram.com/ultimate_fight_club_ernakulam/" target="_blank" rel="noopener" class="insta-post">
-        <img src="images/gallery-2.webp" alt="UFC Champions" loading="lazy">
-        <div class="insta-post-overlay"><span class="ip-heart">♥ 376</span><span>💬 47</span></div>
+
+      <a href="https://www.instagram.com/head_coach_bibin.p.benny/" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:.75rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:1.75rem 1rem;text-decoration:none;color:inherit;transition:all .35s" onmouseover="this.style.borderColor='rgba(220,20,60,0.5)';this.style.transform='translateY(-5px)';this.style.background='rgba(220,20,60,0.07)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='none';this.style.background='rgba(255,255,255,0.04)'">
+        <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg></div>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--text);text-align:center">HEAD COACH</span>
+        <span style="font-size:.72rem;color:var(--muted);letter-spacing:.5px">@head_coach_bibin.p.benny</span>
+        <span style="font-size:.72rem;font-weight:700;color:var(--red);letter-spacing:1px;text-transform:uppercase;border:1px solid rgba(220,20,60,0.4);border-radius:50px;padding:5px 16px">Follow →</span>
       </a>
-      <a href="https://www.instagram.com/ultimate_fight_club_ernakulam/" target="_blank" rel="noopener" class="insta-post">
-        <img src="images/gallery-1.webp" alt="UFC Competition" loading="lazy">
-        <div class="insta-post-overlay"><span class="ip-heart">♥ 289</span><span>💬 24</span></div>
+
+      <a href="https://www.instagram.com/indian_cage_war/" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:.75rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:1.75rem 1rem;text-decoration:none;color:inherit;transition:all .35s" onmouseover="this.style.borderColor='rgba(255,165,0,0.5)';this.style.transform='translateY(-5px)';this.style.background='rgba(255,165,0,0.06)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='none';this.style.background='rgba(255,255,255,0.04)'">
+        <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg></div>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--text);text-align:center">INDIAN CAGE WAR</span>
+        <span style="font-size:.72rem;color:var(--muted);letter-spacing:.5px">@indian_cage_war</span>
+        <span style="font-size:.72rem;font-weight:700;color:orange;letter-spacing:1px;text-transform:uppercase;border:1px solid rgba(255,165,0,0.4);border-radius:50px;padding:5px 16px">Follow →</span>
       </a>
-      <a href="https://www.instagram.com/ultimate_fight_club_ernakulam/" target="_blank" rel="noopener" class="insta-post">
-        <img src="images/inside-3.webp" alt="UFC Coaching" loading="lazy">
-        <div class="insta-post-overlay"><span class="ip-heart">♥ 198</span><span>💬 22</span></div>
+
+      <a href="https://www.instagram.com/ernakulam_mma/" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:.75rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:1.75rem 1rem;text-decoration:none;color:inherit;transition:all .35s" onmouseover="this.style.borderColor='rgba(220,20,60,0.5)';this.style.transform='translateY(-5px)';this.style.background='rgba(220,20,60,0.07)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='none';this.style.background='rgba(255,255,255,0.04)'">
+        <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg></div>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--text);text-align:center">ERNAKULAM MMA</span>
+        <span style="font-size:.72rem;color:var(--muted);letter-spacing:.5px">@ernakulam_mma</span>
+        <span style="font-size:.72rem;font-weight:700;color:var(--red);letter-spacing:1px;text-transform:uppercase;border:1px solid rgba(220,20,60,0.4);border-radius:50px;padding:5px 16px">Follow →</span>
       </a>
-      <a href="https://www.instagram.com/ultimate_fight_club_ernakulam/" target="_blank" rel="noopener" class="insta-post">
-        <img src="images/gallery-3.webp" alt="UFC Events" loading="lazy">
-        <div class="insta-post-overlay"><span class="ip-heart">♥ 163</span><span>💬 19</span></div>
-      </a>
-      <a href="https://www.instagram.com/ultimate_fight_club_ernakulam/" target="_blank" rel="noopener" class="insta-post">
-        <img src="images/inside-5.webp" alt="UFC Training Hall" loading="lazy">
-        <div class="insta-post-overlay"><span class="ip-heart">♥ 241</span><span>💬 28</span></div>
-      </a>
-      <a href="https://www.instagram.com/ultimate_fight_club_ernakulam/" target="_blank" rel="noopener" class="insta-post">
-        <img src="images/inside-0.webp" alt="UFC Kolenchery" loading="lazy">
-        <div class="insta-post-overlay"><span class="ip-heart">♥ 187</span><span>💬 16</span></div>
-      </a>
-    </div>
-    <div style="text-align:center;margin-top:2.5rem" class="reveal">
-      <a href="https://www.instagram.com/ultimate_fight_club_ernakulam/" target="_blank" rel="noopener" class="btn-outline">FOLLOW ON INSTAGRAM &nbsp;→</a>
+
     </div>
   </div>
 </section>
