@@ -319,8 +319,9 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 .insta-setup-note{background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.15);border-radius:12px;padding:1.2rem 1.6rem;margin-bottom:1.5rem;font-size:.82rem;color:var(--muted);line-height:1.7}
 .insta-setup-note strong{color:var(--gold)}
 .insta-setup-note a{color:var(--gold);text-decoration:underline}
-.insta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:900px;margin:0 auto}
-@media(max-width:768px){.insta-fallback{grid-template-columns:repeat(2,1fr)}.insta-profile-bar{flex-direction:column;gap:12px;text-align:center}.insta-grid{grid-template-columns:repeat(2,1fr);gap:1rem}}
+.insta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:900px;margin:0 auto;width:100%}
+.insta-grid>a{box-sizing:border-box;width:100%}
+@media(max-width:768px){.insta-fallback{grid-template-columns:repeat(2,1fr)}.insta-profile-bar{flex-direction:column;gap:12px;text-align:center}.insta-grid{grid-template-columns:repeat(2,1fr);gap:.85rem;max-width:100%}.insta-grid>a{padding:1.25rem .6rem !important}.insta-grid>a>span:nth-child(3){font-size:.56rem !important;word-break:break-all !important;text-align:center;display:block;width:100%}}
 @media(max-width:400px){.insta-grid{grid-template-columns:1fr}}
 </style>
 </head>
