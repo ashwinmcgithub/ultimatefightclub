@@ -319,7 +319,9 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 .insta-setup-note{background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.15);border-radius:12px;padding:1.2rem 1.6rem;margin-bottom:1.5rem;font-size:.82rem;color:var(--muted);line-height:1.7}
 .insta-setup-note strong{color:var(--gold)}
 .insta-setup-note a{color:var(--gold);text-decoration:underline}
-@media(max-width:768px){.insta-fallback{grid-template-columns:repeat(2,1fr)}.insta-profile-bar{flex-direction:column;gap:12px;text-align:center}}
+.insta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:900px;margin:0 auto}
+@media(max-width:768px){.insta-fallback{grid-template-columns:repeat(2,1fr)}.insta-profile-bar{flex-direction:column;gap:12px;text-align:center}.insta-grid{grid-template-columns:repeat(2,1fr);gap:1rem}}
+@media(max-width:400px){.insta-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -451,7 +453,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
     <span class="mi a">BJJ</span><span class="msep">✦</span>
     <span class="mi">GRAPPLING</span><span class="msep">✦</span>
     <span class="mi a">WRESTLING</span><span class="msep">✦</span>
-    <span class="mi">USHU</span><span class="msep">✦</span>
+    <span class="mi">WUSHU</span><span class="msep">✦</span>
     <span class="mi a">KUNG FU</span><span class="msep">✦</span>
     <span class="mi">KARATE</span><span class="msep">✦</span>
     <span class="mi a">SELF DEFENCE</span><span class="msep">✦</span>
@@ -464,7 +466,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
     <span class="mi">BJJ</span><span class="msep">✦</span>
     <span class="mi a">GRAPPLING</span><span class="msep">✦</span>
     <span class="mi">WRESTLING</span><span class="msep">✦</span>
-    <span class="mi a">USHU</span><span class="msep">✦</span>
+    <span class="mi a">WUSHU</span><span class="msep">✦</span>
     <span class="mi">KUNG FU</span><span class="msep">✦</span>
     <span class="mi a">KARATE</span><span class="msep">✦</span>
     <span class="mi">SELF DEFENCE</span><span class="msep">✦</span>
@@ -588,10 +590,10 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         </div>
       </div>
       <div class="disc-card reveal">
-        <img src="images/disc-ushu.jpg" alt="Ushu" class="disc-img">
+        <img src="images/disc-ushu.jpg" alt="Wushu" class="disc-img">
         <div class="disc-body">
           <span class="disc-icon">🏅</span>
-          <h3>USHU</h3>
+          <h3>WUSHU</h3>
           <p>Chinese competitive martial art combining dynamic forms, acrobatics and combat sequences. Develops agility, flexibility and extraordinary physical coordination.</p>
         </div>
       </div>
@@ -689,6 +691,13 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       <h2>NATIONAL CHAMPION.<br><span class="gold">FOUNDER &amp; MASTER TRAINER.</span></h2>
       <div class="coach-titles">
         <div class="ct-item">
+          <span class="ct-medal">👑</span>
+          <div class="ct-text">
+            <span class="ct-main">CEO, Ultimate Fight Club</span>
+            <span class="ct-sub">Founder &amp; Director — UFC International MMA Academy, Kerala</span>
+          </div>
+        </div>
+        <div class="ct-item">
           <span class="ct-medal">🥇</span>
           <div class="ct-text">
             <span class="ct-main">National MMA Champion</span>
@@ -732,14 +741,14 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         </div>
       </div>
       <div class="coach-creds">
+        <span class="cred-tag">👑 CEO, Ultimate Fight Club</span>
+        <span class="cred-tag">🏛️ Ernakulam MMA Assoc. President</span>
+        <span class="cred-tag">⚖️ Grappling National Referee</span>
+        <span class="cred-tag">⚖️ Muay Thai National Referee</span>
+        <span class="cred-tag">⚖️ MMA National Referee</span>
         <span class="cred-tag">🥋 Kung Fu 3rd Degree Belt</span>
         <span class="cred-tag">🥋 Karate 2nd Degree Black Belt</span>
         <span class="cred-tag">🏋️ 14th Level MMA Trainer</span>
-        <span class="cred-tag">👑 CEO, Ultimate Fight Club</span>
-        <span class="cred-tag">🏛️ Ernakulam MMA Assoc. President</span>
-        <span class="cred-tag">⚖️ Muay Thai National Referee</span>
-        <span class="cred-tag">⚖️ Grappling National Referee</span>
-        <span class="cred-tag">⚖️ Kickboxing National Referee</span>
       </div>
       <p class="coach-bio">Coach Bibin P Benny is one of Kerala's most decorated martial artists and the visionary founder of Ultimate Fight Club. A National MMA and Kickboxing Champion turned internationally certified referee and judge (AIMMAF · APFC India · UFC Fight Pass), he holds the prestigious Muay Thai 10th Khan Red Mongkon from IFMA and is a 14th Level certified MMA Trainer. Serving as President of the Ernakulam MMA Association and recognized as a Fight Master in the Malayalam cinema industry, his students have gone on to claim 28+ national and 60+ state championships.</p>
       <span class="coach-xp">⏱ &nbsp;Founder &bull; Head Coach &bull; National Champion &bull; International Referee</span>
@@ -798,7 +807,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       <h2>OUR <span class="gold">INSTAGRAM</span> FAMILY</h2>
       <p>6 accounts. One community. Follow all our channels for training content, events and highlights.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:900px;margin:0 auto" class="reveal">
+    <div class="insta-grid reveal">
 
       <a href="https://www.instagram.com/ultimate_fight_club_ernakulam/" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;gap:.75rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:1.75rem 1rem;text-decoration:none;color:inherit;transition:all .35s" onmouseover="this.style.borderColor='rgba(220,20,60,0.5)';this.style.transform='translateY(-5px)';this.style.background='rgba(220,20,60,0.07)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)';this.style.transform='none';this.style.background='rgba(255,255,255,0.04)'">
         <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg></div>
@@ -1021,7 +1030,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
           <li><a href="#disciplines">BJJ</a></li>
           <li><a href="#disciplines">Grappling</a></li>
           <li><a href="#disciplines">Wrestling</a></li>
-          <li><a href="#disciplines">Ushu</a></li>
+          <li><a href="#disciplines">Wushu</a></li>
           <li><a href="#disciplines">Kung Fu</a></li>
           <li><a href="#disciplines">Karate</a></li>
           <li><a href="#disciplines">Self Defence</a></li>
