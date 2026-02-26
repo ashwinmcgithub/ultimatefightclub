@@ -199,6 +199,30 @@ section{padding:clamp(4rem,8vw,7rem) 24px;position:relative;z-index:2}
 .coach-xp{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,215,0,0.2);border-radius:100px;padding:11px 22px;color:var(--gold);font-size:.85rem;font-weight:600;letter-spacing:1px;background:rgba(255,215,0,0.04);transition:all .3s}
 .coach-xp:hover{background:rgba(255,215,0,0.08);border-color:rgba(255,215,0,0.4)}
 
+/* ===== ICW EVENT SECTION ===== */
+.icw-section{padding:90px 0;background:var(--bg2);border-top:1px solid rgba(220,20,60,0.1);border-bottom:1px solid rgba(255,215,0,0.06);position:relative;overflow:hidden}
+.icw-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 0% 50%,rgba(220,20,60,0.08),transparent 60%);pointer-events:none}
+.icw-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(2.5rem,5vw,5rem);align-items:center}
+.icw-img{width:100%;max-width:380px;border-radius:18px;box-shadow:0 0 60px rgba(220,20,60,0.25),0 0 30px rgba(255,215,0,0.1);display:block;margin:0 auto}
+.icw-label{font-size:.7rem;font-weight:700;color:var(--red);letter-spacing:3px;text-transform:uppercase;display:block;margin-bottom:.75rem}
+.icw-title{font-size:clamp(2.6rem,4.5vw,4rem);letter-spacing:2px;line-height:1.05;margin-bottom:1rem}
+.icw-sub{color:var(--muted);font-size:.95rem;line-height:1.75;margin-bottom:1.75rem}
+.icw-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.icw-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:1.25rem 1.2rem;display:flex;flex-direction:column;gap:.4rem;position:relative;overflow:hidden;transition:all .3s}
+.icw-card.done{border-color:rgba(255,215,0,0.2)}
+.icw-card.done::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,215,0,0.05),transparent 60%);pointer-events:none}
+.icw-card.upcoming{border-color:rgba(220,20,60,0.25)}
+.icw-card.upcoming::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(220,20,60,0.06),transparent 60%);pointer-events:none}
+.icw-card:hover{transform:translateY(-4px)}
+.icw-card-badge{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:rgba(255,215,0,0.12);color:var(--gold);border:1px solid rgba(255,215,0,0.25);border-radius:50px;padding:.25rem .75rem;display:inline-block;width:fit-content}
+.upcoming-badge{background:rgba(220,20,60,0.12)!important;color:var(--red)!important;border-color:rgba(220,20,60,0.3)!important}
+.icw-card-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:3px;color:var(--text);line-height:1}
+.icw-card-date,.icw-card-loc{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.3px}
+.icw-card-date{color:var(--gold)}
+.icw-card-note{font-size:.74rem;color:var(--muted);line-height:1.55;margin-top:.2rem}
+@media(max-width:900px){.icw-inner{grid-template-columns:1fr}.icw-img{max-width:280px}}
+@media(max-width:560px){.icw-cards{grid-template-columns:1fr}}
+
 /* ===== COACH MINI ACHIEVEMENTS ===== */
 .cam-grid{display:none}
 
@@ -539,6 +563,36 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         </div>
       </div>
     </a>
+  </div>
+</section>
+
+<!-- ICW EVENT -->
+<section class="icw-section">
+  <div class="icw-inner">
+    <div class="icw-logo reveal-l">
+      <img src="images/icw-banner.jpg" alt="Indian Cage War Series" class="icw-img">
+    </div>
+    <div class="icw-content reveal-r">
+      <span class="icw-label">Our Fight Events</span>
+      <h2 class="icw-title">INDIAN CAGE<br><span class="gold">WAR SERIES</span></h2>
+      <p class="icw-sub">Ultimate Fight Club proudly hosted Kerala's premier professional MMA event — bringing top fighters from across India to the cage in Aluva.</p>
+      <div class="icw-cards">
+        <div class="icw-card done">
+          <span class="icw-card-badge">Completed</span>
+          <span class="icw-card-title">SERIES 1</span>
+          <span class="icw-card-date">📅 January 24 &amp; 25, 2026</span>
+          <span class="icw-card-loc">📍 Aluva, Ernakulam, Kerala</span>
+          <span class="icw-card-note">A historic event — fierce competition, elite fighters, unforgettable battles inside the cage.</span>
+        </div>
+        <div class="icw-card upcoming">
+          <span class="icw-card-badge upcoming-badge">Coming Soon</span>
+          <span class="icw-card-title">SERIES 2</span>
+          <span class="icw-card-date">📅 Date To Be Announced</span>
+          <span class="icw-card-loc">📍 Stay Tuned</span>
+          <span class="icw-card-note">The next chapter is coming. Bigger, fiercer, and more electrifying than ever.</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
