@@ -220,8 +220,21 @@ section{padding:clamp(4rem,8vw,7rem) 24px;position:relative;z-index:2}
 .icw-card-date,.icw-card-loc{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.3px}
 .icw-card-date{color:var(--gold)}
 .icw-card-note{font-size:.74rem;color:var(--muted);line-height:1.55;margin-top:.2rem}
-@media(max-width:900px){.icw-inner{grid-template-columns:1fr}.icw-img{max-width:280px}}
-@media(max-width:560px){.icw-cards{grid-template-columns:1fr}}
+@media(max-width:900px){
+  .icw-inner{display:flex;flex-direction:row;align-items:center;gap:.9rem;background:rgba(255,255,255,0.025);border:1px solid rgba(220,20,60,0.18);border-radius:16px;padding:1rem}
+  .icw-logo{flex-shrink:0}
+  .icw-img{max-width:80px;border-radius:10px;box-shadow:0 0 20px rgba(220,20,60,0.2)}
+  .icw-label{display:none}
+  .icw-title{font-size:1.15rem;letter-spacing:1px;margin-bottom:.4rem;line-height:1.1}
+  .icw-sub{display:none}
+  .icw-cards{grid-template-columns:1fr 1fr;gap:.4rem;margin:0}
+  .icw-card{padding:.5rem .55rem;border-radius:10px;gap:.15rem}
+  .icw-card-badge{font-size:.5rem;padding:.15rem .45rem;letter-spacing:1px}
+  .icw-card-title{font-size:.95rem;letter-spacing:1.5px}
+  .icw-card-date{font-size:.62rem}
+  .icw-card-loc{font-size:.58rem}
+  .icw-card-note{display:none}
+}
 
 /* ===== COACH MINI ACHIEVEMENTS ===== */
 .cam-grid{display:none}
