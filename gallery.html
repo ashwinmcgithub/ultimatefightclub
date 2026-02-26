@@ -51,9 +51,12 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,8,8,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(220,20,60,0.15);transition:all .3s}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 24px}
 .logo{display:flex;align-items:center;gap:12px}
-.logo{flex-shrink:0}
-.logo-banner-box{width:165px;height:52px;overflow:hidden;position:relative}
-.logo-banner-img{position:absolute;width:52px;height:165px;top:52px;left:0;transform-origin:top left;transform:rotate(-90deg);object-fit:cover;object-position:center;mix-blend-mode:screen;filter:brightness(1.15) contrast(1.05)}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-badge{width:46px;height:46px;background:transparent;border-radius:0;padding:0;flex-shrink:0}
+.logo-badge img{width:100%;height:100%;object-fit:contain;border-radius:8px}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-eyebrow{font-size:.55rem;color:var(--gold);letter-spacing:2.5px;font-weight:600;text-transform:uppercase;font-family:'Rajdhani',sans-serif;opacity:.85}
+.logo-main{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .nav-links{display:flex;align-items:center;gap:24px}
 .nav-links a{font-size:.82rem;font-weight:600;color:var(--muted);transition:color .3s;letter-spacing:1.5px;text-transform:uppercase}
 .nav-links a:hover,.nav-links a.active{color:var(--text)}
@@ -191,8 +194,10 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="logo">
-      <div class="logo-banner-box">
-        <img src="images/logo-banner.jpg" alt="Martial Techie's Ultimate Fight Club" class="logo-banner-img">
+      <div class="logo-badge"><img src="images/logo-main.jpg" alt="UFC Logo"></div>
+      <div class="logo-text">
+        <span class="logo-eyebrow">Martial Techie's</span>
+        <span class="logo-main">ULTIMATE FIGHT CLUB</span>
       </div>
     </a>
     <div class="nav-links" id="navLinks">
