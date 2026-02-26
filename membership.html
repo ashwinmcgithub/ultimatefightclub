@@ -51,10 +51,9 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,8,8,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(220,20,60,0.15);transition:all .3s}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 24px}
 .logo{display:flex;align-items:center;gap:12px}
-.logo-badge{width:46px;height:46px;background:var(--gradient);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:#000;letter-spacing:0;line-height:1;flex-shrink:0}
-.logo-text{display:flex;flex-direction:column;line-height:1.1}
-.logo-main{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.logo-sub{font-size:.58rem;color:var(--muted);letter-spacing:2px;font-weight:500;text-transform:uppercase;font-family:'Rajdhani',sans-serif;-webkit-text-fill-color:var(--muted)}
+.logo{flex-shrink:0}
+.logo-banner-box{width:165px;height:52px;overflow:hidden;position:relative}
+.logo-banner-img{position:absolute;width:52px;height:165px;top:52px;left:0;transform-origin:top left;transform:rotate(-90deg);object-fit:cover;object-position:center;mix-blend-mode:screen;filter:brightness(1.15) contrast(1.05)}
 .nav-links{display:flex;align-items:center;gap:24px}
 .nav-links a{font-size:.82rem;font-weight:600;color:var(--muted);transition:color .3s;letter-spacing:1.5px;text-transform:uppercase}
 .nav-links a:hover,.nav-links a.active{color:var(--text)}
@@ -88,6 +87,7 @@ section{padding:clamp(4rem,8vw,7rem) 24px;position:relative;z-index:2}
 .plans-wrap{max-width:1100px;margin:0 auto}
 .plans-grid{display:grid;gap:1.75rem}
 .plans-2col{grid-template-columns:repeat(2,1fr);max-width:840px;margin:0 auto 3rem}
+.plans-3col{grid-template-columns:repeat(3,1fr);max-width:1080px;margin:0 auto 3rem}
 .plans-4col{grid-template-columns:repeat(4,1fr);margin-bottom:3rem}
 .plans-4col .plan-price{font-size:2.6rem}
 .plans-4col .plan-currency{font-size:1.4rem}
@@ -213,8 +213,8 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:1024px){.incl-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:1024px){.plans-4col{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:900px){.plans-2col,.plans-4col{grid-template-columns:1fr}.plan-card.featured{order:-1}.contact-grid{grid-template-columns:1fr}.map-locations{grid-template-columns:1fr}}
+@media(max-width:1024px){.plans-4col{grid-template-columns:repeat(2,1fr)}.plans-3col{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.plans-2col,.plans-3col,.plans-4col{grid-template-columns:1fr}.plan-card.featured{order:-1}.contact-grid{grid-template-columns:1fr}.map-locations{grid-template-columns:1fr}}
 @media(max-width:768px){
   .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(8,8,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.25rem;border-bottom:1px solid rgba(220,20,60,.15)}
   .nav-links.open{display:flex}
@@ -270,10 +270,8 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="logo">
-      <div class="logo-badge" style="background:transparent;border-radius:0;padding:0;width:52px;height:52px;"><img src="images/logo-main.jpg" alt="UFC Logo" style="width:100%;height:100%;object-fit:contain;border-radius:8px;"></div>
-      <div class="logo-text">
-        <span class="logo-main">ULTIMATE FIGHT CLUB</span>
-        <span class="logo-sub">Kerala's Premier Martial Arts Academy</span>
+      <div class="logo-banner-box">
+        <img src="images/logo-banner.jpg" alt="Martial Techie's Ultimate Fight Club" class="logo-banner-img">
       </div>
     </a>
     <div class="nav-links" id="navLinks">
@@ -317,7 +315,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 
     <!-- Monthly Plans -->
     <span class="plan-group-label reveal">MONTHLY <span class="gg">PLANS</span></span>
-    <div class="plans-grid plans-2col">
+    <div class="plans-grid plans-3col">
 
       <!-- Monthly Daily -->
       <div class="plan-card featured reveal">
@@ -357,6 +355,26 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
           <div class="plan-feat"><span class="feat-check gold">✓</span>Certified coach-led classes</div>
           <div class="plan-feat"><span class="feat-check gold">✓</span>Both branches access</div>
           <div class="plan-feat"><span class="feat-check gold">✓</span>Flexible training days</div>
+        </div>
+        <a href="#contact" class="plan-cta">JOIN NOW &rarr;</a>
+      </div>
+
+      <!-- Under 18 / Students Plan -->
+      <div class="plan-card reveal">
+        <span class="plan-icon">🎓</span>
+        <span class="plan-name">UNDER 18 — STUDENTS</span>
+        <span class="plan-days">6 Days / Week &bull; 1 Month</span>
+        <div class="plan-price-wrap">
+          <span class="plan-currency">₹</span>
+          <span class="plan-price">2,499</span>
+        </div>
+        <span class="plan-period">per month &bull; Mon – Sat &bull; Age &lt;18 Only</span>
+        <div class="plan-features">
+          <div class="plan-feat"><span class="feat-check">✓</span>Daily Mon – Sat training</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>Access to all disciplines</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>Champion-level coaching</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>Both branches access</div>
+          <div class="plan-feat"><span class="feat-check">✓</span>School &amp; college students</div>
         </div>
         <a href="#contact" class="plan-cta">JOIN NOW &rarr;</a>
       </div>
@@ -512,7 +530,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       <div class="incl-item reveal">
         <span class="incl-icon">🥋</span>
         <h4>ALL DISCIPLINES</h4>
-        <p>MMA, Boxing, Kickboxing, Karate, Kung Fu, Judo and Self-Defence</p>
+        <p>MMA, Boxing, Kickboxing, Muay Thai, BJJ, Grappling, Wrestling, Kung Fu, Karate, Weight Loss &amp; CrossFit</p>
       </div>
       <div class="incl-item reveal">
         <span class="incl-icon">👨‍🏫</span>
@@ -548,6 +566,11 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         <span class="incl-icon">🛡️</span>
         <h4>SAFE ENVIRONMENT</h4>
         <p>CCTV monitored, fully supervised sessions with discipline and respect at all times</p>
+      </div>
+      <div class="incl-item reveal">
+        <span class="incl-icon">🕕</span>
+        <h4>TRAINING TIMINGS</h4>
+        <p><strong style="color:var(--gold)">Morning:</strong> 6:00 AM – 9:00 AM<br><strong style="color:var(--gold)">Evening:</strong> 5:00 PM – 10:00 PM<br>Monday to Saturday</p>
       </div>
     </div>
   </div>
@@ -641,9 +664,14 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
               <option>MMA</option>
               <option>Boxing</option>
               <option>Kickboxing</option>
-              <option>Karate</option>
+              <option>Muay Thai</option>
+              <option>BJJ (Brazilian Jiu-Jitsu)</option>
+              <option>Grappling</option>
+              <option>Wrestling</option>
               <option>Kung Fu</option>
-              <option>Judo</option>
+              <option>Karate</option>
+              <option>Weight Loss</option>
+              <option>CrossFit</option>
               <option>Not sure yet</option>
             </select>
           </div>

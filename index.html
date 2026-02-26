@@ -57,10 +57,9 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,8,8,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(220,20,60,0.15);transition:all .3s}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 24px}
 .logo{display:flex;align-items:center;gap:12px}
-.logo-badge{width:46px;height:46px;background:var(--gradient);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:#000;letter-spacing:0;line-height:1;flex-shrink:0}
-.logo-text{display:flex;flex-direction:column;line-height:1.1}
-.logo-main{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.logo-sub{font-size:.58rem;color:var(--muted);letter-spacing:2px;font-weight:500;text-transform:uppercase;font-family:'Rajdhani',sans-serif;-webkit-text-fill-color:var(--muted)}
+.logo{flex-shrink:0}
+.logo-banner-box{width:165px;height:52px;overflow:hidden;position:relative}
+.logo-banner-img{position:absolute;width:52px;height:165px;top:52px;left:0;transform-origin:top left;transform:rotate(-90deg);object-fit:cover;object-position:center;mix-blend-mode:screen;filter:brightness(1.15) contrast(1.05)}
 .nav-links{display:flex;align-items:center;gap:24px}
 .nav-links a{font-size:.82rem;font-weight:600;color:var(--muted);transition:color .3s;letter-spacing:1.5px;text-transform:uppercase}
 .nav-links a:hover,.nav-links a.active{color:var(--text)}
@@ -379,10 +378,8 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="logo">
-      <div class="logo-badge" style="background:transparent;border-radius:0;padding:0;width:52px;height:52px;"><img src="images/logo-main.jpg" alt="UFC Logo" style="width:100%;height:100%;object-fit:contain;border-radius:8px;"></div>
-      <div class="logo-text">
-        <span class="logo-main">ULTIMATE FIGHT CLUB</span>
-        <span class="logo-sub">Kerala's Premier Martial Arts Academy</span>
+      <div class="logo-banner-box">
+        <img src="images/logo-banner.jpg" alt="Martial Techie's Ultimate Fight Club" class="logo-banner-img">
       </div>
     </a>
     <div class="nav-links" id="navLinks">
@@ -490,6 +487,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       <div class="loc-body">
         <h3>ALUVA BRANCH</h3>
         <span class="loc-area">Ernakulam District, Kerala</span>
+        <p style="font-size:.82rem;color:var(--gold);font-weight:600;margin-bottom:.5rem;letter-spacing:.5px">🕕 Morning: 6:00 AM – 9:00 AM &nbsp;|&nbsp; 🌆 Evening: 5:00 PM – 10:00 PM</p>
         <p>Our flagship academy in Aluva — equipped with a professional MMA cage, full boxing ring, heavy bag stations, matted grappling area and a dedicated strength & conditioning zone.</p>
         <div class="loc-feats">
           <span class="loc-feat">MMA Cage</span>
@@ -507,6 +505,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       <div class="loc-body">
         <h3>KOLENCHERY BRANCH</h3>
         <span class="loc-area">Ernakulam District, Kerala</span>
+        <p style="font-size:.82rem;color:var(--gold);font-weight:600;margin-bottom:.5rem;letter-spacing:.5px">🕕 Morning: 6:00 AM – 9:00 AM &nbsp;|&nbsp; 🌆 Evening: 5:00 PM – 10:00 PM</p>
         <p>Serving East Ernakulam, our Kolenchery branch brings championship-level coaching and facilities to a thriving community of martial artists from all skill levels.</p>
         <div class="loc-feats">
           <span class="loc-feat">Full Mat Area</span>
@@ -699,6 +698,41 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
           </div>
         </div>
         <div class="ct-item">
+          <span class="ct-medal">⚖️</span>
+          <div class="ct-text">
+            <span class="ct-main">International MMA Referee</span>
+            <span class="ct-sub">AIMMAF &bull; APFC India &bull; UFC Fight Pass Official</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🏋️</span>
+          <div class="ct-text">
+            <span class="ct-main">Internationally Certified MMA Trainer — 14th Level</span>
+            <span class="ct-sub">Highest Level International MMA Training Certification</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🥇</span>
+          <div class="ct-text">
+            <span class="ct-main">National Muay Thai Champion (UMAI)</span>
+            <span class="ct-sub">United Muay Thai Association of India — National Level Champion</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🦵</span>
+          <div class="ct-text">
+            <span class="ct-main">Muay Thai 10th Khan &mdash; Red Mongkon</span>
+            <span class="ct-sub">IFMA Certified &mdash; International Federation of Muay Thai</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🥋</span>
+          <div class="ct-text">
+            <span class="ct-main">Kung Fu 3rd Degree Black Belt</span>
+            <span class="ct-sub">Internationally Certified — Kung Fu Martial Arts</span>
+          </div>
+        </div>
+        <div class="ct-item">
           <span class="ct-medal">🥇</span>
           <div class="ct-text">
             <span class="ct-main">National MMA Champion</span>
@@ -720,20 +754,6 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
           </div>
         </div>
         <div class="ct-item">
-          <span class="ct-medal">🦵</span>
-          <div class="ct-text">
-            <span class="ct-main">Muay Thai 10th Khan &mdash; Red Mongkon</span>
-            <span class="ct-sub">IFMA Certified &mdash; International Federation of Muay Thai</span>
-          </div>
-        </div>
-        <div class="ct-item">
-          <span class="ct-medal">⚖️</span>
-          <div class="ct-text">
-            <span class="ct-main">International MMA Referee &amp; Judge</span>
-            <span class="ct-sub">AIMMAF &bull; APFC India &bull; UFC Fight Pass Official</span>
-          </div>
-        </div>
-        <div class="ct-item">
           <span class="ct-medal">🎬</span>
           <div class="ct-text">
             <span class="ct-main">Fight Master, Malayalam Cinema</span>
@@ -743,13 +763,15 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       </div>
       <div class="coach-creds">
         <span class="cred-tag">👑 CEO, Ultimate Fight Club</span>
+        <span class="cred-tag">⚖️ International MMA Referee</span>
+        <span class="cred-tag">🏋️ MMA Trainer 14th Level</span>
+        <span class="cred-tag">🥇 National Muay Thai Champion</span>
+        <span class="cred-tag">🦵 Muay Thai 10th Khan</span>
+        <span class="cred-tag">🥋 Kung Fu 3rd Degree Black Belt</span>
         <span class="cred-tag">🏛️ Ernakulam MMA Assoc. President</span>
         <span class="cred-tag">⚖️ Grappling National Referee</span>
-        <span class="cred-tag">⚖️ Muay Thai National Referee</span>
         <span class="cred-tag">⚖️ MMA National Referee</span>
-        <span class="cred-tag">🥋 Kung Fu 3rd Degree Belt</span>
         <span class="cred-tag">🥋 Karate 2nd Degree Black Belt</span>
-        <span class="cred-tag">🏋️ 14th Level MMA Trainer</span>
       </div>
       <p class="coach-bio">Coach Bibin P Benny is one of Kerala's most decorated martial artists and the visionary founder of Ultimate Fight Club. A National MMA and Kickboxing Champion turned internationally certified referee and judge (AIMMAF · APFC India · UFC Fight Pass), he holds the prestigious Muay Thai 10th Khan Red Mongkon from IFMA and is a 14th Level certified MMA Trainer. Serving as President of the Ernakulam MMA Association and recognized as a Fight Master in the Malayalam cinema industry, his students have gone on to claim 28+ national and 60+ state championships.</p>
       <span class="coach-xp">⏱ &nbsp;Founder &bull; Head Coach &bull; National Champion &bull; International Referee</span>
@@ -913,7 +935,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
             <div><span class="rev-name">Mohammed Ashraf</span><span class="rev-via"><span class="g-dot"></span>&nbsp;Google Review</span></div>
           </div>
           <div class="rev-stars">★★★★★</div>
-          <p class="rev-text">Training at Kolenchery branch for boxing and judo. Professional coaches, clean gym, great community. Joined with my cousin and we both absolutely love it. The coaches know their stuff at the highest level. Highly recommend!</p>
+          <p class="rev-text">Training at Kolenchery branch for boxing and MMA. Professional coaches, clean gym, great community. Joined with my cousin and we both absolutely love it. The coaches know their stuff at the highest level. Highly recommend!</p>
           <span class="rev-date">5 weeks ago</span>
         </div>
         <div class="rev-card">
@@ -977,7 +999,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
             <div><span class="rev-name">Mohammed Ashraf</span><span class="rev-via"><span class="g-dot"></span>&nbsp;Google Review</span></div>
           </div>
           <div class="rev-stars">★★★★★</div>
-          <p class="rev-text">Training at Kolenchery branch for boxing and judo. Professional coaches, clean gym, great community. Joined with my cousin and we both absolutely love it. The coaches know their stuff at the highest level. Highly recommend!</p>
+          <p class="rev-text">Training at Kolenchery branch for boxing and MMA. Professional coaches, clean gym, great community. Joined with my cousin and we both absolutely love it. The coaches know their stuff at the highest level. Highly recommend!</p>
           <span class="rev-date">5 weeks ago</span>
         </div>
         <div class="rev-card">
