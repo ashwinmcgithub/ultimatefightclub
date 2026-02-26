@@ -199,6 +199,9 @@ section{padding:clamp(4rem,8vw,7rem) 24px;position:relative;z-index:2}
 .coach-xp{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,215,0,0.2);border-radius:100px;padding:11px 22px;color:var(--gold);font-size:.85rem;font-weight:600;letter-spacing:1px;background:rgba(255,215,0,0.04);transition:all .3s}
 .coach-xp:hover{background:rgba(255,215,0,0.08);border-color:rgba(255,215,0,0.4)}
 
+/* ===== COACH MINI ACHIEVEMENTS ===== */
+.cam-grid{display:none}
+
 /* ===== YOUTUBE SECTION ===== */
 .yt-section{padding:90px 0;background:var(--bg2);position:relative;overflow:hidden}
 .yt-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 100% at 100% 50%,rgba(255,0,0,0.07),transparent 65%);pointer-events:none}
@@ -286,14 +289,15 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 
 /* ===== RESPONSIVE ===== */
 @media(min-width:901px){
-  .ach-section{padding:50px 0 40px}
-  .ach-grid{gap:.7rem;margin-top:1.4rem}
-  .ach-item{padding:.9rem .6rem}
-  .ach-icon{font-size:1.3rem;margin-bottom:.2rem}
-  .ach-num{font-size:clamp(1.7rem,2.8vw,2.4rem)}
-  .ach-label{font-size:.68rem}
   .coach-wrap{align-items:start}
   .coach-img-box{position:sticky;top:88px}
+  .cam-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:1.1rem}
+  .cam-item{text-align:center;padding:.65rem .3rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px}
+  .cam-icon{font-size:1.15rem;display:block;margin-bottom:.15rem}
+  .cam-num{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;line-height:1;display:block;margin-bottom:.12rem}
+  .cam-num.r{color:var(--red);text-shadow:0 0 20px rgba(220,20,60,.35)}
+  .cam-num.g{color:var(--gold);text-shadow:0 0 20px rgba(255,215,0,.3)}
+  .cam-label{font-size:.58rem;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;font-weight:600;line-height:1.35}
 }
 @media(max-width:1024px){.disc-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr 1fr;gap:2rem}}
 @media(max-width:900px){.locs-grid{grid-template-columns:1fr}.coach-wrap{grid-template-columns:1fr}.ach-grid{grid-template-columns:repeat(2,1fr)}}
@@ -701,6 +705,28 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       <div class="coach-plate">
         <span class="cp-title">Head Coach &amp; Founder</span>
         <span class="cp-name">BIBIN P BENNY</span>
+      </div>
+      <div class="cam-grid">
+        <div class="cam-item">
+          <span class="cam-icon">🥇</span>
+          <span class="cam-num g" data-count="28" data-plus>0</span>
+          <span class="cam-label">National<br>Champions</span>
+        </div>
+        <div class="cam-item">
+          <span class="cam-icon">🏆</span>
+          <span class="cam-num r" data-count="60" data-plus>0</span>
+          <span class="cam-label">State<br>Champions</span>
+        </div>
+        <div class="cam-item">
+          <span class="cam-icon">⚖️</span>
+          <span class="cam-num g" style="font-size:.95rem;letter-spacing:1px">OFFICIAL</span>
+          <span class="cam-label">Intl MMA<br>Referee</span>
+        </div>
+        <div class="cam-item">
+          <span class="cam-icon">📍</span>
+          <span class="cam-num r" data-count="2">0</span>
+          <span class="cam-label">Club<br>Locations</span>
+        </div>
       </div>
     </div>
     <div class="coach-info reveal-r">
