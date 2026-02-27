@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Head Coach — Ultimate Fight Club</title>
+<link rel="icon" type="image/png" href="images/logo-main.jpg">
+<link rel="apple-touch-icon" href="images/logo-main.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080808;--bg2:#0f0f0f;--card:#141414;--card2:#1c1c1c;
+  --red:#DC143C;--red-dk:#8B0000;--red-glow:rgba(220,20,60,0.25);
+  --gold:#FFD700;--gold-dk:#B8860B;--gold-glow:rgba(255,215,0,0.2);
+  --text:#FAFAFA;--muted:rgba(255,255,255,0.55);--dim:rgba(255,255,255,0.25);
+  --border:rgba(255,255,255,0.07);
+  --gradient:linear-gradient(135deg,#DC143C 0%,#FFD700 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Rajdhani',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5,h6{font-family:'Bebas Neue',sans-serif;letter-spacing:2px}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{max-width:100%;display:block}
+::selection{background:rgba(220,20,60,0.35);color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:3px}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:55px 55px;pointer-events:none;z-index:0}
+
+/* ===== MMA FLOATING BG ===== */
+.mma-bg{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.mma-elem{position:absolute;will-change:transform}
+.oct-a{width:520px;height:520px;top:-80px;right:-100px;animation:mmaD1 20s ease-in-out infinite}
+.oct-b{width:400px;height:400px;bottom:2%;left:-90px;animation:mmaD2 26s ease-in-out infinite}
+.oct-c{width:220px;height:220px;top:42%;left:38%;animation:mmaD3 15s ease-in-out infinite}
+.oct-d{width:680px;height:680px;bottom:-120px;right:15%;animation:mmaD4 34s ease-in-out infinite}
+.oct-e{width:160px;height:160px;top:22%;left:18%;animation:mmaD3 19s ease-in-out infinite reverse}
+.ftr-a{width:170px;height:300px;top:10%;right:6%;animation:mmaF1 22s ease-in-out infinite;opacity:.11}
+.ftr-b{width:170px;height:300px;bottom:8%;left:4%;animation:mmaF2 28s ease-in-out infinite;opacity:.09}
+@keyframes mmaD1{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(-35px,50px) rotate(9deg)}50%{transform:translate(-18px,80px) rotate(4deg)}75%{transform:translate(22px,35px) rotate(-6deg)}100%{transform:translate(0,0) rotate(0deg)}}
+@keyframes mmaD2{0%{transform:translate(0,0) rotate(0deg) scale(1)}33%{transform:translate(55px,-45px) rotate(-12deg) scale(1.06)}66%{transform:translate(25px,-75px) rotate(-6deg) scale(0.96)}100%{transform:translate(0,0) rotate(0deg) scale(1)}}
+@keyframes mmaD3{0%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(-55px,-45px) rotate(180deg)}100%{transform:translate(0,0) rotate(360deg)}}
+@keyframes mmaD4{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(-45px,-35px) rotate(6deg)}75%{transform:translate(35px,-55px) rotate(-9deg)}100%{transform:translate(0,0) rotate(0deg)}}
+@keyframes mmaF1{0%{transform:translateY(0) translateX(0);opacity:.11}25%{transform:translateY(-45px) translateX(-10px);opacity:.17}50%{transform:translateY(-22px) translateX(8px);opacity:.09}75%{transform:translateY(-65px) translateX(-5px);opacity:.14}100%{transform:translateY(0) translateX(0);opacity:.11}}
+@keyframes mmaF2{0%{transform:translateY(0) scaleX(-1);opacity:.09}33%{transform:translateY(-55px) scaleX(-1);opacity:.15}66%{transform:translateY(-28px) scaleX(-1);opacity:.07}100%{transform:translateY(0) scaleX(-1);opacity:.09}}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,8,8,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(220,20,60,0.15);transition:all .3s}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 24px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-badge{width:46px;height:46px;background:transparent;border-radius:0;padding:0;flex-shrink:0}
+.logo-badge img{width:100%;height:100%;object-fit:contain;border-radius:8px}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-eyebrow{font-size:.55rem;color:var(--gold);letter-spacing:2.5px;font-weight:600;text-transform:uppercase;font-family:'Rajdhani',sans-serif;opacity:.85}
+.logo-main{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-sub{font-size:.52rem;color:var(--muted);letter-spacing:2px;font-weight:500;text-transform:uppercase;font-family:'Rajdhani',sans-serif;-webkit-text-fill-color:var(--muted)}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:.82rem;font-weight:600;color:var(--muted);transition:color .3s;letter-spacing:1.5px;text-transform:uppercase}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.btn-join{background:var(--gradient);color:#000!important;font-weight:700;font-size:.78rem;padding:10px 22px;border-radius:8px;letter-spacing:1px;font-family:'Rajdhani',sans-serif;transition:all .3s;display:inline-block;text-transform:uppercase}
+.btn-join:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--red-glow)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-toggle span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+/* ===== PAGE HERO ===== */
+.page-hero{min-height:45vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 60px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;width:800px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(220,20,60,.15),rgba(255,215,0,.07),transparent 70%);pointer-events:none;animation:gGlow 8s ease-in-out infinite}
+@keyframes gGlow{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
+.page-hero-content{position:relative;z-index:2}
+.ph-label{font-size:.72rem;font-weight:600;color:var(--red);letter-spacing:3px;text-transform:uppercase;margin-bottom:.75rem;display:block}
+.page-hero h1{font-size:clamp(3rem,7vw,5.5rem);letter-spacing:4px;margin-bottom:1rem;line-height:1}
+.page-hero h1 .outline{-webkit-text-stroke:1.5px rgba(255,255,255,0.2);-webkit-text-fill-color:transparent}
+.page-hero h1 .gold{color:var(--gold)}
+.page-hero p{color:var(--muted);font-size:clamp(.9rem,1.5vw,1.1rem);max-width:520px;margin:0 auto;font-weight:400}
+
+/* ===== COACH SECTION ===== */
+.coach-section{padding:clamp(3rem,6vw,5rem) 24px clamp(4rem,8vw,7rem);position:relative;z-index:2}
+.coach-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(2.5rem,5vw,5rem);align-items:start}
+.coach-img-box{position:sticky;top:88px;background:radial-gradient(ellipse at 50% 60%,rgba(220,20,60,0.12) 0%,rgba(255,215,0,0.06) 50%,transparent 80%);border-radius:28px}
+.coach-img{width:100%;border-radius:22px;aspect-ratio:4/5;object-fit:contain;object-position:center bottom;background:radial-gradient(ellipse at 50% 80%,rgba(220,20,60,0.18) 0%,rgba(255,215,0,0.08) 40%,transparent 70%);filter:drop-shadow(0 20px 60px rgba(220,20,60,0.35)) drop-shadow(0 0 30px rgba(255,215,0,0.2))}
+.coach-frame{position:absolute;inset:-10px;border:1px solid rgba(220,20,60,0.2);border-radius:34px;pointer-events:none;background:linear-gradient(to bottom,rgba(220,20,60,0.04),transparent 40%)}
+.coach-frame::before{content:'';position:absolute;top:-1px;left:-1px;width:60px;height:60px;border-top:2px solid var(--gold);border-left:2px solid var(--gold);border-radius:28px 0 0 0}
+.coach-frame::after{content:'';position:absolute;bottom:-1px;right:-1px;width:60px;height:60px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold);border-radius:0 0 28px 0}
+.coach-plate{position:absolute;bottom:28px;left:28px;background:rgba(5,5,5,0.94);border:1px solid rgba(255,215,0,0.25);border-radius:14px;padding:14px 20px;backdrop-filter:blur(12px)}
+.coach-plate .cp-title{font-size:.62rem;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase;font-weight:600;display:block;margin-bottom:3px}
+.coach-plate .cp-name{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:2.5px;color:var(--text);display:block}
+.coach-info .ci-label{font-size:.72rem;font-weight:600;color:var(--red);letter-spacing:3px;text-transform:uppercase;margin-bottom:.75rem;display:block}
+.coach-info h2{font-size:clamp(2.5rem,4.5vw,3.8rem);letter-spacing:2px;margin-bottom:1.5rem;line-height:1.05}
+.coach-info h2 .gold{color:var(--gold)}
+.coach-titles{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2rem}
+.ct-item{display:flex;align-items:center;gap:.85rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:.9rem 1.3rem;transition:all .3s}
+.ct-item:hover{background:rgba(255,255,255,0.065);border-color:rgba(255,215,0,0.2);transform:translateX(5px)}
+.coach-creds{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+.cred-tag{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:50px;padding:.38rem 1rem;font-size:.75rem;font-weight:600;color:var(--muted);letter-spacing:.5px;transition:all .3s}
+.cred-tag:hover{border-color:rgba(220,20,60,0.3);color:var(--text);background:rgba(220,20,60,0.06)}
+.ct-medal{font-size:1.6rem;flex-shrink:0}
+.ct-text{flex:1}
+.ct-main{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:1.5px;color:var(--text);display:block}
+.ct-sub{font-size:.72rem;color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:400}
+.coach-bio{color:var(--muted);font-size:.98rem;line-height:1.85;margin-bottom:2rem;font-weight:400}
+.coach-xp{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,215,0,0.2);border-radius:100px;padding:11px 22px;color:var(--gold);font-size:.85rem;font-weight:600;letter-spacing:1px;background:rgba(255,215,0,0.04);transition:all .3s}
+.coach-xp:hover{background:rgba(255,215,0,0.08);border-color:rgba(255,215,0,0.4)}
+
+/* ===== STATS BAR ===== */
+.stats-bar{background:linear-gradient(135deg,rgba(139,0,0,0.22) 0%,rgba(8,8,8,0) 50%,rgba(184,134,11,0.12) 100%);border-top:1px solid rgba(220,20,60,0.12);border-bottom:1px solid rgba(255,215,0,0.08);padding:clamp(3rem,5vw,4.5rem) 24px;position:relative;z-index:2}
+.stats-inner{max-width:800px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;text-align:center}
+.stat-item{padding:1.75rem 1rem;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:18px;transition:all .35s;position:relative;overflow:hidden}
+.stat-item::before{content:'';position:absolute;inset:0;background:var(--gradient);opacity:0;transition:opacity .35s}
+.stat-item:hover{transform:translateY(-5px);border-color:rgba(220,20,60,0.25)}
+.stat-item:hover::before{opacity:.04}
+.stat-icon{font-size:2rem;margin-bottom:.6rem;display:block;position:relative;z-index:1}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,4.5vw,4.2rem);line-height:1;display:block;margin-bottom:.3rem;position:relative;z-index:1}
+.stat-num.r{color:var(--red);text-shadow:0 0 40px rgba(220,20,60,.4)}
+.stat-num.g{color:var(--gold);text-shadow:0 0 40px rgba(255,215,0,.35)}
+.stat-label{font-size:.8rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-weight:600;line-height:1.45;position:relative;z-index:1}
+
+/* ===== CTA ===== */
+.cta-section{position:relative;overflow:hidden;text-align:center;padding:clamp(4rem,8vw,7rem) 24px}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:500px;background:radial-gradient(ellipse,rgba(220,20,60,.14),rgba(255,215,0,.06),transparent 70%);pointer-events:none;animation:ctaPulse 7s ease-in-out infinite}
+@keyframes ctaPulse{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}}
+.cta-content{max-width:700px;margin:0 auto;position:relative;z-index:2}
+.cta-content h2{font-size:clamp(2.5rem,5.5vw,4.5rem);letter-spacing:3px;margin-bottom:1rem;line-height:.95}
+.cta-content .csub{color:var(--muted);font-size:1.08rem;margin-bottom:2.5rem;font-weight:400}
+.btn-primary{background:var(--gradient);color:#000;font-weight:700;font-size:1rem;padding:16px 44px;border-radius:8px;letter-spacing:1px;font-family:'Rajdhani',sans-serif;transition:all .3s;display:inline-block;text-transform:uppercase}
+.btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 50px var(--red-glow)}
+
+/* ===== FOOTER ===== */
+footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp(3rem,5vw,5rem) 24px clamp(1.5rem,3vw,2.5rem);position:relative;z-index:2}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:1rem}
+.footer-brand p{color:var(--muted);font-size:.88rem;line-height:1.75;max-width:240px;font-weight:400}
+.footer-col h4{font-size:1rem;letter-spacing:2px;color:var(--gold);margin-bottom:1.25rem}
+.footer-col ul li{margin-bottom:.6rem}
+.footer-col ul li a{font-size:.88rem;color:var(--muted);transition:color .3s;font-family:'Rajdhani',sans-serif;font-weight:500}
+.footer-col ul li a:hover{color:var(--text)}
+.footer-addr{font-size:.84rem;color:var(--muted);line-height:1.85;font-family:'Rajdhani',sans-serif;font-weight:400}
+.footer-bottom{border-top:1px solid var(--border);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.78rem;color:var(--dim)}
+.socials{display:flex;gap:.65rem}
+.soc-btn{width:38px;height:38px;border:1px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .3s;color:var(--muted)}
+.soc-btn:hover{border-color:rgba(220,20,60,.35);background:rgba(220,20,60,.08);color:var(--text)}
+
+/* ===== REVEAL ===== */
+.reveal{opacity:0;transform:translateY(42px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal.v{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-65px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal-l.v{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(65px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal-r.v{opacity:1;transform:translateX(0)}
+.reveal-s{opacity:0;transform:scale(.9);transition:opacity .85s,transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal-s.v{opacity:1;transform:scale(1)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){.coach-wrap{grid-template-columns:1fr}.coach-img-box{position:static}.stats-inner{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(8,8,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.25rem;border-bottom:1px solid rgba(220,20,60,.15)}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:flex}
+  .footer-top{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+@media(max-width:480px){.stats-inner{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- MMA FLOATING BACKGROUND -->
+<div class="mma-bg" aria-hidden="true">
+  <svg class="mma-elem oct-a" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="66,3 154,3 217,66 217,154 154,217 66,217 3,154 3,66" stroke="rgba(220,20,60,0.2)" stroke-width="2.5"/>
+    <polygon points="78,15 142,15 205,78 205,142 142,205 78,205 15,142 15,78" stroke="rgba(220,20,60,0.08)" stroke-width="1.5"/>
+  </svg>
+  <svg class="mma-elem oct-b" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="54,3 126,3 177,54 177,126 126,177 54,177 3,126 3,54" stroke="rgba(255,215,0,0.16)" stroke-width="2"/>
+    <polygon points="64,13 116,13 167,64 167,116 116,167 64,167 13,116 13,64" stroke="rgba(255,215,0,0.06)" stroke-width="1"/>
+  </svg>
+  <svg class="mma-elem oct-c" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="33,3 77,3 107,33 107,77 77,107 33,107 3,77 3,33" fill="rgba(220,20,60,0.04)" stroke="rgba(220,20,60,0.14)" stroke-width="2"/>
+  </svg>
+  <svg class="mma-elem oct-d" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="90,3 210,3 297,90 297,210 210,297 90,297 3,210 3,90" stroke="rgba(255,215,0,0.07)" stroke-width="1.5"/>
+  </svg>
+  <svg class="mma-elem oct-e" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="27,3 63,3 87,27 87,63 63,87 27,87 3,63 3,27" stroke="rgba(220,20,60,0.1)" stroke-width="2"/>
+  </svg>
+  <svg class="mma-elem ftr-a" viewBox="0 0 110 200" fill="rgba(220,20,60,0.85)" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="55" cy="16" r="13"/>
+    <path d="M44,29 L66,29 L62,70 L48,70 Z"/>
+    <path d="M44,36 L18,26 L13,36 L25,44 L44,42 Z"/>
+    <path d="M66,34 L84,22 L90,30 L76,44 L66,42 Z"/>
+    <path d="M48,70 L42,104 L38,140 L44,140 L48,104 L52,70 Z"/>
+    <path d="M62,70 L82,52 L104,32 L110,38 L88,60 L66,78 Z"/>
+    <path d="M104,32 L112,26 L113,35 L106,40 Z"/>
+  </svg>
+  <svg class="mma-elem ftr-b" viewBox="0 0 110 200" fill="rgba(255,215,0,0.75)" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="48" cy="18" r="13"/>
+    <path d="M36,40 L66,38 L70,78 L30,80 Z"/>
+    <path d="M36,46 L12,56 L9,68 L22,70 L36,58 Z"/>
+    <path d="M66,42 L84,28 L107,26 L108,38 L86,40 L68,52 Z"/>
+    <rect x="100" y="22" width="14" height="18" rx="5"/>
+    <path d="M38,80 L30,114 L28,152 L36,152 L38,116 L46,80 Z"/>
+    <path d="M56,80 L64,114 L66,152 L74,152 L70,116 L60,80 Z"/>
+  </svg>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-badge"><img src="images/logo-main.jpg" alt="UFC Logo"></div>
+      <div class="logo-text">
+        <span class="logo-eyebrow">Martial Techie's</span>
+        <span class="logo-main">ULTIMATE FIGHT CLUB</span>
+        <span class="logo-sub">International MMA Academy</span>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="index.html#disciplines">Disciplines</a>
+      <a href="head-coach.html" class="active">Head Coach</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="membership.html">Membership</a>
+      <a href="membership.html#contact" class="btn-join">JOIN NOW</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="hero-glow"></div>
+  <div class="page-hero-content">
+    <span class="ph-label">Meet the Man Behind the Champions</span>
+    <h1>HEAD <span class="gold">COACH</span><br><span class="outline">BIBIN P BENNY</span></h1>
+    <p>National Champion. International Referee. Founder & CEO of Ultimate Fight Club.</p>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <span class="stat-icon">🥇</span>
+      <span class="stat-num g" data-count="28" data-plus>0</span>
+      <span class="stat-label">National<br>Champions Produced</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-icon">🏆</span>
+      <span class="stat-num r" data-count="60" data-plus>0</span>
+      <span class="stat-label">State<br>Champions Produced</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-icon">⚖️</span>
+      <span class="stat-num g" style="font-size:clamp(1.4rem,2.2vw,2rem);letter-spacing:1px">OFFICIAL</span>
+      <span class="stat-label">International MMA<br>Referee &bull; UFC Fight Pass</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-icon">📍</span>
+      <span class="stat-num r" data-count="2">0</span>
+      <span class="stat-label">Club<br>Locations</span>
+    </div>
+  </div>
+</div>
+
+<!-- COACH MAIN SECTION -->
+<div class="coach-section">
+  <div class="coach-wrap">
+    <div class="coach-img-box reveal-l">
+      <img src="images/coach-nobg.png" alt="Coach Bibin P Benny" class="coach-img">
+      <div class="coach-frame"></div>
+      <div class="coach-plate">
+        <span class="cp-title">Head Coach &amp; Founder</span>
+        <span class="cp-name">BIBIN P BENNY</span>
+      </div>
+    </div>
+    <div class="coach-info reveal-r">
+      <span class="ci-label">Meet Your Coach</span>
+      <h2>NATIONAL CHAMPION.<br><span class="gold">FOUNDER &amp; MASTER TRAINER.</span></h2>
+      <div class="coach-titles">
+        <div class="ct-item">
+          <span class="ct-medal">👑</span>
+          <div class="ct-text">
+            <span class="ct-main">CEO, Ultimate Fight Club</span>
+            <span class="ct-sub">Founder &amp; Director — UFC International MMA Academy</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">⚖️</span>
+          <div class="ct-text">
+            <span class="ct-main">International MMA Referee</span>
+            <span class="ct-sub">AIMMAF &bull; APFC India &bull; UFC Fight Pass Official</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🏅</span>
+          <div class="ct-text">
+            <span class="ct-main">Internationally Certified MMA Trainer</span>
+            <span class="ct-sub">Highest Level International MMA Training Certification</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🥇</span>
+          <div class="ct-text">
+            <span class="ct-main">National Muay Thai Champion (UMAI)</span>
+            <span class="ct-sub">United Muay Thai Association of India — National Level Champion</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🦵</span>
+          <div class="ct-text">
+            <span class="ct-main">Muay Thai 10th Khan &mdash; Red Mongkon</span>
+            <span class="ct-sub">IFMA Certified &mdash; International Federation of Muay Thai</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🥋</span>
+          <div class="ct-text">
+            <span class="ct-main">Kung Fu 3rd Degree Black Belt</span>
+            <span class="ct-sub">Internationally Certified — Kung Fu Martial Arts</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🥋</span>
+          <div class="ct-text">
+            <span class="ct-main">Karate 2nd Degree Black Belt</span>
+            <span class="ct-sub">Certified — Karate Martial Arts</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🥇</span>
+          <div class="ct-text">
+            <span class="ct-main">National MMA Champion</span>
+            <span class="ct-sub">AIMMAF &mdash; All India Mixed Martial Arts Federation</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🥇</span>
+          <div class="ct-text">
+            <span class="ct-main">2&times; National Kickboxing Champion</span>
+            <span class="ct-sub">WAKO India &mdash; National Level</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🏆</span>
+          <div class="ct-text">
+            <span class="ct-main">6&times; Kerala State Kickboxing Champion</span>
+            <span class="ct-sub">Multiple Consecutive State Titles</span>
+          </div>
+        </div>
+        <div class="ct-item">
+          <span class="ct-medal">🎬</span>
+          <div class="ct-text">
+            <span class="ct-main">Fight Master, Malayalam Cinema</span>
+            <span class="ct-sub">Actor &amp; Director &mdash; Film Industry</span>
+          </div>
+        </div>
+      </div>
+      <div class="coach-creds">
+        <span class="cred-tag">👑 CEO, Ultimate Fight Club</span>
+        <span class="cred-tag">⚖️ International MMA Referee</span>
+        <span class="cred-tag">🏅 Internationally Certified MMA Trainer</span>
+        <span class="cred-tag">🥇 National Muay Thai Champion</span>
+        <span class="cred-tag">🦵 Muay Thai 10th Khan</span>
+        <span class="cred-tag">🥋 Kung Fu 3rd Degree Black Belt</span>
+        <span class="cred-tag">🏛️ Ernakulam MMA Assoc. President</span>
+        <span class="cred-tag">⚖️ Grappling National Referee</span>
+        <span class="cred-tag">⚖️ Karate State Referee</span>
+        <span class="cred-tag">🥋 Karate 2nd Degree Black Belt</span>
+      </div>
+      <p class="coach-bio">Coach Bibin P Benny is one of Kerala's most decorated martial artists and the visionary founder of Ultimate Fight Club. A National MMA and Kickboxing Champion turned internationally certified referee and judge (AIMMAF · APFC India · UFC Fight Pass), he holds the prestigious Muay Thai 10th Khan Red Mongkon from IFMA and is a 14th Level certified MMA Trainer. Serving as President of the Ernakulam MMA Association and recognized as a Fight Master in the Malayalam cinema industry, his students have gone on to claim 28+ national and 60+ state championships.</p>
+      <span class="coach-xp">⏱ &nbsp;Founder &bull; Head Coach &bull; National Champion &bull; International Referee</span>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="cta-content reveal-s">
+    <h2>TRAIN UNDER A<br><span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">NATIONAL CHAMPION</span></h2>
+    <p class="csub">First class free. No experience needed. All ages welcome.</p>
+    <a href="membership.html" class="btn-primary">JOIN NOW &rarr;</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">ULTIMATE FIGHT CLUB</span>
+        <p>Kerala's premier martial arts academy — producing champions since 2009. Train with the best, become the best.</p>
+      </div>
+      <div class="footer-col">
+        <h4>DISCIPLINES</h4>
+        <ul>
+          <li><a href="index.html#disciplines">MMA</a></li>
+          <li><a href="index.html#disciplines">Boxing</a></li>
+          <li><a href="index.html#disciplines">Kickboxing</a></li>
+          <li><a href="index.html#disciplines">Muay Thai</a></li>
+          <li><a href="index.html#disciplines">BJJ</a></li>
+          <li><a href="index.html#disciplines">Grappling</a></li>
+          <li><a href="index.html#disciplines">Wrestling</a></li>
+          <li><a href="index.html#disciplines">Wushu</a></li>
+          <li><a href="index.html#disciplines">Kung Fu</a></li>
+          <li><a href="index.html#disciplines">Karate</a></li>
+          <li><a href="index.html#disciplines">Self Defence</a></li>
+          <li><a href="index.html#disciplines">Weight Loss</a></li>
+          <li><a href="index.html#disciplines">Cross Fit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>QUICK LINKS</h4>
+        <ul>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="head-coach.html">Head Coach</a></li>
+          <li><a href="membership.html#contact">Contact Us</a></li>
+          <li><a href="index.html#locations">Locations</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>LOCATIONS</h4>
+        <p class="footer-addr">📍 <strong>Aluva Branch</strong><br>Main Road, Aluva<br>Ernakulam, Kerala — 683101<br><br>📍 <strong>Kolenchery Branch</strong><br>Near Town Square, Kolenchery<br>Ernakulam, Kerala — 682311</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ultimate Fight Club. All rights reserved.</p>
+      <p>Designed by <a href="https://www.instagram.com/webscraftstudios/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;transition:opacity .3s" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">WebCraft Studios</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ---- Mobile Nav ----
+const tog=document.getElementById('navToggle'),nl=document.getElementById('navLinks');
+tog.addEventListener('click',()=>{
+  nl.classList.toggle('open');
+  const s=tog.querySelectorAll('span');
+  if(nl.classList.contains('open')){s[0].style.transform='rotate(45deg) translate(5px,5px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(5px,-5px)'}
+  else{s[0].style.transform='';s[1].style.opacity='1';s[2].style.transform=''}
+});
+nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nl.classList.remove('open');tog.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='1'})}));
+
+// ---- Scroll Reveal ----
+const revEls=document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.reveal-s');
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('v'),i*70);obs.unobserve(e.target)}});
+},{threshold:.1,rootMargin:'0px 0px -55px 0px'});
+revEls.forEach(el=>obs.observe(el));
+
+// ---- Counter Animation ----
+function runCounter(el){
+  const target=+el.dataset.target||+el.dataset.count;
+  if(!target)return;
+  const big=target>=100||el.hasAttribute('data-plus');
+  const dur=1800,fps=60,inc=target/(dur/1000*fps);
+  let cur=0,frame=0;
+  const t=setInterval(()=>{
+    frame++;cur=Math.min(cur+inc,target);
+    el.textContent=Math.floor(cur)+(big?'+':'');
+    if(cur>=target){el.textContent=target+(big?'+':'');clearInterval(t)}
+  },1000/fps);
+}
+const cntObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('[data-target],[data-count]').forEach(runCounter);cntObs.unobserve(e.target)}});
+},{threshold:.35});
+document.querySelectorAll('.stats-inner').forEach(el=>cntObs.observe(el));
+</script>
+</body>
+</html>

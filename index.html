@@ -368,6 +368,8 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 }
 @media(max-width:1024px){.disc-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr 1fr;gap:2rem}}
 @media(max-width:900px){.locs-grid{grid-template-columns:1fr}.coach-wrap{grid-template-columns:1fr}.ach-grid{grid-template-columns:repeat(2,1fr)}}
+.coach-teaser-grid{display:grid;grid-template-columns:320px 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:center}
+@media(max-width:780px){.coach-teaser-grid{grid-template-columns:1fr}.coach-teaser-photo{max-height:320px;overflow:hidden}}
 @media(max-width:768px){
   .nav-links{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(8,8,8,.98);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;gap:1.25rem;border-bottom:1px solid rgba(220,20,60,.15)}
   .nav-links.open{display:flex}
@@ -473,7 +475,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
     <div class="nav-links" id="navLinks">
       <a href="index.html" class="active">Home</a>
       <a href="#disciplines">Disciplines</a>
-      <a href="#coach">Coaches</a>
+      <a href="head-coach.html">Head Coach</a>
       <a href="gallery.html">Gallery</a>
       <a href="membership.html">Membership</a>
       <a href="membership.html#contact" class="btn-join">JOIN NOW</a>
@@ -629,19 +631,19 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         <h3>ALUVA BRANCH</h3>
         <span class="loc-area">Ernakulam District, Kerala</span>
         <p style="font-size:.82rem;color:var(--gold);font-weight:600;margin-bottom:.5rem;letter-spacing:.5px">🕕 Morning: 6:00 AM – 10:00 AM &nbsp;|&nbsp; 🌆 Evening: 5:00 PM – 10:00 PM</p>
-        <p>Our flagship academy in Aluva — equipped with a professional MMA cage, full boxing ring, heavy bag stations, matted grappling area and a dedicated strength & conditioning zone.</p>
+        <p>Our flagship academy in Aluva — equipped with a professional MMA cage, heavy bag stations, matted grappling area and a dedicated strength & conditioning zone.</p>
         <div class="loc-feats">
           <span class="loc-feat">MMA Cage</span>
-          <span class="loc-feat">Boxing Ring</span>
-          <span class="loc-feat">25 Heavy Bags</span>
+          <span class="loc-feat">Fully Equipped</span>
           <span class="loc-feat">Strength Zone</span>
           <span class="loc-feat">Changing Rooms</span>
+          <span class="loc-feat">Free Parking</span>
           <span class="loc-feat">📍 Open in Maps</span>
         </div>
       </div>
     </a>
     <a href="https://maps.google.com/?q=Ultimate+Fight+Club+Kolenchery+Ernakulam+Kerala" target="_blank" class="loc-card reveal-r" id="kolenchery" style="display:block;text-decoration:none;color:inherit">
-      <img src="images/inside-0.webp" alt="Kolenchery Branch" class="loc-img">
+      <img src="images/kolenchery-branch.jpg" alt="Kolenchery Branch" class="loc-img">
       <span class="loc-num">02</span>
       <div class="loc-body">
         <h3>KOLENCHERY BRANCH</h3>
@@ -650,7 +652,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         <p>Serving East Ernakulam, our Kolenchery branch brings championship-level coaching and facilities to a thriving community of martial artists from all skill levels.</p>
         <div class="loc-feats">
           <span class="loc-feat">Full Mat Area</span>
-          <span class="loc-feat">Sparring Ring</span>
+          <span class="loc-feat">Boxing Ring</span>
           <span class="loc-feat">Cardio Zone</span>
           <span class="loc-feat">Kids Area</span>
           <span class="loc-feat">Free Parking</span>
@@ -817,135 +819,29 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
   </div>
 </section>
 
-<!-- HEAD COACH -->
-<section id="coach">
-  <div class="coach-wrap">
-    <div class="coach-img-box reveal-l">
-      <img src="images/coach-nobg.png" alt="Coach Bibin P Benny" class="coach-img">
-      <div class="coach-frame"></div>
-      <div class="coach-plate">
-        <span class="cp-title">Head Coach &amp; Founder</span>
-        <span class="cp-name">BIBIN P BENNY</span>
-      </div>
-      <div class="cam-grid">
-        <div class="cam-item">
-          <span class="cam-icon">🥇</span>
-          <span class="cam-num g" data-count="28" data-plus>0</span>
-          <span class="cam-label">National<br>Champions</span>
-        </div>
-        <div class="cam-item">
-          <span class="cam-icon">🏆</span>
-          <span class="cam-num r" data-count="60" data-plus>0</span>
-          <span class="cam-label">State<br>Champions</span>
-        </div>
-        <div class="cam-item">
-          <span class="cam-icon">⚖️</span>
-          <span class="cam-num g" style="font-size:.95rem;letter-spacing:1px">OFFICIAL</span>
-          <span class="cam-label">Intl MMA<br>Referee</span>
-        </div>
-        <div class="cam-item">
-          <span class="cam-icon">📍</span>
-          <span class="cam-num r" data-count="2">0</span>
-          <span class="cam-label">Club<br>Locations</span>
-        </div>
-      </div>
+<!-- HEAD COACH TEASER -->
+<section id="coach" style="padding:clamp(4rem,8vw,7rem) 24px">
+  <div class="coach-teaser-grid" style="max-width:1100px;margin:0 auto;background:var(--card);border:1px solid rgba(220,20,60,0.2);border-radius:28px;overflow:hidden;position:relative">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(220,20,60,0.06),rgba(255,215,0,0.03));pointer-events:none"></div>
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient)"></div>
+    <!-- Coach Photo -->
+    <div class="coach-teaser-photo reveal-l" style="position:relative;background:radial-gradient(ellipse at 50% 80%,rgba(220,20,60,0.18) 0%,rgba(255,215,0,0.08) 40%,transparent 70%);min-height:380px;display:flex;align-items:flex-end">
+      <img src="images/coach-nobg.png" alt="Coach Bibin P Benny" style="width:100%;max-height:440px;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 20px 50px rgba(220,20,60,0.4)) drop-shadow(0 0 25px rgba(255,215,0,0.2));display:block">
     </div>
-    <div class="coach-info reveal-r">
-      <span class="ci-label">Meet Your Coach</span>
-      <h2>NATIONAL CHAMPION.<br><span class="gold">FOUNDER &amp; MASTER TRAINER.</span></h2>
-      <div class="coach-titles">
-        <div class="ct-item">
-          <span class="ct-medal">👑</span>
-          <div class="ct-text">
-            <span class="ct-main">CEO, Ultimate Fight Club</span>
-            <span class="ct-sub">Founder &amp; Director — UFC International MMA Academy</span>
-          </div>
-        </div>
-        <div class="ct-item">
-          <span class="ct-medal">⚖️</span>
-          <div class="ct-text">
-            <span class="ct-main">International MMA Referee</span>
-            <span class="ct-sub">AIMMAF &bull; APFC India &bull; UFC Fight Pass Official</span>
-          </div>
-        </div>
-        <div class="ct-item">
-          <span class="ct-medal">🏅</span>
-          <div class="ct-text">
-            <span class="ct-main">Internationally Certified MMA Trainer</span>
-            <span class="ct-sub">Highest Level International MMA Training Certification</span>
-          </div>
-        </div>
-        <div class="ct-item">
-          <span class="ct-medal">🥇</span>
-          <div class="ct-text">
-            <span class="ct-main">National Muay Thai Champion (UMAI)</span>
-            <span class="ct-sub">United Muay Thai Association of India — National Level Champion</span>
-          </div>
-        </div>
-        <div class="ct-item">
-          <span class="ct-medal">🦵</span>
-          <div class="ct-text">
-            <span class="ct-main">Muay Thai 10th Khan &mdash; Red Mongkon</span>
-            <span class="ct-sub">IFMA Certified &mdash; International Federation of Muay Thai</span>
-          </div>
-        </div>
-        <div class="ct-item">
-          <span class="ct-medal">🥋</span>
-          <div class="ct-text">
-            <span class="ct-main">Kung Fu 3rd Degree Black Belt</span>
-            <span class="ct-sub">Internationally Certified — Kung Fu Martial Arts</span>
-          </div>
-        </div>
-        <div class="ct-item">
-          <span class="ct-medal">🥋</span>
-          <div class="ct-text">
-            <span class="ct-main">Karate 2nd Degree Black Belt</span>
-            <span class="ct-sub">Certified — Karate Martial Arts</span>
-          </div>
-        </div>
-        <div class="ct-item">
-          <span class="ct-medal">🥇</span>
-          <div class="ct-text">
-            <span class="ct-main">National MMA Champion</span>
-            <span class="ct-sub">AIMMAF &mdash; All India Mixed Martial Arts Federation</span>
-          </div>
-        </div>
-        <div class="ct-item">
-          <span class="ct-medal">🥇</span>
-          <div class="ct-text">
-            <span class="ct-main">2&times; National Kickboxing Champion</span>
-            <span class="ct-sub">WAKO India &mdash; National Level</span>
-          </div>
-        </div>
-        <div class="ct-item">
-          <span class="ct-medal">🏆</span>
-          <div class="ct-text">
-            <span class="ct-main">6&times; Kerala State Kickboxing Champion</span>
-            <span class="ct-sub">Multiple Consecutive State Titles</span>
-          </div>
-        </div>
-        <div class="ct-item">
-          <span class="ct-medal">🎬</span>
-          <div class="ct-text">
-            <span class="ct-main">Fight Master, Malayalam Cinema</span>
-            <span class="ct-sub">Actor &amp; Director &mdash; Film Industry</span>
-          </div>
-        </div>
+    <!-- Coach Info -->
+    <div style="padding:clamp(2rem,4vw,3.5rem) clamp(2rem,4vw,3.5rem) clamp(2rem,4vw,3.5rem) 0" class="reveal-r">
+      <span style="font-size:.72rem;font-weight:600;color:var(--red);letter-spacing:3px;text-transform:uppercase;margin-bottom:.75rem;display:block">Meet Your Coach</span>
+      <h2 style="font-size:clamp(2rem,3.5vw,3rem);letter-spacing:2px;margin-bottom:.6rem;line-height:1.05">BIBIN P BENNY<br><span style="color:var(--gold)">HEAD COACH &amp; FOUNDER</span></h2>
+      <p style="color:var(--muted);font-size:.95rem;line-height:1.8;margin-bottom:1.75rem;font-weight:400">National MMA &amp; Kickboxing Champion. International MMA Referee (UFC Fight Pass). Muay Thai 10th Khan Red Mongkon. Founder &amp; CEO of Ultimate Fight Club — his students have won 28+ national and 60+ state championships.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem">
+        <span style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:50px;padding:.35rem .9rem;font-size:.74rem;font-weight:600;color:var(--muted)">👑 CEO, UFC</span>
+        <span style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:50px;padding:.35rem .9rem;font-size:.74rem;font-weight:600;color:var(--muted)">🥇 National MMA Champion</span>
+        <span style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:50px;padding:.35rem .9rem;font-size:.74rem;font-weight:600;color:var(--muted)">⚖️ Intl MMA Referee</span>
+        <span style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:50px;padding:.35rem .9rem;font-size:.74rem;font-weight:600;color:var(--muted)">🦵 Muay Thai 10th Khan</span>
+        <span style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:50px;padding:.35rem .9rem;font-size:.74rem;font-weight:600;color:var(--muted)">🥇 2× National Kickboxing</span>
+        <span style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:50px;padding:.35rem .9rem;font-size:.74rem;font-weight:600;color:var(--muted)">🏆 6× State Kickboxing</span>
       </div>
-      <div class="coach-creds">
-        <span class="cred-tag">👑 CEO, Ultimate Fight Club</span>
-        <span class="cred-tag">⚖️ International MMA Referee</span>
-        <span class="cred-tag">🏅 Internationally Certified MMA Trainer</span>
-        <span class="cred-tag">🥇 National Muay Thai Champion</span>
-        <span class="cred-tag">🦵 Muay Thai 10th Khan</span>
-        <span class="cred-tag">🥋 Kung Fu 3rd Degree Black Belt</span>
-        <span class="cred-tag">🏛️ Ernakulam MMA Assoc. President</span>
-        <span class="cred-tag">⚖️ Grappling National Referee</span>
-        <span class="cred-tag">⚖️ Karate State Referee</span>
-        <span class="cred-tag">🥋 Karate 2nd Degree Black Belt</span>
-      </div>
-      <p class="coach-bio">Coach Bibin P Benny is one of Kerala's most decorated martial artists and the visionary founder of Ultimate Fight Club. A National MMA and Kickboxing Champion turned internationally certified referee and judge (AIMMAF · APFC India · UFC Fight Pass), he holds the prestigious Muay Thai 10th Khan Red Mongkon from IFMA and is a 14th Level certified MMA Trainer. Serving as President of the Ernakulam MMA Association and recognized as a Fight Master in the Malayalam cinema industry, his students have gone on to claim 28+ national and 60+ state championships.</p>
-      <span class="coach-xp">⏱ &nbsp;Founder &bull; Head Coach &bull; National Champion &bull; International Referee</span>
+      <a href="head-coach.html" style="display:inline-flex;align-items:center;gap:10px;background:var(--gradient);color:#000;font-weight:700;font-size:.92rem;padding:14px 34px;border-radius:8px;letter-spacing:1px;font-family:'Rajdhani',sans-serif;text-transform:uppercase;transition:all .3s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 40px rgba(220,20,60,0.4)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">VIEW FULL PROFILE &rarr;</a>
     </div>
   </div>
 </section>
@@ -1237,7 +1133,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         <ul>
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="membership.html">Membership</a></li>
-          <li><a href="#coach">Head Coach</a></li>
+          <li><a href="head-coach.html">Head Coach</a></li>
           <li><a href="membership.html#contact">Contact Us</a></li>
           <li><a href="#locations">Locations</a></li>
         </ul>
