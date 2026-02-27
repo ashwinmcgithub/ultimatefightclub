@@ -199,6 +199,34 @@ section{padding:clamp(4rem,8vw,7rem) 24px;position:relative;z-index:2}
 .coach-xp{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,215,0,0.2);border-radius:100px;padding:11px 22px;color:var(--gold);font-size:.85rem;font-weight:600;letter-spacing:1px;background:rgba(255,215,0,0.04);transition:all .3s}
 .coach-xp:hover{background:rgba(255,215,0,0.08);border-color:rgba(255,215,0,0.4)}
 
+/* ===== TRAINER PROGRAM ANNOUNCEMENT ===== */
+.trainer-announce{background:linear-gradient(135deg,rgba(220,20,60,0.07),rgba(255,215,0,0.04));border:1px solid rgba(220,20,60,0.25);border-radius:20px;padding:2rem 2.2rem;margin-bottom:3rem;position:relative;overflow:hidden}
+.trainer-announce::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient)}
+.ta-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(220,20,60,0.12);border:1px solid rgba(220,20,60,0.3);border-radius:50px;padding:.3rem .9rem;font-size:.65rem;font-weight:700;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.1rem}
+.ta-body{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.ta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:2px;line-height:1.1;margin-bottom:.75rem}
+.ta-desc{font-size:.88rem;color:var(--muted);line-height:1.75;margin-bottom:1rem}
+.ta-pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.ta-pill{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:50px;padding:.3rem .85rem;font-size:.72rem;font-weight:600;color:var(--muted);letter-spacing:.3px}
+.ta-pill.gold-pill{background:rgba(255,215,0,0.08);border-color:rgba(255,215,0,0.3);color:var(--gold)}
+.ta-right{display:flex;flex-direction:column;align-items:center;gap:1.2rem;min-width:140px}
+.ta-highlight{text-align:center;background:rgba(255,215,0,0.06);border:1px solid rgba(255,215,0,0.2);border-radius:16px;padding:1.2rem 1.4rem;display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.ta-hl-icon{font-size:1.6rem}
+.ta-hl-num{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:var(--gold);line-height:1;text-shadow:0 0 30px rgba(255,215,0,0.4)}
+.ta-hl-label{font-size:.62rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-weight:600;line-height:1.4;text-align:center}
+.ta-cta{background:var(--gradient);color:#000;font-weight:800;font-size:.78rem;padding:11px 22px;border-radius:10px;text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;font-family:'Rajdhani',sans-serif;display:inline-block;text-align:center;transition:all .3s;white-space:nowrap}
+.ta-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(220,20,60,0.4)}
+@media(max-width:768px){
+  .ta-body{grid-template-columns:1fr}
+  .ta-right{flex-direction:row;justify-content:space-between;align-items:center;min-width:unset}
+  .ta-highlight{padding:.8rem 1rem;flex-direction:row;gap:.6rem;text-align:left}
+  .ta-hl-num{font-size:1.8rem}
+  .ta-hl-label{font-size:.58rem}
+  .trainer-announce{padding:1.2rem 1.1rem;margin-bottom:2rem}
+  .ta-title{font-size:1.3rem}
+  .ta-desc{font-size:.82rem}
+}
+
 /* ===== ICW EVENT SECTION ===== */
 .icw-section{padding:90px 0;background:var(--bg2);border-top:1px solid rgba(220,20,60,0.1);border-bottom:1px solid rgba(255,215,0,0.06);position:relative;overflow:hidden}
 .icw-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 0% 50%,rgba(220,20,60,0.08),transparent 60%);pointer-events:none}
@@ -534,6 +562,32 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 
 <!-- LOCATIONS -->
 <section id="locations">
+  <!-- TRAINER PROGRAM ANNOUNCEMENT -->
+  <div class="trainer-announce reveal">
+    <div class="ta-badge">🚨 Now Introducing</div>
+    <div class="ta-body">
+      <div class="ta-left">
+        <h3 class="ta-title">1-YEAR MMA TRAINER<br><span class="gold">CERTIFICATION PROGRAM</span></h3>
+        <p class="ta-desc">Want to become a professionally certified MMA trainer? UFC International MMA Academy is launching a comprehensive <strong>1-Year MMA Trainer Certification Course</strong> — covering all disciplines, coaching methodology, fight strategy, and referee standards. Train under national champions and internationally certified coaches.</p>
+        <div class="ta-pills">
+          <span class="ta-pill">🥊 Full MMA Curriculum</span>
+          <span class="ta-pill">📜 International Certification</span>
+          <span class="ta-pill gold-pill">✅ 100% Job Placement</span>
+          <span class="ta-pill">⏱ 1 Year Program</span>
+        </div>
+      </div>
+      <div class="ta-right">
+        <div class="ta-highlight">
+          <span class="ta-hl-icon">🏆</span>
+          <span class="ta-hl-num">100%</span>
+          <span class="ta-hl-label">Job Placement<br>Guaranteed</span>
+        </div>
+        <a href="#contact" class="ta-cta">ENQUIRE NOW →</a>
+      </div>
+    </div>
+  </div>
+  <!-- END TRAINER PROGRAM ANNOUNCEMENT -->
+
   <!--ICW-BLOCK-START
   <div class="icw-inner reveal">
     <div class="icw-logo">
