@@ -149,13 +149,13 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 }
 @media(max-width:480px){.gallery-grid{grid-template-columns:1fr;grid-auto-rows:200px}.g-item.wide,.g-item.big,.g-item.tall{grid-column:span 1;grid-row:span 1}}
 /* ── WhatsApp Float Button ── */
-.wa-float{position:fixed;bottom:26px;right:22px;z-index:9999;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5),0 2px 8px rgba(0,0,0,.35);text-decoration:none;transition:transform .3s,box-shadow .3s;animation:wa-pulse 2.8s ease-in-out infinite}
+.wa-float{position:fixed;bottom:26px;right:22px;z-index:9999;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5),0 2px 8px rgba(0,0,0,.35);text-decoration:none;transition:transform .3s,box-shadow .3s;animation:wa-pulse 2.8s ease-in-out infinite;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .wa-float:hover{transform:scale(1.13);box-shadow:0 6px 30px rgba(37,211,102,.75),0 2px 8px rgba(0,0,0,.3);animation:none}
 .wa-float svg{width:32px;height:32px;fill:#fff}
 .wa-tooltip{position:absolute;right:68px;background:rgba(8,8,8,.93);color:#fff;font-size:12px;white-space:nowrap;padding:7px 13px;border-radius:7px;pointer-events:none;opacity:0;transform:translateX(8px);transition:opacity .25s,transform .25s;font-weight:500;letter-spacing:.4px;border:1px solid rgba(37,211,102,.25)}
 .wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
 @keyframes wa-pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 2px 8px rgba(0,0,0,.35)}50%{box-shadow:0 4px 32px rgba(37,211,102,.8),0 0 0 10px rgba(37,211,102,.12),0 2px 8px rgba(0,0,0,.3)}}
-@media(max-width:768px){.wa-float{right:auto;left:16px;bottom:20px}.wa-tooltip{right:auto;left:68px}}
+@media(max-width:768px){.wa-float{right:auto;left:16px;bottom:calc(20px + env(safe-area-inset-bottom,0px));-webkit-transform:translateZ(0);transform:translateZ(0)}.wa-tooltip{right:auto;left:68px}}
 </style>
 </head>
 <body>
