@@ -430,8 +430,10 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 .vac-old{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:rgba(255,255,255,0.3);letter-spacing:1px;text-decoration:line-through}
 .vac-new{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:2px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
 .vac-save{font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.25);border-radius:50px;padding:4px 14px}
+.vac-card--link{text-decoration:none;color:inherit}
 .vac-btn{display:inline-block;background:var(--gradient);color:#000;font-family:'Rajdhani',sans-serif;font-weight:800;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;padding:12px 28px;border-radius:10px;margin-top:.5rem;transition:all .3s}
 .vac-btn:hover{transform:translateY(-2px);box-shadow:0 10px 35px rgba(220,20,60,0.4)}
+.vac-btn--mob{display:none}
 @media(max-width:768px){
   .vac-section{padding:1.5rem 16px}
   .vac-header{margin-bottom:1.2rem}
@@ -447,7 +449,11 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
   .vac-old{font-size:1rem}
   .vac-new{font-size:1.9rem}
   .vac-save{font-size:.58rem;padding:3px 8px;letter-spacing:.5px}
-  .vac-btn{font-size:.62rem;padding:8px 10px;letter-spacing:.8px;border-radius:8px;width:100%;text-align:center}
+  .vac-btn--desk{display:none}
+  .vac-btn--mob{display:inline-block;font-size:.62rem;padding:8px 10px;letter-spacing:.8px;border-radius:8px;width:100%;text-align:center}
+  .vac-card:hover{transform:none;box-shadow:none;border-color:rgba(255,255,255,0.08)}
+  .vac-card--featured:hover{border-color:rgba(255,215,0,0.25);box-shadow:none}
+  .vac-card:active{transform:scale(.97);opacity:.9}
 }
 
 /* ── WhatsApp Float Button ── */
@@ -575,7 +581,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
     <div class="vac-cards">
 
       <!-- Students up to 17 -->
-      <div class="vac-card">
+      <a class="vac-card vac-card--link" href="https://wa.me/917736376100?text=Hi%20Coach%2C%20I%27m%20interested%20in%20the%20Vacation%20Special%20package%20for%20Students%20(Up%20to%2017%20years)%20%E2%80%94%202%20months%20daily%20training%20Mon%E2%80%93Sat%20at%20%E2%82%B95%2C499!">
         <div class="vac-badge">👦👧 Students</div>
         <div class="vac-age">Up to 17 Years — Boys &amp; Girls</div>
         <div class="vac-pricing">
@@ -583,11 +589,12 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
           <span class="vac-new">₹5,499</span>
         </div>
         <div class="vac-save">Save ₹1,501</div>
-        <a href="membership.html#contact" class="vac-btn">ENROLL NOW &rarr;</a>
-      </div>
+        <span class="vac-btn vac-btn--desk">ENROLL NOW &rarr;</span>
+        <span class="vac-btn vac-btn--mob">TAP TO JOIN &rarr;</span>
+      </a>
 
       <!-- Women 18+ -->
-      <div class="vac-card vac-card--featured">
+      <a class="vac-card vac-card--featured vac-card--link" href="https://wa.me/917736376100?text=Hi%20Coach%2C%20I%27m%20interested%20in%20the%20Vacation%20Special%20package%20for%20Women%20(18%2B)%20%E2%80%94%202%20months%20daily%20training%20Mon%E2%80%93Sat%20at%20%E2%82%B96%2C500!">
         <div class="vac-badge">👩 Women</div>
         <div class="vac-age">18 Years &amp; Above</div>
         <div class="vac-pricing">
@@ -595,11 +602,12 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
           <span class="vac-new">₹6,500</span>
         </div>
         <div class="vac-save">Save ₹1,500</div>
-        <a href="membership.html#contact" class="vac-btn">ENROLL NOW &rarr;</a>
-      </div>
+        <span class="vac-btn vac-btn--desk">ENROLL NOW &rarr;</span>
+        <span class="vac-btn vac-btn--mob">TAP TO JOIN &rarr;</span>
+      </a>
 
       <!-- Men 18+ -->
-      <div class="vac-card">
+      <a class="vac-card vac-card--link" href="https://wa.me/917736376100?text=Hi%20Coach%2C%20I%27m%20interested%20in%20the%20Vacation%20Special%20package%20for%20Gents%20(18%2B)%20%E2%80%94%202%20months%20daily%20training%20Mon%E2%80%93Sat%20at%20%E2%82%B97%2C000!">
         <div class="vac-badge">👨 Gents</div>
         <div class="vac-age">18 Years &amp; Above</div>
         <div class="vac-pricing">
@@ -607,8 +615,9 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
           <span class="vac-new">₹7,000</span>
         </div>
         <div class="vac-save">Save ₹2,000</div>
-        <a href="membership.html#contact" class="vac-btn">ENROLL NOW &rarr;</a>
-      </div>
+        <span class="vac-btn vac-btn--desk">ENROLL NOW &rarr;</span>
+        <span class="vac-btn vac-btn--mob">TAP TO JOIN &rarr;</span>
+      </a>
 
     </div>
   </div>
