@@ -426,7 +426,8 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 .vac-card--featured:hover{border-color:rgba(255,215,0,0.45);box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 30px rgba(255,215,0,.15)}
 .vac-badge{font-size:1.05rem;font-weight:700;letter-spacing:.5px;color:var(--text)}
 .vac-age{font-size:.78rem;color:var(--muted);letter-spacing:1px;font-weight:500}
-.vac-pricing{display:flex;align-items:center;justify-content:center;margin:.4rem 0}
+.vac-pricing{display:flex;align-items:center;justify-content:center;gap:.75rem;margin:.4rem 0;flex-wrap:wrap}
+.vac-old{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:rgba(255,255,255,0.35);letter-spacing:1px;text-decoration:line-through}
 .vac-new{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:2px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
 .vac-card--link{text-decoration:none;color:inherit}
 .vac-btn{display:inline-block;background:var(--gradient);color:#000;font-family:'Rajdhani',sans-serif;font-weight:800;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;padding:12px 28px;border-radius:10px;margin-top:.5rem;transition:all .3s}
@@ -443,7 +444,8 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
   .vac-card::before{height:2px}
   .vac-badge{font-size:.8rem}
   .vac-age{font-size:.58rem;letter-spacing:.3px;line-height:1.3}
-  .vac-pricing{margin:.2rem 0}
+  .vac-pricing{gap:.3rem;flex-direction:column;margin:.2rem 0}
+  .vac-old{font-size:1rem}
   .vac-new{font-size:1.9rem}
   .vac-btn--desk{display:none}
   .vac-btn--mob{display:inline-block;font-size:.62rem;padding:8px 10px;letter-spacing:.8px;border-radius:8px;width:100%;text-align:center}
@@ -577,22 +579,24 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
     <div class="vac-cards">
 
       <!-- Students up to 17 -->
-      <a class="vac-card vac-card--link" href="https://wa.me/917736376100?text=Hi%20Coach%2C%20I%27m%20interested%20in%20the%202%20Month%20Vacation%20Special%20package%20for%20Students%20(Up%20to%2017%20years)%20%E2%80%94%20daily%20training%20Mon%E2%80%93Sat%20at%20%E2%82%B95%2C999!">
+      <a class="vac-card vac-card--link" href="https://wa.me/917736376100?text=Hi%20Coach%2C%20I%27m%20interested%20in%20the%202%20Month%20Vacation%20Special%20package%20for%20Students%20(Up%20to%2017%20years)%20%E2%80%94%20daily%20training%20Mon%E2%80%93Sat%20at%20%E2%82%B95%2C499!">
         <div class="vac-badge">👦👧 Students</div>
         <div class="vac-age">Up to 17 Years — Boys &amp; Girls</div>
         <div class="vac-pricing">
-          <span class="vac-new">₹5,999</span>
+          <span class="vac-old">₹7,000</span>
+          <span class="vac-new">₹5,499</span>
         </div>
         <span class="vac-btn vac-btn--desk">ENROLL NOW &rarr;</span>
         <span class="vac-btn vac-btn--mob">TAP TO JOIN &rarr;</span>
       </a>
 
       <!-- Women 18+ -->
-      <a class="vac-card vac-card--featured vac-card--link" href="https://wa.me/917736376100?text=Hi%20Coach%2C%20I%27m%20interested%20in%20the%202%20Month%20Vacation%20Special%20package%20for%20Women%20(18%2B)%20%E2%80%94%20daily%20training%20Mon%E2%80%93Sat%20at%20%E2%82%B95%2C999!">
+      <a class="vac-card vac-card--featured vac-card--link" href="https://wa.me/917736376100?text=Hi%20Coach%2C%20I%27m%20interested%20in%20the%202%20Month%20Vacation%20Special%20package%20for%20Women%20(18%2B)%20%E2%80%94%20daily%20training%20Mon%E2%80%93Sat%20at%20%E2%82%B96%2C499!">
         <div class="vac-badge">👩 Women</div>
         <div class="vac-age">18 Years &amp; Above</div>
         <div class="vac-pricing">
-          <span class="vac-new">₹5,999</span>
+          <span class="vac-old">₹8,000</span>
+          <span class="vac-new">₹6,499</span>
         </div>
         <span class="vac-btn vac-btn--desk">ENROLL NOW &rarr;</span>
         <span class="vac-btn vac-btn--mob">TAP TO JOIN &rarr;</span>
@@ -603,6 +607,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         <div class="vac-badge">👨 Gents</div>
         <div class="vac-age">18 Years &amp; Above</div>
         <div class="vac-pricing">
+          <span class="vac-old">₹9,000</span>
           <span class="vac-new">₹6,999</span>
         </div>
         <span class="vac-btn vac-btn--desk">ENROLL NOW &rarr;</span>
