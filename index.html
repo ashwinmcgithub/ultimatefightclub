@@ -409,6 +409,31 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 .insta-grid>a{box-sizing:border-box;width:100%}
 @media(max-width:768px){.insta-fallback{grid-template-columns:repeat(2,1fr)}.insta-profile-bar{flex-direction:column;gap:12px;text-align:center}.insta-grid{grid-template-columns:repeat(2,1fr);gap:.85rem;max-width:100%}.insta-grid>a{padding:1.25rem .6rem !important}.insta-grid>a>span:nth-child(3){font-size:.56rem !important;word-break:break-all !important;text-align:center;display:block;width:100%}}
 @media(max-width:400px){.insta-grid{grid-template-columns:1fr}}
+/* ===== VACATION OFFER BANNER ===== */
+.vac-section{padding:clamp(3rem,6vw,5rem) 24px;background:linear-gradient(135deg,rgba(220,20,60,0.1) 0%,rgba(8,8,8,0) 50%,rgba(255,215,0,0.07) 100%);border-top:1px solid rgba(220,20,60,0.2);border-bottom:1px solid rgba(255,215,0,0.15);position:relative;z-index:2;overflow:hidden}
+.vac-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 0%,rgba(220,20,60,0.08),transparent 65%);pointer-events:none}
+.vac-inner{max-width:1100px;margin:0 auto;position:relative;z-index:2}
+.vac-header{text-align:center;margin-bottom:2.5rem}
+.vac-tag{display:inline-block;background:rgba(220,20,60,0.15);border:1px solid rgba(220,20,60,0.4);border-radius:50px;padding:6px 20px;font-size:.7rem;font-weight:700;color:var(--red);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1rem}
+.vac-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:4px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.6rem}
+.vac-sub{color:var(--muted);font-size:.92rem;font-weight:500;letter-spacing:.5px}
+.vac-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.vac-card{background:var(--card);border:1px solid rgba(255,255,255,0.08);border-radius:22px;padding:2.2rem 1.75rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.7rem;position:relative;overflow:hidden;transition:all .4s}
+.vac-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
+.vac-card:hover{transform:translateY(-8px);border-color:rgba(220,20,60,0.3);box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 30px rgba(220,20,60,.1)}
+.vac-card--featured{border-color:rgba(255,215,0,0.25);background:linear-gradient(160deg,rgba(255,215,0,0.06),rgba(220,20,60,0.05),var(--card) 60%)}
+.vac-card--featured::before{background:var(--gold)}
+.vac-card--featured:hover{border-color:rgba(255,215,0,0.45);box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 30px rgba(255,215,0,.15)}
+.vac-badge{font-size:1.05rem;font-weight:700;letter-spacing:.5px;color:var(--text)}
+.vac-age{font-size:.78rem;color:var(--muted);letter-spacing:1px;font-weight:500}
+.vac-pricing{display:flex;align-items:center;justify-content:center;gap:.75rem;margin:.4rem 0}
+.vac-old{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:rgba(255,255,255,0.3);letter-spacing:1px;text-decoration:line-through}
+.vac-new{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:2px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.vac-save{font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.25);border-radius:50px;padding:4px 14px}
+.vac-btn{display:inline-block;background:var(--gradient);color:#000;font-family:'Rajdhani',sans-serif;font-weight:800;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;padding:12px 28px;border-radius:10px;margin-top:.5rem;transition:all .3s}
+.vac-btn:hover{transform:translateY(-2px);box-shadow:0 10px 35px rgba(220,20,60,0.4)}
+@media(max-width:768px){.vac-cards{grid-template-columns:1fr;max-width:400px;margin:0 auto}}
+
 /* ── WhatsApp Float Button ── */
 .wa-float{position:fixed;bottom:26px;right:22px;z-index:9999;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5),0 2px 8px rgba(0,0,0,.35);text-decoration:none;transition:transform .3s,box-shadow .3s;animation:wa-pulse 2.8s ease-in-out infinite;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .wa-float:hover{transform:scale(1.13);box-shadow:0 6px 30px rgba(37,211,102,.75),0 2px 8px rgba(0,0,0,.3);animation:none}
@@ -519,6 +544,56 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
     <div class="hero-btns reveal">
       <a href="membership.html" class="btn-primary">JOIN NOW &rarr;</a>
       <a href="#disciplines" class="btn-outline">EXPLORE PROGRAMS</a>
+    </div>
+  </div>
+</section>
+
+<!-- VACATION OFFER BANNER -->
+<section class="vac-section">
+  <div class="vac-inner">
+    <div class="vac-header">
+      <span class="vac-tag">🏖️ Limited Time</span>
+      <h2 class="vac-title">VACATION SPECIAL OFFER</h2>
+      <p class="vac-sub">2-Month Membership &bull; Daily Training &bull; Mon – Sat &bull; All Disciplines Included</p>
+    </div>
+    <div class="vac-cards">
+
+      <!-- Students up to 17 -->
+      <div class="vac-card">
+        <div class="vac-badge">👦👧 Students</div>
+        <div class="vac-age">Up to 17 Years — Boys &amp; Girls</div>
+        <div class="vac-pricing">
+          <span class="vac-old">₹7,000</span>
+          <span class="vac-new">₹5,499</span>
+        </div>
+        <div class="vac-save">Save ₹1,501</div>
+        <a href="membership.html#contact" class="vac-btn">ENROLL NOW &rarr;</a>
+      </div>
+
+      <!-- Women 18+ -->
+      <div class="vac-card vac-card--featured">
+        <div class="vac-badge">👩 Women</div>
+        <div class="vac-age">18 Years &amp; Above</div>
+        <div class="vac-pricing">
+          <span class="vac-old">₹8,000</span>
+          <span class="vac-new">₹6,500</span>
+        </div>
+        <div class="vac-save">Save ₹1,500</div>
+        <a href="membership.html#contact" class="vac-btn">ENROLL NOW &rarr;</a>
+      </div>
+
+      <!-- Men 18+ -->
+      <div class="vac-card">
+        <div class="vac-badge">👨 Gents</div>
+        <div class="vac-age">18 Years &amp; Above</div>
+        <div class="vac-pricing">
+          <span class="vac-old">₹9,000</span>
+          <span class="vac-new">₹7,000</span>
+        </div>
+        <div class="vac-save">Save ₹2,000</div>
+        <a href="membership.html#contact" class="vac-btn">ENROLL NOW &rarr;</a>
+      </div>
+
     </div>
   </div>
 </section>
