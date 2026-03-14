@@ -489,12 +489,10 @@ items.forEach((item,i)=>{
   setTimeout(()=>{item.style.opacity='1';item.style.transform='none'},100+i*60);
 });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script>
 <script>
 (async () => {
   try {
-    const { data: imgs } = await sb.from('gallery').select('*').eq('is_active', true).order('sort_order');
+    const imgs = await fetch('/data/gallery.json').then(r => r.json());
     if (!imgs?.length) return;
     const grid = document.getElementById('galleryGrid');
     const extra = imgs.map(img => `
@@ -507,7 +505,7 @@ items.forEach((item,i)=>{
         <div class="g-zoom">&#128269;</div>
       </div>`).join('');
     grid.insertAdjacentHTML('beforeend', extra);
-  } catch(e) { console.info('Supabase gallery: static content shown.'); }
+  } catch(e) { console.info('Gallery JSON not loaded — showing static content.'); }
 })();
 </script>
 <a class="wa-float" href="https://wa.me/917736376100?text=Hi%20Coach%2C%20I%27m%20interested%20in%20joining%20Ultimate%20Fight%20Club!" target="_blank" rel="noopener" aria-label="Chat with Head Coach on WhatsApp">

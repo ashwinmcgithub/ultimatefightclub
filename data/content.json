@@ -1,0 +1,59 @@
+{
+  "contact": {
+    "phone": "+91 77363 76100",
+    "whatsapp": "917736376100",
+    "email": ""
+  },
+  "stats": [
+    { "id": "champions",    "label": "National & State Champions", "value": "28+", "icon": "🏆", "color": "gold" },
+    { "id": "state_titles", "label": "State Titles",               "value": "60+", "icon": "🥇", "color": "red"  },
+    { "id": "years",        "label": "Years of Excellence",        "value": "15+", "icon": "⚡", "color": "gold" },
+    { "id": "students",     "label": "Active Students",            "value": "500+","icon": "👊", "color": "red"  }
+  ],
+  "branches": [
+    {
+      "id": "aluva",
+      "name": "Aluva Branch",
+      "area": "Aluva, Ernakulam",
+      "address": "Main Road, Aluva, Ernakulam, Kerala — 683101",
+      "maps_url": "https://maps.google.com/?q=Ultimate+Fight+Club+Aluva+Ernakulam+Kerala",
+      "image": "images/aluva-branch.jpg",
+      "features": ["Professional MMA Cage", "Heavy Bag Zone", "Grappling Mats", "Strength & Conditioning"],
+      "active": true
+    },
+    {
+      "id": "kolenchery",
+      "name": "Kolenchery Branch",
+      "area": "Kolenchery, Ernakulam",
+      "address": "Near Town Square, Kolenchery, Ernakulam, Kerala — 682311",
+      "maps_url": "https://maps.google.com/?q=Ultimate+Fight+Club+Kolenchery+Ernakulam+Kerala",
+      "image": "images/kolenchery-branch.jpg",
+      "features": ["Boxing Ring", "Kickboxing Zone", "Open Mat Area", "Cardio Zone"],
+      "active": true
+    }
+  ],
+  "vacation_banner": {
+    "active": true,
+    "tag": "🏖️ Limited Time",
+    "title": "2 MONTH VACATION SPECIAL OFFER",
+    "subtitle": "Daily Training • Mon – Sat • All Disciplines Included",
+    "cards": [
+      { "label": "👦👧 Students", "age_group": "Up to 17 Years — Boys & Girls", "original_price": 7000, "offer_price": 5499, "wa_message": "Hi Coach, I am interested in the 2 Month Vacation Special package for Students (Up to 17 years) — daily training Mon–Sat at ₹5,499!" },
+      { "label": "👩 Women",      "age_group": "18 Years & Above",              "original_price": 8000, "offer_price": 6499, "wa_message": "Hi Coach, I am interested in the 2 Month Vacation Special package for Women (18+) — daily training Mon–Sat at ₹6,499!" },
+      { "label": "👨 Gents",      "age_group": "18 Years & Above",              "original_price": 9000, "offer_price": 6999, "wa_message": "Hi Coach, I am interested in the 2 Month Vacation Special package for Gents (18+) — daily training Mon–Sat at ₹6,999!" }
+    ]
+  },
+  "certification_banner": {
+    "active": false,
+    "tag": "🎓 Now Enrolling",
+    "title": "1-YEAR CERTIFICATION PROGRAM",
+    "description": "Get internationally certified in MMA training under Coach Bibin P Benny. Limited seats available.",
+    "cta_text": "ENQUIRE NOW",
+    "wa_message": "Hi Coach, I am interested in the 1-Year MMA Certification Program!"
+  },
+  "fees": [
+    { "id": "students", "category": "students", "label": "Students Package",  "age_group": "Up to 17 Years — Boys & Girls", "original_price": 7000, "offer_price": 5499, "duration": "2 Months", "active": true },
+    { "id": "women",    "category": "women",    "label": "Women Package",      "age_group": "18 Years & Above",              "original_price": 8000, "offer_price": 6499, "duration": "2 Months", "active": true },
+    { "id": "gents",    "category": "gents",    "label": "Gents Package",      "age_group": "18 Years & Above",              "original_price": 9000, "offer_price": 6999, "duration": "2 Months", "active": true }
+  ]
+}

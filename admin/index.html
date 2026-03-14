@@ -3,794 +3,980 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel — Ultimate Fight Club</title>
+<title>Admin — Ultimate Fight Club</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#0a0a0a;--bg2:#111;--card:#161616;--card2:#1e1e1e;
   --red:#DC143C;--gold:#FFD700;
-  --text:#FAFAFA;--muted:rgba(255,255,255,0.55);--dim:rgba(255,255,255,0.25);
-  --border:rgba(255,255,255,0.08);
-  --input:#1a1a1a;--input-border:rgba(255,255,255,0.12);
-  --gradient:linear-gradient(135deg,#DC143C,#FFD700);
-  --sidebar-w:240px;
+  --text:#FAFAFA;--muted:rgba(255,255,255,.55);--dim:rgba(255,255,255,.25);
+  --border:rgba(255,255,255,.08);--input:#1a1a1a;--ib:rgba(255,255,255,.12);
+  --grad:linear-gradient(135deg,#DC143C,#FFD700);
 }
-html,body{height:100%;font-family:'Rajdhani',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
+html,body{height:100%;font-family:'Rajdhani',sans-serif;background:var(--bg);color:var(--text)}
 h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;letter-spacing:2px}
-input,textarea,select{width:100%;background:var(--input);border:1px solid var(--input-border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:.95rem;font-weight:500;outline:none;transition:border-color .25s}
-input:focus,textarea:focus,select:focus{border-color:rgba(220,20,60,0.5)}
-textarea{resize:vertical;min-height:80px}
+a{text-decoration:none;color:inherit}
+input,textarea,select{width:100%;background:var(--input);border:1px solid var(--ib);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:.95rem;font-weight:500;outline:none;transition:border-color .2s}
+input:focus,textarea:focus,select:focus{border-color:rgba(220,20,60,.5)}
+textarea{resize:vertical;min-height:70px}
 select option{background:#1a1a1a}
-label{display:block;font-size:.75rem;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.4rem;margin-top:1rem}
-label:first-child{margin-top:0}
-button{cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:700;border:none;border-radius:8px;transition:all .25s}
+label.lbl{display:block;font-size:.7rem;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.35rem;margin-top:.9rem}
+label.lbl:first-child{margin-top:0}
+button{cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:700;border:none;border-radius:8px;transition:all .2s}
 
-/* ===== TOAST ===== */
-#toast{position:fixed;bottom:28px;right:28px;z-index:9999;display:flex;flex-direction:column;gap:.5rem;pointer-events:none}
-.toast-msg{background:#1e1e1e;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 20px;font-size:.88rem;font-weight:600;min-width:240px;animation:toastIn .3s ease;box-shadow:0 8px 30px rgba(0,0,0,.5)}
-.toast-msg.success{border-color:rgba(34,197,94,.35);color:#4ade80}
-.toast-msg.error{border-color:rgba(220,20,60,.4);color:#f87171}
-@keyframes toastIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+/* TOAST */
+#toast{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:.4rem;pointer-events:none}
+.t{background:#1e1e1e;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:11px 18px;font-size:.85rem;font-weight:600;min-width:220px;animation:tIn .3s ease;box-shadow:0 8px 25px rgba(0,0,0,.5)}
+.t.ok{border-color:rgba(34,197,94,.4);color:#4ade80}
+.t.err{border-color:rgba(220,20,60,.4);color:#f87171}
+.t.inf{border-color:rgba(255,215,0,.3);color:var(--gold)}
+@keyframes tIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* ===== LOGIN ===== */
-#login-view{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:24px}
-.login-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem 2rem;width:100%;max-width:380px;text-align:center}
-.login-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.25rem}
-.login-sub{font-size:.78rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:2rem}
-.login-card label{text-align:left}
-#login-error{color:#f87171;font-size:.82rem;margin-top:.75rem;min-height:1.2rem}
-.btn-login{width:100%;margin-top:1.5rem;padding:13px;background:var(--gradient);color:#000;font-size:1rem;letter-spacing:1.5px;text-transform:uppercase;border-radius:10px}
-.btn-login:hover{opacity:.9;transform:translateY(-1px)}
+/* SCREENS */
+.screen{display:none;min-height:100vh;align-items:center;justify-content:center;padding:24px}
+.screen.on{display:flex}
+.box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem 2rem;width:100%;max-width:420px}
+.box-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;margin-bottom:.2rem}
+.box-sub{text-align:center;font-size:.72rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:2rem}
+.err-msg{color:#f87171;font-size:.8rem;margin-top:.6rem;min-height:1rem}
+.btn-full{width:100%;margin-top:1.25rem;padding:13px;background:var(--grad);color:#000;font-size:1rem;letter-spacing:1.5px;text-transform:uppercase;border-radius:10px}
+.btn-full:hover{opacity:.88}
+.step-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:rgba(220,20,60,.15);border:1px solid rgba(220,20,60,.3);border-radius:50%;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--red);margin-right:.5rem;flex-shrink:0}
+.step-row{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1.25rem}
+.step-body{flex:1}
+.step-title{font-weight:700;font-size:.95rem;margin-bottom:.3rem}
+.step-hint{font-size:.78rem;color:var(--muted);line-height:1.55}
+.link-gold{color:var(--gold);text-decoration:underline}
 
-/* ===== LAYOUT ===== */
-#dash-view{display:none;height:100vh;overflow:hidden}
-.dash-layout{display:grid;grid-template-columns:var(--sidebar-w) 1fr;height:100vh}
+/* DASHBOARD */
+#dash{display:none;height:100vh;overflow:hidden}
+.layout{display:grid;grid-template-columns:240px 1fr;height:100vh}
 
-/* ===== SIDEBAR ===== */
-.sidebar{background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;height:100vh;overflow-y:auto}
-.sidebar-logo{padding:1.5rem 1.25rem 1rem;border-bottom:1px solid var(--border)}
-.sidebar-logo .s-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.sidebar-logo .s-sub{font-size:.6rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
-.sidebar-nav{flex:1;padding:.75rem 0}
-.nav-item{display:flex;align-items:center;gap:.75rem;padding:.75rem 1.25rem;font-size:.85rem;font-weight:600;color:var(--muted);letter-spacing:.5px;cursor:pointer;transition:all .2s;border-left:3px solid transparent}
-.nav-item:hover{color:var(--text);background:rgba(255,255,255,.03)}
-.nav-item.active{color:var(--text);background:rgba(220,20,60,.07);border-left-color:var(--red)}
-.nav-item .nav-icon{font-size:1.1rem;flex-shrink:0;width:20px;text-align:center}
-.sidebar-footer{padding:1rem 1.25rem;border-top:1px solid var(--border)}
-.btn-logout{width:100%;padding:10px;background:rgba(220,20,60,.1);border:1px solid rgba(220,20,60,.25);color:var(--red);font-size:.82rem;letter-spacing:1px;text-transform:uppercase;border-radius:8px}
-.btn-logout:hover{background:rgba(220,20,60,.2)}
+/* SIDEBAR */
+.sb{background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto}
+.sb-head{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--border)}
+.sb-title{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:3px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sb-s{font-size:.58rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.sb-nav{flex:1;padding:.6rem 0}
+.ni{display:flex;align-items:center;gap:.7rem;padding:.7rem 1.2rem;font-size:.85rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;border-left:3px solid transparent;letter-spacing:.3px}
+.ni:hover{color:var(--text);background:rgba(255,255,255,.03)}
+.ni.on{color:var(--text);background:rgba(220,20,60,.07);border-left-color:var(--red)}
+.ni-ic{font-size:1rem;width:18px;text-align:center;flex-shrink:0}
+.sb-ft{padding:.9rem 1.2rem;border-top:1px solid var(--border)}
+.sb-email{font-size:.68rem;color:var(--dim);margin-bottom:.6rem;word-break:break-all}
+.btn-out{width:100%;padding:9px;background:rgba(220,20,60,.1);border:1px solid rgba(220,20,60,.25);color:var(--red);font-size:.78rem;letter-spacing:1px;text-transform:uppercase;border-radius:8px}
+.btn-out:hover{background:rgba(220,20,60,.2)}
 
-/* ===== MAIN CONTENT ===== */
-.main-content{overflow-y:auto;height:100vh;background:var(--bg)}
-.section-inner{max-width:820px;padding:2rem 2rem 4rem}
-.section-title{font-size:2rem;letter-spacing:3px;margin-bottom:.25rem}
-.section-desc{font-size:.88rem;color:var(--muted);margin-bottom:2rem}
-.admin-section{display:none}
-.admin-section.active{display:block}
+/* MAIN */
+.main{overflow-y:auto;height:100vh}
+.mob-bar{display:none;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.mob-ic{background:none;border:1px solid var(--border);border-radius:7px;padding:5px 9px;color:var(--text);font-size:1rem;cursor:pointer}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:99}
+.inner{max-width:800px;padding:2rem 1.75rem 4rem}
+.sec{display:none}
+.sec.on{display:block}
+.sec-ttl{font-size:1.9rem;letter-spacing:3px;margin-bottom:.2rem}
+.sec-dsc{font-size:.85rem;color:var(--muted);margin-bottom:1.75rem}
 
-/* ===== CARDS ===== */
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
-.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem}
-.card-header h3{font-size:1.1rem;letter-spacing:1.5px}
-.card-title-row{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;margin-bottom:1.1rem}
+.card-hd{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem;margin-bottom:1.1rem}
+.card-hd h3{font-size:1rem;letter-spacing:1.5px}
 
-/* ===== TOGGLE SWITCH ===== */
-.toggle-wrap{display:flex;align-items:center;gap:.6rem}
-.toggle-wrap span{font-size:.8rem;color:var(--muted);font-weight:600;letter-spacing:.5px}
-.toggle{position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0}
-.toggle input{opacity:0;width:0;height:0}
-.toggle-slider{position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,.1);border-radius:24px;transition:.3s}
-.toggle-slider::before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
-.toggle input:checked+.toggle-slider{background:var(--red)}
-.toggle input:checked+.toggle-slider::before{transform:translateX(20px)}
+/* TOGGLE */
+.tog{position:relative;display:inline-block;width:42px;height:22px;flex-shrink:0}
+.tog input{opacity:0;width:0;height:0}
+.ts{position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,.1);border-radius:22px;transition:.3s}
+.ts::before{content:'';position:absolute;width:16px;height:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
+.tog input:checked+.ts{background:var(--red)}
+.tog input:checked+.ts::before{transform:translateX(20px)}
+.tog-row{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted);font-weight:600}
 
-/* ===== BUTTONS ===== */
-.btn-primary{padding:11px 24px;background:var(--gradient);color:#000;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;border-radius:8px}
-.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
-.btn-secondary{padding:9px 20px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text);font-size:.82rem;letter-spacing:1px;text-transform:uppercase;border-radius:8px}
-.btn-secondary:hover{background:rgba(255,255,255,.1)}
-.btn-danger{padding:8px 16px;background:rgba(220,20,60,.1);border:1px solid rgba(220,20,60,.3);color:var(--red);font-size:.78rem;letter-spacing:.5px;border-radius:7px}
-.btn-danger:hover{background:rgba(220,20,60,.2)}
-.btn-add{display:flex;align-items:center;gap:.5rem;padding:11px 20px;background:rgba(255,215,0,.06);border:1px solid rgba(255,215,0,.2);color:var(--gold);font-size:.85rem;letter-spacing:1px;text-transform:uppercase;border-radius:10px;margin-top:1rem}
+/* BUTTONS */
+.btn-p{padding:10px 22px;background:var(--grad);color:#000;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;border-radius:8px}
+.btn-p:hover{opacity:.88;transform:translateY(-1px)}
+.btn-s{padding:9px 18px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text);font-size:.8rem;letter-spacing:1px;text-transform:uppercase;border-radius:8px}
+.btn-s:hover{background:rgba(255,255,255,.1)}
+.btn-d{padding:8px 14px;background:rgba(220,20,60,.1);border:1px solid rgba(220,20,60,.3);color:var(--red);font-size:.75rem;border-radius:7px}
+.btn-d:hover{background:rgba(220,20,60,.2)}
+.btn-add{display:flex;align-items:center;gap:.45rem;padding:10px 18px;background:rgba(255,215,0,.06);border:1px solid rgba(255,215,0,.2);color:var(--gold);font-size:.82rem;letter-spacing:1px;text-transform:uppercase;border-radius:10px;margin-top:.9rem}
 .btn-add:hover{background:rgba(255,215,0,.12)}
-.btn-row{display:flex;gap:.75rem;margin-top:1.25rem;flex-wrap:wrap}
+.brow{display:flex;gap:.65rem;margin-top:1.1rem;flex-wrap:wrap;align-items:center}
 
-/* ===== STAT ITEMS ===== */
-.stat-edit-row{display:grid;grid-template-columns:auto 1fr 1fr auto;gap:.75rem;align-items:center;background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:.85rem 1rem;margin-bottom:.6rem}
-.stat-icon-preview{font-size:1.4rem;text-align:center}
+/* STAT ROWS */
+.stat-row{display:grid;grid-template-columns:auto 1fr 1fr auto;gap:.6rem;align-items:center;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:.75rem .9rem;margin-bottom:.5rem}
+.s-ic{font-size:1.3rem;text-align:center}
 
-/* ===== FEE ITEMS ===== */
-.fee-item{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:.75rem}
-.fee-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
-.fee-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.fee-badge{display:inline-block;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.25);border-radius:50px;padding:3px 12px;font-size:.68rem;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase}
+/* LIST ITEMS */
+.li{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:1.1rem;margin-bottom:.7rem}
+.li-hd{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:.9rem}
+.li-hd strong{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:1.5px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.badge{display:inline-block;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.25);border-radius:50px;padding:2px 11px;font-size:.65rem;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase}
 
-/* ===== BRANCH ITEMS ===== */
-.branch-item{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:.75rem}
-.branch-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
-.branch-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+/* BANNER CARD EDITOR */
+.bc{background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:1rem;margin-bottom:.65rem}
+.bc-ttl{font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.75rem}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.5rem}
 
-/* ===== GALLERY ===== */
-.upload-zone{border:2px dashed rgba(255,255,255,.15);border-radius:14px;padding:2rem;text-align:center;cursor:pointer;transition:all .3s;margin-bottom:1.25rem}
-.upload-zone:hover,.upload-zone.drag{border-color:rgba(220,20,60,.5);background:rgba(220,20,60,.04)}
-.upload-zone input[type=file]{display:none}
-.upload-zone p{color:var(--muted);font-size:.88rem;margin-top:.5rem}
-.upload-zone .uz-icon{font-size:2rem}
-.upload-meta{display:grid;grid-template-columns:1fr 1fr auto;gap:.75rem;align-items:end;margin-bottom:1.5rem}
-#selected-file-name{font-size:.78rem;color:var(--gold);margin-top:.35rem;min-height:1rem}
-.gallery-admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1.5rem}
-.gal-thumb{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1;background:var(--card2)}
-.gal-thumb img{width:100%;height:100%;object-fit:cover}
-.gal-thumb-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);opacity:0;transition:.25s;display:flex;flex-direction:column;justify-content:flex-end;padding:.6rem}
-.gal-thumb:hover .gal-thumb-overlay{opacity:1}
-.gal-thumb-title{font-size:.7rem;color:#fff;font-weight:600;margin-bottom:.35rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.gal-thumb-cat{font-size:.6rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px}
-.gal-del-btn{position:absolute;top:6px;right:6px;background:rgba(220,20,60,.85);border:none;border-radius:6px;padding:4px 8px;color:#fff;font-size:.65rem;cursor:pointer;opacity:0;transition:.25s}
-.gal-thumb:hover .gal-del-btn{opacity:1}
+/* GALLERY */
+.drop{border:2px dashed rgba(255,255,255,.15);border-radius:12px;padding:2rem 1rem;text-align:center;cursor:pointer;transition:all .3s;margin-bottom:1rem}
+.drop:hover,.drop.hl{border-color:rgba(220,20,60,.5);background:rgba(220,20,60,.04)}
+.drop input{display:none}
+.drop-ic{font-size:2rem;display:block;margin-bottom:.4rem}
+.drop p{color:var(--muted);font-size:.85rem}
+#fn{font-size:.75rem;color:var(--gold);margin-top:.35rem;min-height:1rem}
+.gup-meta{display:grid;grid-template-columns:1fr 1fr auto;gap:.6rem;align-items:end;margin-bottom:1.25rem}
+.gg{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin-top:1.25rem}
+.gth{position:relative;border-radius:9px;overflow:hidden;aspect-ratio:1;background:var(--card2)}
+.gth img{width:100%;height:100%;object-fit:cover}
+.gth-ov{position:absolute;inset:0;background:rgba(0,0,0,.6);opacity:0;transition:.25s;display:flex;flex-direction:column;justify-content:flex-end;padding:.5rem}
+.gth:hover .gth-ov{opacity:1}
+.gth-ttl{font-size:.65rem;color:#fff;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gth-cat{font-size:.58rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:.5px}
+.gth-del{position:absolute;top:5px;right:5px;background:rgba(220,20,60,.9);border:none;border-radius:6px;padding:3px 7px;color:#fff;font-size:.62rem;cursor:pointer;opacity:0;transition:.2s}
+.gth:hover .gth-del{opacity:1}
 
-/* ===== BANNER CARD EDITOR ===== */
-.banner-card-edit{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:1.1rem;margin-bottom:.75rem}
-.banner-card-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.6rem}
-.banner-card-label{font-size:.75rem;color:var(--gold);font-weight:700;letter-spacing:1px;margin-bottom:.5rem}
+/* SETTINGS */
+.set-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;margin-bottom:1rem}
+.set-ttl{font-size:1rem;letter-spacing:1.5px;margin-bottom:.25rem}
+.set-sub{font-size:.78rem;color:var(--muted);margin-bottom:1rem}
 
-/* ===== LOADING ===== */
-.spinner{display:inline-block;width:20px;height:20px;border:2px solid rgba(255,255,255,.1);border-top-color:var(--red);border-radius:50%;animation:spin .7s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.loading-row{display:flex;align-items:center;gap:.75rem;color:var(--muted);font-size:.88rem;padding:1rem 0}
+/* SAVING OVERLAY */
+#saving{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:999;align-items:center;justify-content:center;flex-direction:column;gap:.75rem;backdrop-filter:blur(4px)}
+#saving.on{display:flex}
+.spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.1);border-top-color:var(--red);border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+#saving p{color:var(--muted);font-size:.88rem;letter-spacing:1px}
 
-/* ===== MOBILE SIDEBAR ===== */
-.mob-header{display:none;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
-.mob-menu-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;color:var(--text);font-size:1.1rem;cursor:pointer}
-.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99}
+/* RESPONSIVE */
 @media(max-width:768px){
-  .dash-layout{grid-template-columns:1fr}
-  .sidebar{position:fixed;left:-var(--sidebar-w);top:0;bottom:0;width:var(--sidebar-w);z-index:100;transform:translateX(-100%);transition:transform .3s}
-  .sidebar.open{transform:translateX(0)}
-  .sidebar-overlay.open{display:block}
-  .mob-header{display:flex}
-  .section-inner{padding:1.25rem 1rem 3rem}
+  .layout{grid-template-columns:1fr}
+  .sb{position:fixed;left:0;top:0;bottom:0;width:240px;z-index:100;transform:translateX(-100%);transition:.3s}
+  .sb.open{transform:translateX(0)}
+  .ov.open{display:block}
+  .mob-bar{display:flex}
+  .inner{padding:1.1rem 1rem 3rem}
+  .g4{grid-template-columns:1fr 1fr}
+  .gup-meta{grid-template-columns:1fr 1fr;grid-template-rows:auto auto}
+  .gup-meta>:last-child{grid-column:span 2}
+  .gg{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
 <body>
 
-<!-- ===== TOAST ===== -->
+<!-- SAVING OVERLAY -->
+<div id="saving"><div class="spin"></div><p>SAVING TO GITHUB...</p></div>
+
+<!-- TOAST -->
 <div id="toast"></div>
 
-<!-- ===== LOGIN ===== -->
-<div id="login-view">
-  <div class="login-card">
-    <div class="login-logo">ULTIMATE FIGHT CLUB</div>
-    <div class="login-sub">Admin Panel</div>
-    <form id="login-form">
-      <label>Email</label>
-      <input type="email" id="l-email" placeholder="admin@example.com" required autocomplete="email">
-      <label style="margin-top:.85rem">Password</label>
-      <input type="password" id="l-pass" placeholder="••••••••" required autocomplete="current-password">
-      <div id="login-error"></div>
-      <button type="submit" class="btn-login" id="login-btn">SIGN IN</button>
-    </form>
+<!-- ═══════════════════════════════════════════
+     SCREEN 1: FIRST-TIME SETUP
+═══════════════════════════════════════════ -->
+<div class="screen" id="s-setup">
+  <div class="box">
+    <div class="box-logo">ULTIMATE FIGHT CLUB</div>
+    <div class="box-sub">Admin Panel — First-Time Setup</div>
+
+    <div class="step-row">
+      <span class="step-badge">1</span>
+      <div class="step-body">
+        <div class="step-title">Create a GitHub Token</div>
+        <div class="step-hint">
+          Go to
+          <a class="link-gold" href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a>
+          → Note: "UFC Admin" → Expiration: No expiration → Tick <strong>repo</strong> → Click <em>Generate token</em> → Copy it.
+        </div>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <span class="step-badge">2</span>
+      <div class="step-body">
+        <div class="step-title">Paste your token below</div>
+        <div class="step-hint">It starts with <strong>ghp_</strong>. It's stored only on this device.</div>
+      </div>
+    </div>
+
+    <label class="lbl">GitHub Personal Access Token</label>
+    <input type="password" id="setup-pat" placeholder="ghp_xxxxxxxxxxxxxxxxxx">
+
+    <div class="step-row" style="margin-top:1.25rem">
+      <span class="step-badge">3</span>
+      <div class="step-body">
+        <div class="step-title">Set your admin password</div>
+        <div class="step-hint">This is what you'll use to log in every time.</div>
+      </div>
+    </div>
+
+    <label class="lbl">New Admin Password</label>
+    <input type="password" id="setup-pw" placeholder="Minimum 8 characters">
+    <label class="lbl" style="margin-top:.75rem">Confirm Password</label>
+    <input type="password" id="setup-pw2" placeholder="Repeat password">
+
+    <div class="err-msg" id="setup-err"></div>
+    <button class="btn-full" id="setup-btn" onclick="doSetup()">COMPLETE SETUP →</button>
   </div>
 </div>
 
-<!-- ===== DASHBOARD ===== -->
-<div id="dash-view">
-  <div class="dash-layout">
+<!-- ═══════════════════════════════════════════
+     SCREEN 2: LOGIN
+═══════════════════════════════════════════ -->
+<div class="screen" id="s-login">
+  <div class="box">
+    <div class="box-logo">ULTIMATE FIGHT CLUB</div>
+    <div class="box-sub">Admin Panel</div>
+    <form id="login-form" onsubmit="doLogin(event)">
+      <label class="lbl">Password</label>
+      <input type="password" id="login-pw" placeholder="••••••••" autocomplete="current-password" required>
+      <div class="err-msg" id="login-err"></div>
+      <button type="submit" class="btn-full">SIGN IN</button>
+    </form>
+    <div style="text-align:center;margin-top:1.1rem">
+      <button onclick="resetSetup()" style="background:none;border:none;color:var(--dim);font-size:.72rem;cursor:pointer;font-family:'Rajdhani',sans-serif;text-decoration:underline">Reset setup (lost token?)</button>
+    </div>
+  </div>
+</div>
 
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-logo">
-        <div class="s-title">UFC ADMIN</div>
-        <div class="s-sub">Ultimate Fight Club</div>
+<!-- ═══════════════════════════════════════════
+     DASHBOARD
+═══════════════════════════════════════════ -->
+<div id="dash">
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sb" id="sb">
+      <div class="sb-head">
+        <div class="sb-title">UFC ADMIN</div>
+        <div class="sb-s">Ultimate Fight Club</div>
       </div>
-      <nav class="sidebar-nav" id="sidebar-nav">
-        <div class="nav-item active" data-sec="contact"><span class="nav-icon">📞</span> Contact Info</div>
-        <div class="nav-item" data-sec="stats"><span class="nav-icon">📊</span> Stats & Counters</div>
-        <div class="nav-item" data-sec="banners"><span class="nav-icon">🎯</span> Banners & Offers</div>
-        <div class="nav-item" data-sec="fees"><span class="nav-icon">💰</span> Fee Structure</div>
-        <div class="nav-item" data-sec="branches"><span class="nav-icon">📍</span> Branches</div>
-        <div class="nav-item" data-sec="gallery"><span class="nav-icon">🖼️</span> Gallery</div>
+      <nav class="sb-nav" id="sb-nav">
+        <div class="ni on" data-s="contact"><span class="ni-ic">📞</span> Contact Info</div>
+        <div class="ni"    data-s="stats"  ><span class="ni-ic">📊</span> Stats & Counters</div>
+        <div class="ni"    data-s="banners"><span class="ni-ic">🎯</span> Banners & Offers</div>
+        <div class="ni"    data-s="fees"   ><span class="ni-ic">💰</span> Fee Structure</div>
+        <div class="ni"    data-s="branches"><span class="ni-ic">📍</span> Branches</div>
+        <div class="ni"    data-s="gallery"><span class="ni-ic">🖼️</span> Gallery</div>
+        <div class="ni"    data-s="settings"><span class="ni-ic">⚙️</span> Settings</div>
       </nav>
-      <div class="sidebar-footer">
-        <div style="font-size:.7rem;color:var(--dim);margin-bottom:.75rem;letter-spacing:.5px" id="admin-email-display"></div>
-        <button class="btn-logout" id="logout-btn">Sign Out</button>
+      <div class="sb-ft">
+        <div class="sb-email" id="sb-email"></div>
+        <button class="btn-out" onclick="doLogout()">Sign Out</button>
       </div>
     </aside>
 
-    <!-- Sidebar overlay (mobile) -->
-    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="ov" id="ov"></div>
 
-    <!-- Main -->
-    <main class="main-content">
-      <!-- Mobile header -->
-      <div class="mob-header">
-        <button class="mob-menu-btn" id="mob-menu-btn">☰</button>
-        <span style="font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:1rem">UFC ADMIN</span>
+    <!-- MAIN -->
+    <main class="main">
+      <div class="mob-bar">
+        <button class="mob-ic" id="mob-btn">☰</button>
+        <span style="font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:.95rem">UFC ADMIN</span>
         <span></span>
       </div>
 
-      <div class="section-inner">
+      <div class="inner">
 
-        <!-- ── CONTACT INFO ── -->
-        <section class="admin-section active" id="sec-contact">
-          <h2 class="section-title">Contact Info</h2>
-          <p class="section-desc">Updates the phone number and WhatsApp link across the entire website.</p>
+        <!-- ── CONTACT ── -->
+        <div class="sec on" id="sec-contact">
+          <h2 class="sec-ttl">Contact Info</h2>
+          <p class="sec-dsc">Updates the phone number and WhatsApp button across the entire website.</p>
           <div class="card">
-            <label>Phone Number (displayed on site)</label>
-            <input type="tel" id="c-phone" placeholder="+91 77363 76100">
-            <label>WhatsApp Number (digits only, with country code)</label>
-            <input type="tel" id="c-whatsapp" placeholder="917736376100">
-            <label>Email Address</label>
-            <input type="email" id="c-email" placeholder="info@ultimatefightclub.in">
-            <div class="btn-row">
-              <button class="btn-primary" onclick="saveContact()">Save Changes</button>
-            </div>
+            <label class="lbl">Phone Number</label>
+            <input id="c-phone" placeholder="+91 77363 76100">
+            <label class="lbl">WhatsApp Number (digits + country code, no spaces)</label>
+            <input id="c-wa" placeholder="917736376100">
+            <label class="lbl">Email Address</label>
+            <input id="c-email" type="email" placeholder="info@ultimatefightclub.in">
+            <div class="brow"><button class="btn-p" onclick="saveContact()">Save Contact Info</button></div>
           </div>
-        </section>
+        </div>
 
         <!-- ── STATS ── -->
-        <section class="admin-section" id="sec-stats">
-          <h2 class="section-title">Stats & Counters</h2>
-          <p class="section-desc">Edit the numbers shown on the homepage hero section (Champions, Titles, Years, Students).</p>
-          <div id="stats-list"><div class="loading-row"><span class="spinner"></span> Loading...</div></div>
-        </section>
+        <div class="sec" id="sec-stats">
+          <h2 class="sec-ttl">Stats & Counters</h2>
+          <p class="sec-dsc">The numbers shown on the homepage — champions, titles, years, students.</p>
+          <div id="stats-list"></div>
+          <div class="brow"><button class="btn-p" onclick="saveStats()">Save All Stats</button></div>
+        </div>
 
         <!-- ── BANNERS ── -->
-        <section class="admin-section" id="sec-banners">
-          <h2 class="section-title">Banners & Offers</h2>
-          <p class="section-desc">Manage the vacation offer and certification program banners on the homepage.</p>
+        <div class="sec" id="sec-banners">
+          <h2 class="sec-ttl">Banners & Offers</h2>
+          <p class="sec-dsc">Control the promotional banners on the homepage.</p>
 
           <!-- Vacation Offer -->
-          <div class="card" id="vac-card">
-            <div class="card-header">
+          <div class="card">
+            <div class="card-hd">
               <h3>🏖️ Vacation Special Offer</h3>
-              <div class="toggle-wrap">
-                <label class="toggle"><input type="checkbox" id="vac-active"><span class="toggle-slider"></span></label>
+              <div class="tog-row">
+                <label class="tog"><input type="checkbox" id="vac-on"><span class="ts"></span></label>
                 <span>Show on site</span>
               </div>
             </div>
-            <label>Tag Label</label>
+            <label class="lbl">Tag Label</label>
             <input id="vac-tag" placeholder="🏖️ Limited Time">
-            <label>Banner Title</label>
+            <label class="lbl">Banner Title</label>
             <input id="vac-title" placeholder="2 MONTH VACATION SPECIAL OFFER">
-            <label>Subtitle</label>
-            <input id="vac-sub" placeholder="Daily Training • Mon – Sat • All Disciplines Included">
-            <h4 style="font-family:'Bebas Neue',sans-serif;letter-spacing:2px;margin-top:1.5rem;margin-bottom:.75rem;color:var(--gold)">OFFER CARDS</h4>
-            <div id="vac-cards-editor"></div>
-            <div class="btn-row">
-              <button class="btn-primary" onclick="saveVacBanner()">Save Banner</button>
-            </div>
+            <label class="lbl">Subtitle</label>
+            <input id="vac-sub">
+            <h4 style="font-family:'Bebas Neue',sans-serif;letter-spacing:2px;margin-top:1.25rem;margin-bottom:.6rem;color:var(--gold);font-size:.95rem">OFFER CARDS</h4>
+            <div id="vac-cards"></div>
+            <div class="brow"><button class="btn-p" onclick="saveVac()">Save Vacation Banner</button></div>
           </div>
 
           <!-- Certification -->
-          <div class="card" id="cert-card">
-            <div class="card-header">
+          <div class="card">
+            <div class="card-hd">
               <h3>🎓 1-Year Certification Program</h3>
-              <div class="toggle-wrap">
-                <label class="toggle"><input type="checkbox" id="cert-active"><span class="toggle-slider"></span></label>
+              <div class="tog-row">
+                <label class="tog"><input type="checkbox" id="cert-on"><span class="ts"></span></label>
                 <span>Show on site</span>
               </div>
             </div>
-            <label>Tag Label</label>
+            <label class="lbl">Tag Label</label>
             <input id="cert-tag" placeholder="🎓 Now Enrolling">
-            <label>Banner Title</label>
-            <input id="cert-title" placeholder="1-YEAR CERTIFICATION PROGRAM">
-            <label>Description</label>
-            <textarea id="cert-desc" placeholder="Get internationally certified in MMA training..."></textarea>
-            <label>CTA Button Text</label>
+            <label class="lbl">Title</label>
+            <input id="cert-title">
+            <label class="lbl">Description</label>
+            <textarea id="cert-desc"></textarea>
+            <label class="lbl">Button Text</label>
             <input id="cert-cta" placeholder="ENQUIRE NOW">
-            <label>WhatsApp Pre-fill Message</label>
-            <input id="cert-wa" placeholder="Hi Coach, I am interested in the 1-Year Certification Program!">
-            <div class="btn-row">
-              <button class="btn-primary" onclick="saveCertBanner()">Save Banner</button>
-            </div>
+            <label class="lbl">WhatsApp Pre-fill Message</label>
+            <input id="cert-wa">
+            <div class="brow"><button class="btn-p" onclick="saveCert()">Save Certification Banner</button></div>
           </div>
-        </section>
+        </div>
 
-        <!-- ── FEE STRUCTURE ── -->
-        <section class="admin-section" id="sec-fees">
-          <h2 class="section-title">Fee Structure</h2>
-          <p class="section-desc">Manage pricing tiers. These power both the vacation offer banner and the membership page.</p>
-          <div id="fees-list"><div class="loading-row"><span class="spinner"></span> Loading...</div></div>
+        <!-- ── FEES ── -->
+        <div class="sec" id="sec-fees">
+          <h2 class="sec-ttl">Fee Structure</h2>
+          <p class="sec-dsc">Add, edit or remove pricing tiers. These power the offer banner and membership page.</p>
+          <div id="fees-list"></div>
           <button class="btn-add" onclick="addFee()">＋ Add New Pricing Tier</button>
-        </section>
+        </div>
 
         <!-- ── BRANCHES ── -->
-        <section class="admin-section" id="sec-branches">
-          <h2 class="section-title">Branches & Locations</h2>
-          <p class="section-desc">Add, edit or remove club locations. Changes reflect on the homepage and footer.</p>
-          <div id="branches-list"><div class="loading-row"><span class="spinner"></span> Loading...</div></div>
+        <div class="sec" id="sec-branches">
+          <h2 class="sec-ttl">Branches & Locations</h2>
+          <p class="sec-dsc">Add or remove club locations. Changes reflect on the homepage and footer.</p>
+          <div id="branches-list"></div>
           <button class="btn-add" onclick="addBranch()">＋ Add New Branch</button>
-        </section>
+        </div>
 
         <!-- ── GALLERY ── -->
-        <section class="admin-section" id="sec-gallery">
-          <h2 class="section-title">Gallery</h2>
-          <p class="section-desc">Upload new photos or remove existing ones. Images are stored in Supabase Storage.</p>
+        <div class="sec" id="sec-gallery">
+          <h2 class="sec-ttl">Gallery</h2>
+          <p class="sec-dsc">Upload new photos or remove existing ones. Images are stored directly in your GitHub repo.</p>
           <div class="card">
-            <h3 style="font-family:'Bebas Neue',sans-serif;letter-spacing:1.5px;margin-bottom:1.25rem">Upload New Image</h3>
-            <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()">
-              <input type="file" id="file-input" accept="image/*" onchange="onFileSelect(this)">
-              <div class="uz-icon">📸</div>
-              <p>Click to select an image (JPG, PNG, WEBP)</p>
-              <div id="selected-file-name"></div>
+            <h3 style="font-family:'Bebas Neue',sans-serif;letter-spacing:1.5px;margin-bottom:1.1rem;font-size:.95rem">UPLOAD NEW IMAGE</h3>
+            <div class="drop" id="drop-zone" onclick="document.getElementById('file-in').click()">
+              <input type="file" id="file-in" accept="image/*" onchange="onFile(this)">
+              <span class="drop-ic">📸</span>
+              <p>Click to select an image (JPG, PNG, WEBP — max 5MB)</p>
+              <div id="fn"></div>
             </div>
-            <div class="upload-meta">
+            <div class="gup-meta">
               <div>
-                <label style="margin-top:0">Image Title</label>
-                <input id="img-title" placeholder="e.g. Coach Bibin with State Champion">
+                <label class="lbl" style="margin-top:0">Image Title</label>
+                <input id="img-ttl" placeholder="e.g. Training Session">
               </div>
               <div>
-                <label style="margin-top:0">Category</label>
-                <select id="img-category">
+                <label class="lbl" style="margin-top:0">Category</label>
+                <select id="img-cat">
                   <option value="training">Training</option>
                   <option value="competition">Competition</option>
                   <option value="facilities">Facilities</option>
                   <option value="events">Events</option>
                 </select>
               </div>
-              <div style="padding-bottom:2px">
-                <button class="btn-primary" onclick="uploadImage()" id="upload-btn">Upload</button>
+              <div>
+                <button class="btn-p" id="up-btn" onclick="uploadImg()">Upload</button>
               </div>
             </div>
           </div>
-          <div id="gallery-admin-grid" class="gallery-admin-grid"></div>
-        </section>
+          <div class="gg" id="gal-grid"></div>
+        </div>
 
-      </div><!-- /section-inner -->
+        <!-- ── SETTINGS ── -->
+        <div class="sec" id="sec-settings">
+          <h2 class="sec-ttl">Settings</h2>
+          <p class="sec-dsc">Change your admin password or update your GitHub token.</p>
+
+          <div class="set-card">
+            <div class="set-ttl">Change Password</div>
+            <div class="set-sub">Enter a new password for the admin panel.</div>
+            <label class="lbl">New Password</label>
+            <input type="password" id="new-pw" placeholder="Minimum 8 characters">
+            <label class="lbl" style="margin-top:.75rem">Confirm New Password</label>
+            <input type="password" id="new-pw2" placeholder="Repeat password">
+            <div class="brow"><button class="btn-p" onclick="changePw()">Update Password</button></div>
+          </div>
+
+          <div class="set-card">
+            <div class="set-ttl">Update GitHub Token</div>
+            <div class="set-sub">If your token expired or you need to replace it.</div>
+            <label class="lbl">New GitHub Token</label>
+            <input type="password" id="new-pat" placeholder="ghp_xxxxxxxxxxxxxxxxxx">
+            <div class="brow"><button class="btn-p" onclick="changePat()">Update Token</button></div>
+          </div>
+
+          <div class="set-card">
+            <div class="set-ttl">Reset Everything</div>
+            <div class="set-sub">Clears your saved credentials from this device. You'll need to set up again.</div>
+            <div class="brow"><button class="btn-d" onclick="resetSetup()">Reset Setup</button></div>
+          </div>
+        </div>
+
+      </div><!-- /inner -->
     </main>
   </div>
 </div>
 
-<!-- Supabase SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<!-- Shared config -->
-<script src="../supabase-config.js"></script>
-
 <script>
-// ================================================================
-//  INIT & AUTH
-// ================================================================
-let currentUser = null;
+// ═══════════════════════════════════════════════════════
+//  CONFIG
+// ═══════════════════════════════════════════════════════
+const REPO   = 'ashwinmcgithub/ultimatefightclub';
+const BRANCH = 'main';
+let DATA = {};   // live copy of content.json
+let GDATA = [];  // live copy of gallery.json
+let selectedFile = null;
 
-async function init() {
-  const { data: { session } } = await sb.auth.getSession();
-  if (session) showDashboard(session.user);
+// ═══════════════════════════════════════════════════════
+//  CRYPTO (password hashing)
+// ═══════════════════════════════════════════════════════
+async function hash(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
 
-document.getElementById('login-form').addEventListener('submit', async e => {
-  e.preventDefault();
-  const btn = document.getElementById('login-btn');
-  btn.textContent = 'SIGNING IN...'; btn.disabled = true;
-  const { data, error } = await sb.auth.signInWithPassword({
-    email: document.getElementById('l-email').value.trim(),
-    password: document.getElementById('l-pass').value
-  });
-  if (error) {
-    document.getElementById('login-error').textContent = error.message;
-    btn.textContent = 'SIGN IN'; btn.disabled = false;
-  } else {
-    showDashboard(data.user);
-  }
-});
-
-document.getElementById('logout-btn').addEventListener('click', async () => {
-  await sb.auth.signOut();
-  document.getElementById('dash-view').style.display = 'none';
-  document.getElementById('login-view').style.display = 'flex';
-  currentUser = null;
-});
-
-function showDashboard(user) {
-  currentUser = user;
-  document.getElementById('login-view').style.display = 'none';
-  document.getElementById('dash-view').style.display = 'block';
-  document.getElementById('admin-email-display').textContent = user.email;
-  loadContact(); loadStats(); loadBanners(); loadFees(); loadBranches(); loadGallery();
-}
-
-// ================================================================
-//  NAVIGATION
-// ================================================================
-document.getElementById('sidebar-nav').addEventListener('click', e => {
-  const item = e.target.closest('.nav-item');
-  if (!item) return;
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
-  item.classList.add('active');
-  document.getElementById('sec-' + item.dataset.sec).classList.add('active');
-  closeMobSidebar();
-});
-
-// Mobile sidebar
-document.getElementById('mob-menu-btn').addEventListener('click', () => {
-  document.getElementById('sidebar').classList.add('open');
-  document.getElementById('sidebar-overlay').classList.add('open');
-});
-document.getElementById('sidebar-overlay').addEventListener('click', closeMobSidebar);
-function closeMobSidebar() {
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sidebar-overlay').classList.remove('open');
-}
-
-// ================================================================
+// ═══════════════════════════════════════════════════════
 //  TOAST
-// ================================================================
-function toast(msg, type = 'success') {
+// ═══════════════════════════════════════════════════════
+function toast(msg, type='ok') {
   const el = document.createElement('div');
-  el.className = 'toast-msg ' + type;
+  el.className = 't ' + type;
   el.textContent = msg;
   document.getElementById('toast').appendChild(el);
-  setTimeout(() => el.remove(), 3500);
+  setTimeout(() => el.remove(), 3800);
 }
 
-// ================================================================
-//  CONTACT INFO
-// ================================================================
-async function loadContact() {
-  const { data } = await sb.from('contact_info').select('*').eq('id', 1).single();
-  if (!data) return;
-  document.getElementById('c-phone').value   = data.phone    || '';
-  document.getElementById('c-whatsapp').value = data.whatsapp || '';
-  document.getElementById('c-email').value   = data.email    || '';
+// ═══════════════════════════════════════════════════════
+//  GITHUB API
+// ═══════════════════════════════════════════════════════
+function getPAT() { return localStorage.getItem('ufc_pat') || ''; }
+
+async function ghGet(path) {
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    headers: { Authorization: `token ${getPAT()}`, Accept: 'application/vnd.github.v3+json' }
+  });
+  return r.json();
 }
 
-async function saveContact() {
-  const payload = {
-    phone:     document.getElementById('c-phone').value.trim(),
-    whatsapp:  document.getElementById('c-whatsapp').value.trim(),
-    email:     document.getElementById('c-email').value.trim(),
-    updated_at: new Date().toISOString()
-  };
-  const { error } = await sb.from('contact_info').upsert({ id: 1, ...payload });
-  error ? toast('Error: ' + error.message, 'error') : toast('Contact info saved!');
-}
-
-// ================================================================
-//  STATS
-// ================================================================
-async function loadStats() {
-  const { data } = await sb.from('stats').select('*').order('sort_order');
-  const list = document.getElementById('stats-list');
-  if (!data || !data.length) { list.innerHTML = '<p style="color:var(--muted)">No stats found. Run schema.sql first.</p>'; return; }
-  list.innerHTML = data.map(s => `
-    <div class="stat-edit-row" data-id="${s.id}">
-      <div class="stat-icon-preview">${s.icon || '📊'}</div>
-      <div>
-        <div style="font-size:.72rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:.3rem">${s.label}</div>
-        <input class="stat-val-input" value="${s.value}" style="width:100%" placeholder="e.g. 28+" data-id="${s.id}">
-      </div>
-      <div>
-        <div style="font-size:.72rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:.3rem">Label</div>
-        <input class="stat-lbl-input" value="${s.label}" style="width:100%" data-id="${s.id}">
-      </div>
-      <button class="btn-primary" style="white-space:nowrap" onclick="saveStat('${s.id}',this)">Save</button>
-    </div>
-  `).join('');
-}
-
-async function saveStat(id, btn) {
-  const row = btn.closest('.stat-edit-row');
-  const val = row.querySelector('.stat-val-input').value.trim();
-  const lbl = row.querySelector('.stat-lbl-input').value.trim();
-  const { error } = await sb.from('stats').update({ value: val, label: lbl }).eq('id', id);
-  error ? toast('Error: ' + error.message, 'error') : toast('Stat updated!');
-}
-
-// ================================================================
-//  BANNERS
-// ================================================================
-let vacData = null, certData = null;
-
-async function loadBanners() {
-  const { data } = await sb.from('banners').select('*');
-  if (!data) return;
-  vacData  = data.find(b => b.type === 'vacation_offer');
-  certData = data.find(b => b.type === 'certification');
-  if (vacData) {
-    document.getElementById('vac-active').checked = vacData.is_active;
-    document.getElementById('vac-tag').value       = vacData.tag_label || '';
-    document.getElementById('vac-title').value     = vacData.title || '';
-    document.getElementById('vac-sub').value       = vacData.subtitle || '';
-    renderVacCards(vacData.content || []);
-  }
-  if (certData) {
-    const c = certData.content || {};
-    document.getElementById('cert-active').checked = certData.is_active;
-    document.getElementById('cert-tag').value      = certData.tag_label || '';
-    document.getElementById('cert-title').value    = certData.title || '';
-    document.getElementById('cert-desc').value     = c.description || '';
-    document.getElementById('cert-cta').value      = c.cta_text || 'ENQUIRE NOW';
-    document.getElementById('cert-wa').value       = c.wa_message || '';
-  }
-}
-
-function renderVacCards(cards) {
-  const el = document.getElementById('vac-cards-editor');
-  el.innerHTML = (Array.isArray(cards) ? cards : []).map((c, i) => `
-    <div class="banner-card-edit" data-idx="${i}">
-      <div class="banner-card-label">Card ${i + 1}</div>
-      <div class="banner-card-grid">
-        <div><label style="margin-top:0">Label / Emoji</label><input class="bc-label" value="${c.label||''}" placeholder="👦👧 Students"></div>
-        <div><label style="margin-top:0">Age Group</label><input class="bc-age" value="${c.age_group||''}" placeholder="Up to 17 Years"></div>
-        <div><label style="margin-top:0">Original Price (₹)</label><input class="bc-orig" type="number" value="${c.original_price||''}" placeholder="7000"></div>
-        <div><label style="margin-top:0">Offer Price (₹)</label><input class="bc-offer" type="number" value="${c.offer_price||''}" placeholder="5499"></div>
-      </div>
-      <label>WhatsApp Pre-fill Message</label>
-      <input class="bc-wa" value="${c.wa_message||''}" placeholder="Hi Coach, I am interested in...">
-    </div>
-  `).join('');
-}
-
-async function saveVacBanner() {
-  const cards = [...document.querySelectorAll('#vac-cards-editor .banner-card-edit')].map(el => ({
-    label:          el.querySelector('.bc-label').value.trim(),
-    age_group:      el.querySelector('.bc-age').value.trim(),
-    original_price: parseInt(el.querySelector('.bc-orig').value) || null,
-    offer_price:    parseInt(el.querySelector('.bc-offer').value) || 0,
-    wa_message:     el.querySelector('.bc-wa').value.trim()
-  }));
-  const payload = {
-    is_active:  document.getElementById('vac-active').checked,
-    tag_label:  document.getElementById('vac-tag').value.trim(),
-    title:      document.getElementById('vac-title').value.trim(),
-    subtitle:   document.getElementById('vac-sub').value.trim(),
-    content:    cards,
-    updated_at: new Date().toISOString()
-  };
-  const { error } = vacData
-    ? await sb.from('banners').update(payload).eq('id', vacData.id)
-    : await sb.from('banners').insert({ ...payload, type: 'vacation_offer' });
-  error ? toast('Error: ' + error.message, 'error') : toast('Vacation banner saved!');
-  loadBanners();
-}
-
-async function saveCertBanner() {
-  const payload = {
-    is_active:  document.getElementById('cert-active').checked,
-    tag_label:  document.getElementById('cert-tag').value.trim(),
-    title:      document.getElementById('cert-title').value.trim(),
-    content: {
-      description: document.getElementById('cert-desc').value.trim(),
-      cta_text:    document.getElementById('cert-cta').value.trim(),
-      wa_message:  document.getElementById('cert-wa').value.trim()
+async function ghPut(path, content, message) {
+  // Get current SHA first
+  const current = await ghGet(path);
+  const sha = current.sha;
+  const encoded = btoa(unescape(encodeURIComponent(
+    typeof content === 'string' ? content : JSON.stringify(content, null, 2)
+  )));
+  const body = { message, content: encoded, branch: BRANCH };
+  if (sha) body.sha = sha;
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `token ${getPAT()}`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
     },
-    updated_at: new Date().toISOString()
-  };
-  const { error } = certData
-    ? await sb.from('banners').update(payload).eq('id', certData.id)
-    : await sb.from('banners').insert({ ...payload, type: 'certification' });
-  error ? toast('Error: ' + error.message, 'error') : toast('Certification banner saved!');
-  loadBanners();
+    body: JSON.stringify(body)
+  });
+  return r.json();
 }
 
-// ================================================================
-//  FEE STRUCTURE
-// ================================================================
-let feesData = [];
+async function ghPutBinary(path, base64Content, message) {
+  const current = await ghGet(path).catch(() => ({}));
+  const sha = current.sha;
+  const body = { message, content: base64Content, branch: BRANCH };
+  if (sha) body.sha = sha;
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `token ${getPAT()}`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+  return r.json();
+}
 
-async function loadFees() {
-  const { data } = await sb.from('fee_structure').select('*').order('sort_order');
-  feesData = data || [];
+async function ghDelete(path, message) {
+  const current = await ghGet(path);
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `token ${getPAT()}`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ message, sha: current.sha, branch: BRANCH })
+  });
+  return r.json();
+}
+
+// Save content.json helper
+async function saveContent(msg = 'Admin panel update') {
+  showSaving(true);
+  const res = await ghPut('data/content.json', DATA, msg);
+  showSaving(false);
+  if (res.content) { toast('Saved! Site updates in ~1 min.'); return true; }
+  toast('Error: ' + (res.message || 'GitHub API error'), 'err'); return false;
+}
+async function saveGallery(msg = 'Gallery update') {
+  const res = await ghPut('data/gallery.json', GDATA, msg);
+  if (res.content) return true;
+  toast('Gallery save error: ' + (res.message || ''), 'err'); return false;
+}
+
+function showSaving(on) { document.getElementById('saving').classList.toggle('on', on); }
+
+// ═══════════════════════════════════════════════════════
+//  AUTH / SETUP
+// ═══════════════════════════════════════════════════════
+async function init() {
+  const hasPAT = !!localStorage.getItem('ufc_pat');
+  const hasPW  = !!localStorage.getItem('ufc_pw');
+  if (!hasPAT || !hasPW) { show('s-setup'); return; }
+  if (sessionStorage.getItem('ufc_auth')) { await loadDash(); return; }
+  show('s-login');
+}
+
+async function doSetup() {
+  const pat = document.getElementById('setup-pat').value.trim();
+  const pw  = document.getElementById('setup-pw').value;
+  const pw2 = document.getElementById('setup-pw2').value;
+  const err = document.getElementById('setup-err');
+  if (!pat.startsWith('ghp_') && !pat.startsWith('github_pat_')) { err.textContent = 'Token must start with ghp_ or github_pat_'; return; }
+  if (pw.length < 8) { err.textContent = 'Password must be at least 8 characters'; return; }
+  if (pw !== pw2)    { err.textContent = 'Passwords do not match'; return; }
+  document.getElementById('setup-btn').textContent = 'VERIFYING...';
+  // Verify token works
+  const test = await fetch(`https://api.github.com/repos/${REPO}`, {
+    headers: { Authorization: `token ${pat}` }
+  }).then(r => r.json()).catch(() => ({}));
+  if (!test.id) { err.textContent = 'Token invalid or no access to this repo. Please check.'; document.getElementById('setup-btn').textContent = 'COMPLETE SETUP →'; return; }
+  localStorage.setItem('ufc_pat', pat);
+  localStorage.setItem('ufc_pw', await hash(pw));
+  sessionStorage.setItem('ufc_auth', '1');
+  await loadDash();
+}
+
+async function doLogin(e) {
+  e.preventDefault();
+  const pw  = document.getElementById('login-pw').value;
+  const err = document.getElementById('login-err');
+  const stored = localStorage.getItem('ufc_pw');
+  const h = await hash(pw);
+  if (h !== stored) { err.textContent = 'Incorrect password'; return; }
+  sessionStorage.setItem('ufc_auth', '1');
+  await loadDash();
+}
+
+function doLogout() {
+  sessionStorage.removeItem('ufc_auth');
+  document.getElementById('dash').style.display = 'none';
+  show('s-login');
+  document.getElementById('login-pw').value = '';
+  document.getElementById('login-err').textContent = '';
+}
+
+function resetSetup() {
+  if (!confirm('This will clear your saved token and password from this device. Continue?')) return;
+  localStorage.removeItem('ufc_pat');
+  localStorage.removeItem('ufc_pw');
+  sessionStorage.removeItem('ufc_auth');
+  location.reload();
+}
+
+// ═══════════════════════════════════════════════════════
+//  LOAD DASHBOARD
+// ═══════════════════════════════════════════════════════
+async function loadDash() {
+  hideAll();
+  document.getElementById('dash').style.display = 'block';
+  // Fetch live data from GitHub
+  try {
+    const cf = await ghGet('data/content.json');
+    DATA = JSON.parse(atob(cf.content.replace(/\n/g,'')));
+  } catch(e) { toast('Could not load content.json — check token', 'err'); }
+  try {
+    const gf = await ghGet('data/gallery.json');
+    GDATA = JSON.parse(atob(gf.content.replace(/\n/g,'')));
+  } catch(e) { GDATA = []; }
+  populateAll();
+}
+
+// ═══════════════════════════════════════════════════════
+//  POPULATE ALL FORMS
+// ═══════════════════════════════════════════════════════
+function populateAll() {
+  // Contact
+  const c = DATA.contact || {};
+  document.getElementById('c-phone').value = c.phone || '';
+  document.getElementById('c-wa').value    = c.whatsapp || '';
+  document.getElementById('c-email').value = c.email || '';
+  // Stats
+  renderStats();
+  // Banners
+  const vb = DATA.vacation_banner || {};
+  document.getElementById('vac-on').checked   = !!vb.active;
+  document.getElementById('vac-tag').value    = vb.tag || '';
+  document.getElementById('vac-title').value  = vb.title || '';
+  document.getElementById('vac-sub').value    = vb.subtitle || '';
+  renderVacCards(vb.cards || []);
+  const cb = DATA.certification_banner || {};
+  document.getElementById('cert-on').checked   = !!cb.active;
+  document.getElementById('cert-tag').value    = cb.tag || '';
+  document.getElementById('cert-title').value  = cb.title || '';
+  document.getElementById('cert-desc').value   = cb.description || '';
+  document.getElementById('cert-cta').value    = cb.cta_text || '';
+  document.getElementById('cert-wa').value     = cb.wa_message || '';
+  // Fees
   renderFees();
+  // Branches
+  renderBranches();
+  // Gallery
+  renderGallery();
 }
 
+// ═══════════════════════════════════════════════════════
+//  NAVIGATION
+// ═══════════════════════════════════════════════════════
+document.getElementById('sb-nav').addEventListener('click', e => {
+  const ni = e.target.closest('.ni'); if (!ni) return;
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+  ni.classList.add('on');
+  document.getElementById('sec-' + ni.dataset.s).classList.add('on');
+  closeSB();
+});
+document.getElementById('mob-btn').addEventListener('click', () => {
+  document.getElementById('sb').classList.add('open');
+  document.getElementById('ov').classList.add('open');
+});
+document.getElementById('ov').addEventListener('click', closeSB);
+function closeSB() {
+  document.getElementById('sb').classList.remove('open');
+  document.getElementById('ov').classList.remove('open');
+}
+
+function show(id) { document.getElementById(id).classList.add('on'); }
+function hideAll() {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
+  document.getElementById('dash').style.display = 'none';
+}
+
+// ═══════════════════════════════════════════════════════
+//  CONTACT
+// ═══════════════════════════════════════════════════════
+async function saveContact() {
+  DATA.contact = {
+    phone:    document.getElementById('c-phone').value.trim(),
+    whatsapp: document.getElementById('c-wa').value.trim(),
+    email:    document.getElementById('c-email').value.trim()
+  };
+  await saveContent('Update contact info');
+}
+
+// ═══════════════════════════════════════════════════════
+//  STATS
+// ═══════════════════════════════════════════════════════
+function renderStats() {
+  const stats = DATA.stats || [];
+  document.getElementById('stats-list').innerHTML = stats.map((s,i) => `
+    <div class="stat-row" data-i="${i}">
+      <div class="s-ic">${s.icon||'📊'}</div>
+      <div>
+        <div style="font-size:.65rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:.25rem">${s.label}</div>
+        <input class="sv" value="${s.value}" placeholder="e.g. 28+" style="width:100%" data-i="${i}">
+      </div>
+      <div>
+        <div style="font-size:.65rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:.25rem">Label</div>
+        <input class="sl" value="${s.label}" style="width:100%" data-i="${i}">
+      </div>
+      <div style="font-size:.65rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:.25rem">Icon</div>
+      <input class="si" value="${s.icon||''}" placeholder="🏆" style="width:60px" data-i="${i}">
+    </div>
+  `).join('');
+}
+
+async function saveStats() {
+  document.querySelectorAll('#stats-list .stat-row').forEach(row => {
+    const i = +row.dataset.i;
+    DATA.stats[i].value = row.querySelector('.sv').value.trim();
+    DATA.stats[i].label = row.querySelector('.sl').value.trim();
+    DATA.stats[i].icon  = row.querySelector('.si').value.trim();
+  });
+  await saveContent('Update stats');
+}
+
+// ═══════════════════════════════════════════════════════
+//  VACATION BANNER
+// ═══════════════════════════════════════════════════════
+function renderVacCards(cards) {
+  document.getElementById('vac-cards').innerHTML = cards.map((c,i) => `
+    <div class="bc" data-i="${i}">
+      <div class="bc-ttl">Card ${i+1}</div>
+      <div class="g4">
+        <div><label class="lbl" style="margin-top:0">Label</label><input class="bci-lbl" value="${c.label||''}"></div>
+        <div><label class="lbl" style="margin-top:0">Age Group</label><input class="bci-age" value="${c.age_group||''}"></div>
+        <div><label class="lbl" style="margin-top:0">Original ₹</label><input class="bci-orig" type="number" value="${c.original_price||''}"></div>
+        <div><label class="lbl" style="margin-top:0">Offer ₹</label><input class="bci-off" type="number" value="${c.offer_price||''}"></div>
+      </div>
+      <label class="lbl">WhatsApp Message</label>
+      <input class="bci-wa" value="${c.wa_message||''}">
+    </div>
+  `).join('');
+}
+
+async function saveVac() {
+  const cards = [...document.querySelectorAll('#vac-cards .bc')].map(el => ({
+    label:          el.querySelector('.bci-lbl').value.trim(),
+    age_group:      el.querySelector('.bci-age').value.trim(),
+    original_price: parseInt(el.querySelector('.bci-orig').value)||null,
+    offer_price:    parseInt(el.querySelector('.bci-off').value)||0,
+    wa_message:     el.querySelector('.bci-wa').value.trim()
+  }));
+  DATA.vacation_banner = {
+    active:   document.getElementById('vac-on').checked,
+    tag:      document.getElementById('vac-tag').value.trim(),
+    title:    document.getElementById('vac-title').value.trim(),
+    subtitle: document.getElementById('vac-sub').value.trim(),
+    cards
+  };
+  await saveContent('Update vacation banner');
+}
+
+async function saveCert() {
+  DATA.certification_banner = {
+    active:      document.getElementById('cert-on').checked,
+    tag:         document.getElementById('cert-tag').value.trim(),
+    title:       document.getElementById('cert-title').value.trim(),
+    description: document.getElementById('cert-desc').value.trim(),
+    cta_text:    document.getElementById('cert-cta').value.trim(),
+    wa_message:  document.getElementById('cert-wa').value.trim()
+  };
+  await saveContent('Update certification banner');
+}
+
+// ═══════════════════════════════════════════════════════
+//  FEES
+// ═══════════════════════════════════════════════════════
 function renderFees() {
+  const fees = DATA.fees || [];
   const list = document.getElementById('fees-list');
-  if (!feesData.length) { list.innerHTML = '<p style="color:var(--muted);padding:.5rem 0">No fees yet. Click "Add New" to get started.</p>'; return; }
-  list.innerHTML = feesData.map(f => `
-    <div class="fee-item" data-id="${f.id}">
-      <div class="fee-item-header">
-        <span class="fee-badge">${f.category}</span>
+  if (!fees.length) { list.innerHTML = '<p style="color:var(--muted);padding:.5rem 0">No fees yet.</p>'; return; }
+  list.innerHTML = fees.map((f,i) => `
+    <div class="li" data-i="${i}">
+      <div class="li-hd">
+        <span class="badge">${f.category}</span>
         <div style="display:flex;gap:.5rem;align-items:center">
-          <div class="toggle-wrap">
-            <label class="toggle"><input type="checkbox" ${f.is_active?'checked':''} onchange="toggleFee('${f.id}',this.checked)"><span class="toggle-slider"></span></label>
+          <div class="tog-row">
+            <label class="tog"><input type="checkbox" ${f.active?'checked':''} onchange="DATA.fees[${i}].active=this.checked"><span class="ts"></span></label>
             <span>Active</span>
           </div>
-          <button class="btn-danger" onclick="deleteFee('${f.id}')">Delete</button>
+          <button class="btn-d" onclick="deleteFee(${i})">Delete</button>
         </div>
       </div>
-      <div class="fee-grid">
-        <div><label style="margin-top:0">Label</label><input value="${f.label||''}" onchange="updateFeeField('${f.id}','label',this.value)"></div>
-        <div><label style="margin-top:0">Age Group</label><input value="${f.age_group||''}" onchange="updateFeeField('${f.id}','age_group',this.value)"></div>
-        <div><label style="margin-top:0">Original Price (₹)</label><input type="number" value="${f.original_price||''}" onchange="updateFeeField('${f.id}','original_price',parseInt(this.value)||null)"></div>
-        <div><label style="margin-top:0">Offer Price (₹)</label><input type="number" value="${f.offer_price||''}" onchange="updateFeeField('${f.id}','offer_price',parseInt(this.value)||0)"></div>
-        <div><label style="margin-top:0">Duration</label><input value="${f.duration||''}" placeholder="2 Months" onchange="updateFeeField('${f.id}','duration',this.value)"></div>
-        <div><label style="margin-top:0">Category</label>
-          <select onchange="updateFeeField('${f.id}','category',this.value)">
+      <div class="g2">
+        <div><label class="lbl" style="margin-top:0">Label</label><input value="${f.label||''}" onchange="DATA.fees[${i}].label=this.value"></div>
+        <div><label class="lbl" style="margin-top:0">Age Group</label><input value="${f.age_group||''}" onchange="DATA.fees[${i}].age_group=this.value"></div>
+        <div><label class="lbl" style="margin-top:0">Original Price ₹</label><input type="number" value="${f.original_price||''}" onchange="DATA.fees[${i}].original_price=parseInt(this.value)||null"></div>
+        <div><label class="lbl" style="margin-top:0">Offer Price ₹</label><input type="number" value="${f.offer_price||''}" onchange="DATA.fees[${i}].offer_price=parseInt(this.value)||0"></div>
+        <div><label class="lbl" style="margin-top:0">Duration</label><input value="${f.duration||''}" placeholder="2 Months" onchange="DATA.fees[${i}].duration=this.value"></div>
+        <div><label class="lbl" style="margin-top:0">Category</label>
+          <select onchange="DATA.fees[${i}].category=this.value">
             ${['students','women','gents','other'].map(c=>`<option value="${c}" ${f.category===c?'selected':''}>${c}</option>`).join('')}
           </select>
         </div>
       </div>
-      <label>WhatsApp Message</label>
-      <input value="${f.wa_message||''}" placeholder="Hi Coach, I am interested in..." onchange="updateFeeField('${f.id}','wa_message',this.value)">
-      <div class="btn-row"><button class="btn-primary" onclick="saveFee('${f.id}')">Save</button></div>
+      <label class="lbl">WhatsApp Message</label>
+      <input value="${f.wa_message||''}" placeholder="Hi Coach, I am interested in..." onchange="DATA.fees[${i}].wa_message=this.value">
+      <div class="brow"><button class="btn-p" onclick="saveFeeItem(${i})">Save</button></div>
     </div>
   `).join('');
 }
 
-function updateFeeField(id, field, val) {
-  const fee = feesData.find(f => f.id === id);
-  if (fee) fee[field] = val;
+async function saveFeeItem(i) {
+  // re-read values from DOM since inline onchange may have missed some
+  const rows = document.querySelectorAll('#fees-list .li');
+  const row = rows[i];
+  const inputs = row.querySelectorAll('input[type=text], input:not([type]), input[type=number]');
+  await saveContent('Update fee structure');
 }
 
-async function saveFee(id) {
-  const fee = feesData.find(f => f.id === id);
-  if (!fee) return;
-  const { error } = await sb.from('fee_structure').update(fee).eq('id', id);
-  error ? toast('Error: ' + error.message, 'error') : toast('Fee saved!');
-}
-
-async function toggleFee(id, active) {
-  const { error } = await sb.from('fee_structure').update({ is_active: active }).eq('id', id);
-  if (!error) { const f = feesData.find(f => f.id === id); if (f) f.is_active = active; }
-}
-
-async function deleteFee(id) {
+async function deleteFee(i) {
   if (!confirm('Delete this fee tier?')) return;
-  const { error } = await sb.from('fee_structure').delete().eq('id', id);
-  if (error) { toast('Error: ' + error.message, 'error'); return; }
-  feesData = feesData.filter(f => f.id !== id);
+  DATA.fees.splice(i, 1);
   renderFees();
-  toast('Fee deleted.');
+  await saveContent('Delete fee tier');
 }
 
 async function addFee() {
-  const { data, error } = await sb.from('fee_structure').insert({
-    category: 'other', label: 'New Package', offer_price: 0, is_active: false, sort_order: feesData.length + 1
-  }).select().single();
-  if (error) { toast('Error: ' + error.message, 'error'); return; }
-  feesData.push(data);
+  if (!DATA.fees) DATA.fees = [];
+  DATA.fees.push({ id: Date.now().toString(), category:'other', label:'New Package', age_group:'', original_price:null, offer_price:0, duration:'Monthly', active:false });
   renderFees();
-  toast('New fee tier added. Fill in the details and save.');
+  toast('New tier added — fill in details and save.', 'inf');
 }
 
-// ================================================================
+// ═══════════════════════════════════════════════════════
 //  BRANCHES
-// ================================================================
-let branchesData = [];
-
-async function loadBranches() {
-  const { data } = await sb.from('branches').select('*').order('sort_order');
-  branchesData = data || [];
-  renderBranches();
-}
-
+// ═══════════════════════════════════════════════════════
 function renderBranches() {
+  const branches = DATA.branches || [];
   const list = document.getElementById('branches-list');
-  if (!branchesData.length) { list.innerHTML = '<p style="color:var(--muted);padding:.5rem 0">No branches yet.</p>'; return; }
-  list.innerHTML = branchesData.map(b => `
-    <div class="branch-item" data-id="${b.id}">
-      <div class="branch-item-header">
-        <strong style="font-family:'Bebas Neue',sans-serif;letter-spacing:1.5px">${b.name||'Unnamed Branch'}</strong>
+  if (!branches.length) { list.innerHTML = '<p style="color:var(--muted);padding:.5rem 0">No branches yet.</p>'; return; }
+  list.innerHTML = branches.map((b,i) => `
+    <div class="li" data-i="${i}">
+      <div class="li-hd">
+        <strong>${b.name||'Unnamed Branch'}</strong>
         <div style="display:flex;gap:.5rem;align-items:center">
-          <div class="toggle-wrap">
-            <label class="toggle"><input type="checkbox" ${b.is_active?'checked':''} onchange="toggleBranch('${b.id}',this.checked)"><span class="toggle-slider"></span></label>
+          <div class="tog-row">
+            <label class="tog"><input type="checkbox" ${b.active?'checked':''} onchange="DATA.branches[${i}].active=this.checked"><span class="ts"></span></label>
             <span>Active</span>
           </div>
-          <button class="btn-danger" onclick="deleteBranch('${b.id}')">Delete</button>
+          <button class="btn-d" onclick="deleteBranch(${i})">Delete</button>
         </div>
       </div>
-      <div class="branch-grid">
-        <div><label style="margin-top:0">Branch Name</label><input value="${b.name||''}" onchange="updateBranchField('${b.id}','name',this.value)"></div>
-        <div><label style="margin-top:0">Area</label><input value="${b.area||''}" placeholder="Aluva, Ernakulam" onchange="updateBranchField('${b.id}','area',this.value)"></div>
-        <div><label style="margin-top:0">Pincode</label><input value="${b.pincode||''}" onchange="updateBranchField('${b.id}','pincode',this.value)"></div>
-        <div><label style="margin-top:0">Google Maps URL</label><input value="${b.maps_url||''}" placeholder="https://maps.google.com/..." onchange="updateBranchField('${b.id}','maps_url',this.value)"></div>
+      <div class="g2">
+        <div><label class="lbl" style="margin-top:0">Branch Name</label><input value="${b.name||''}" onchange="DATA.branches[${i}].name=this.value"></div>
+        <div><label class="lbl" style="margin-top:0">Area</label><input value="${b.area||''}" onchange="DATA.branches[${i}].area=this.value"></div>
+        <div><label class="lbl" style="margin-top:0">Pincode</label><input value="${b.pincode||''}" onchange="DATA.branches[${i}].pincode=this.value"></div>
+        <div><label class="lbl" style="margin-top:0">Google Maps URL</label><input value="${b.maps_url||''}" onchange="DATA.branches[${i}].maps_url=this.value"></div>
       </div>
-      <label>Full Address</label>
-      <input value="${b.address||''}" placeholder="Main Road, Aluva, Ernakulam, Kerala" onchange="updateBranchField('${b.id}','address',this.value)">
-      <label>Features (comma-separated)</label>
-      <input value="${(b.features||[]).join(', ')}" placeholder="MMA Cage, Heavy Bag Zone, Grappling Mats" onchange="updateBranchField('${b.id}','features',this.value.split(',').map(s=>s.trim()).filter(Boolean))">
-      <div class="btn-row"><button class="btn-primary" onclick="saveBranch('${b.id}')">Save</button></div>
+      <label class="lbl">Full Address</label>
+      <input value="${b.address||''}" onchange="DATA.branches[${i}].address=this.value">
+      <label class="lbl">Features (comma-separated)</label>
+      <input value="${(b.features||[]).join(', ')}" placeholder="MMA Cage, Boxing Ring..." onchange="DATA.branches[${i}].features=this.value.split(',').map(s=>s.trim()).filter(Boolean)">
+      <div class="brow"><button class="btn-p" onclick="saveBranchItem(${i})">Save</button></div>
     </div>
   `).join('');
 }
 
-function updateBranchField(id, field, val) {
-  const b = branchesData.find(b => b.id === id);
-  if (b) b[field] = val;
-}
+async function saveBranchItem(i) { await saveContent('Update branch: ' + (DATA.branches[i]?.name||'')); }
 
-async function saveBranch(id) {
-  const b = branchesData.find(b => b.id === id);
-  if (!b) return;
-  const { error } = await sb.from('branches').update(b).eq('id', id);
-  error ? toast('Error: ' + error.message, 'error') : toast('Branch saved!');
-}
-
-async function toggleBranch(id, active) {
-  await sb.from('branches').update({ is_active: active }).eq('id', id);
-  const b = branchesData.find(b => b.id === id);
-  if (b) b.is_active = active;
-}
-
-async function deleteBranch(id) {
+async function deleteBranch(i) {
   if (!confirm('Delete this branch?')) return;
-  const { error } = await sb.from('branches').delete().eq('id', id);
-  if (error) { toast('Error: ' + error.message, 'error'); return; }
-  branchesData = branchesData.filter(b => b.id !== id);
+  DATA.branches.splice(i, 1);
   renderBranches();
-  toast('Branch deleted.');
+  await saveContent('Delete branch');
 }
 
 async function addBranch() {
-  const { data, error } = await sb.from('branches').insert({
-    name: 'New Branch', is_active: false, sort_order: branchesData.length + 1
-  }).select().single();
-  if (error) { toast('Error: ' + error.message, 'error'); return; }
-  branchesData.push(data);
+  if (!DATA.branches) DATA.branches = [];
+  DATA.branches.push({ id: Date.now().toString(), name:'New Branch', area:'', address:'', pincode:'', maps_url:'', features:[], active:false });
   renderBranches();
-  toast('New branch added. Fill in the details and save.');
+  toast('New branch added — fill in details and save.', 'inf');
 }
 
-// ================================================================
+// ═══════════════════════════════════════════════════════
 //  GALLERY
-// ================================================================
-let galleryData = [], selectedFile = null;
-
-async function loadGallery() {
-  const { data } = await sb.from('gallery').select('*').order('created_at', { ascending: false });
-  galleryData = data || [];
-  renderGallery();
-}
-
+// ═══════════════════════════════════════════════════════
 function renderGallery() {
-  const grid = document.getElementById('gallery-admin-grid');
-  if (!galleryData.length) { grid.innerHTML = '<p style="color:var(--muted);padding:.5rem 0">No images yet.</p>'; return; }
-  grid.innerHTML = galleryData.map(img => `
-    <div class="gal-thumb">
-      <img src="${img.image_url}" alt="${img.title||''}">
-      <button class="gal-del-btn" onclick="deleteGalleryImg('${img.id}','${img.image_url}')">🗑 Delete</button>
-      <div class="gal-thumb-overlay">
-        <div class="gal-thumb-title">${img.title||'Untitled'}</div>
-        <div class="gal-thumb-cat">${img.category||''}</div>
+  const grid = document.getElementById('gal-grid');
+  if (!GDATA.length) { grid.innerHTML = '<p style="color:var(--muted);padding:.5rem 0;grid-column:span 3">No uploaded images yet.</p>'; return; }
+  grid.innerHTML = GDATA.map((img,i) => `
+    <div class="gth">
+      <img src="${img.url}" alt="${img.title||''}">
+      <button class="gth-del" onclick="deleteImg(${i})">🗑 Delete</button>
+      <div class="gth-ov">
+        <div class="gth-ttl">${img.title||'Untitled'}</div>
+        <div class="gth-cat">${img.category||''}</div>
       </div>
     </div>
   `).join('');
 }
 
-function onFileSelect(input) {
+function onFile(input) {
   selectedFile = input.files[0];
-  document.getElementById('selected-file-name').textContent = selectedFile ? '✓ ' + selectedFile.name : '';
+  document.getElementById('fn').textContent = selectedFile ? '✓ ' + selectedFile.name : '';
 }
 
-async function uploadImage() {
-  if (!selectedFile) { toast('Please select an image first.', 'error'); return; }
-  const btn = document.getElementById('upload-btn');
+async function uploadImg() {
+  if (!selectedFile) { toast('Please select an image first.', 'err'); return; }
+  if (selectedFile.size > 5 * 1024 * 1024) { toast('Image must be under 5MB.', 'err'); return; }
+  const btn = document.getElementById('up-btn');
   btn.textContent = 'Uploading...'; btn.disabled = true;
-  const ext  = selectedFile.name.split('.').pop();
-  const path = `gallery/${Date.now()}.${ext}`;
-  const { error: upErr } = await sb.storage.from('site-images').upload(path, selectedFile);
-  if (upErr) { toast('Upload error: ' + upErr.message, 'error'); btn.textContent = 'Upload'; btn.disabled = false; return; }
-  const { data: { publicUrl } } = sb.storage.from('site-images').getPublicUrl(path);
-  const title = document.getElementById('img-title').value.trim();
-  const cat   = document.getElementById('img-category').value;
-  const { error: dbErr } = await sb.from('gallery').insert({ image_url: publicUrl, title, category: cat });
-  if (dbErr) { toast('DB error: ' + dbErr.message, 'error'); } else { toast('Image uploaded!'); }
+  const ext  = selectedFile.name.split('.').pop().toLowerCase();
+  const fname = `img_${Date.now()}.${ext}`;
+  const path  = `images/uploaded/${fname}`;
+  // Read as base64
+  const base64 = await new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(r.result.split(',')[1]);
+    r.onerror = rej;
+    r.readAsDataURL(selectedFile);
+  });
+  showSaving(true);
+  const result = await ghPutBinary(path, base64, 'Upload gallery image: ' + fname);
+  showSaving(false);
+  if (!result.content) { toast('Upload failed: ' + (result.message||''), 'err'); btn.textContent = 'Upload'; btn.disabled = false; return; }
+  const url = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${path}`;
+  const title = document.getElementById('img-ttl').value.trim();
+  const cat   = document.getElementById('img-cat').value;
+  GDATA.unshift({ id: Date.now().toString(), url, path, title, category: cat });
+  await saveGallery('Add gallery image');
+  toast('Image uploaded!');
   btn.textContent = 'Upload'; btn.disabled = false;
-  document.getElementById('img-title').value = '';
-  document.getElementById('file-input').value = '';
-  document.getElementById('selected-file-name').textContent = '';
+  document.getElementById('img-ttl').value = '';
+  document.getElementById('file-in').value = '';
+  document.getElementById('fn').textContent = '';
   selectedFile = null;
-  loadGallery();
+  renderGallery();
 }
 
-async function deleteGalleryImg(id, url) {
-  if (!confirm('Delete this image?')) return;
-  const path = url.split('/site-images/')[1];
-  if (path) await sb.storage.from('site-images').remove([path]);
-  await sb.from('gallery').delete().eq('id', id);
-  galleryData = galleryData.filter(g => g.id !== id);
+async function deleteImg(i) {
+  if (!confirm('Delete this image from the gallery?')) return;
+  const img = GDATA[i];
+  showSaving(true);
+  if (img.path) await ghDelete(img.path, 'Delete gallery image').catch(() => {});
+  GDATA.splice(i, 1);
+  await saveGallery('Remove gallery image');
+  showSaving(false);
   renderGallery();
   toast('Image deleted.');
 }
 
-// ================================================================
+// ═══════════════════════════════════════════════════════
+//  SETTINGS
+// ═══════════════════════════════════════════════════════
+async function changePw() {
+  const pw  = document.getElementById('new-pw').value;
+  const pw2 = document.getElementById('new-pw2').value;
+  if (pw.length < 8) { toast('Password too short (min 8 chars)', 'err'); return; }
+  if (pw !== pw2)    { toast('Passwords do not match', 'err'); return; }
+  localStorage.setItem('ufc_pw', await hash(pw));
+  document.getElementById('new-pw').value = '';
+  document.getElementById('new-pw2').value = '';
+  toast('Password updated!');
+}
+
+async function changePat() {
+  const pat = document.getElementById('new-pat').value.trim();
+  if (!pat.startsWith('ghp_') && !pat.startsWith('github_pat_')) { toast('Invalid token format', 'err'); return; }
+  localStorage.setItem('ufc_pat', pat);
+  document.getElementById('new-pat').value = '';
+  toast('GitHub token updated!');
+}
+
+// ═══════════════════════════════════════════════════════
 //  START
-// ================================================================
+// ═══════════════════════════════════════════════════════
 init();
 </script>
 </body>
