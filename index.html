@@ -432,7 +432,23 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 .vac-save{font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.25);border-radius:50px;padding:4px 14px}
 .vac-btn{display:inline-block;background:var(--gradient);color:#000;font-family:'Rajdhani',sans-serif;font-weight:800;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;padding:12px 28px;border-radius:10px;margin-top:.5rem;transition:all .3s}
 .vac-btn:hover{transform:translateY(-2px);box-shadow:0 10px 35px rgba(220,20,60,0.4)}
-@media(max-width:768px){.vac-cards{grid-template-columns:1fr;max-width:400px;margin:0 auto}}
+@media(max-width:768px){
+  .vac-section{padding:1.5rem 16px}
+  .vac-header{margin-bottom:1.2rem}
+  .vac-title{font-size:1.6rem;letter-spacing:2px}
+  .vac-sub{font-size:.72rem}
+  .vac-tag{font-size:.6rem;padding:4px 14px;margin-bottom:.6rem}
+  .vac-cards{grid-template-columns:repeat(3,1fr);gap:.6rem}
+  .vac-card{padding:1rem .6rem;gap:.4rem;border-radius:14px}
+  .vac-card::before{height:2px}
+  .vac-badge{font-size:.8rem}
+  .vac-age{font-size:.58rem;letter-spacing:.3px;line-height:1.3}
+  .vac-pricing{gap:.3rem;flex-direction:column;margin:.2rem 0}
+  .vac-old{font-size:1rem}
+  .vac-new{font-size:1.9rem}
+  .vac-save{font-size:.58rem;padding:3px 8px;letter-spacing:.5px}
+  .vac-btn{font-size:.62rem;padding:8px 10px;letter-spacing:.8px;border-radius:8px;width:100%;text-align:center}
+}
 
 /* ── WhatsApp Float Button ── */
 .wa-float{position:fixed;bottom:26px;right:22px;z-index:9999;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5),0 2px 8px rgba(0,0,0,.35);text-decoration:none;transition:transform .3s,box-shadow .3s;animation:wa-pulse 2.8s ease-in-out infinite;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden}
