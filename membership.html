@@ -227,6 +227,53 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
   .form-row{grid-template-columns:1fr}
 }
 @media(max-width:480px){.incl-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== MOBILE COMPACT (phones) ===== */
+@media(max-width:640px){
+  section{padding:1.75rem 14px}
+  .page-hero{padding:86px 14px 32px;min-height:auto}
+  .page-hero h1{font-size:2.5rem}
+  .page-hero p{font-size:.85rem}
+  .sec-header{margin-bottom:1.25rem}
+  .sec-header h2{font-size:1.6rem;letter-spacing:2px}
+  .sec-header p{font-size:.82rem}
+
+  /* 2-column plan grids */
+  .plans-grid{gap:.6rem}
+  .plans-3col,.plans-4col{grid-template-columns:repeat(2,1fr)!important;margin-bottom:1.25rem}
+  .plans-2col{grid-template-columns:1fr!important;max-width:100%;margin-bottom:1.25rem}
+  .plan-group-label{font-size:.78rem;letter-spacing:2px;margin-bottom:.65rem;padding-bottom:.4rem}
+
+  /* Compact plan cards */
+  .plan-card{padding:.85rem .7rem;border-radius:13px}
+  .plan-icon{display:none}
+  .plan-badge{font-size:.52rem;padding:3px 8px;top:8px;right:8px;letter-spacing:.5px}
+  .plan-name{font-size:1rem;letter-spacing:1px;margin-bottom:.12rem}
+  .plan-days{font-size:.6rem;letter-spacing:.5px;margin-bottom:.6rem}
+  .plan-price-wrap{margin-bottom:.12rem}
+  .plan-price{font-size:1.9rem}
+  .plan-currency{font-size:1rem}
+  .plans-4col .plan-price{font-size:1.9rem}
+  .plans-4col .plan-currency{font-size:1rem}
+  .plan-period{font-size:.65rem;margin-bottom:.6rem;display:block}
+  .plan-features{gap:.28rem;margin-bottom:.85rem}
+  .plan-feat{font-size:.7rem}
+  .plan-features .plan-feat:nth-child(n+4){display:none}
+  .feat-check{width:14px;height:14px;font-size:.52rem;flex-shrink:0}
+  .plan-cta{padding:9px 8px;font-size:.7rem;border-radius:8px;letter-spacing:.5px}
+
+  /* Inclusions */
+  .incl-grid{gap:.6rem}
+  .incl-item{padding:.85rem .6rem;border-radius:12px}
+  .incl-icon{font-size:1.5rem;margin-bottom:.4rem}
+  .incl-item h4{font-size:.78rem;letter-spacing:1px}
+  .incl-item p{font-size:.68rem}
+
+  /* FAQ */
+  .faq-q{padding:.9rem 1rem;font-size:.85rem}
+  .faq-a{font-size:.8rem}
+  .faq-item.open .faq-a{padding:.5rem 1rem 1rem}
+}
 /* ── WhatsApp Float Button ── */
 .wa-float{position:fixed;bottom:26px;right:22px;z-index:9999;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5),0 2px 8px rgba(0,0,0,.35);text-decoration:none;transition:transform .3s,box-shadow .3s;animation:wa-pulse 2.8s ease-in-out infinite;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .wa-float:hover{transform:scale(1.13);box-shadow:0 6px 30px rgba(37,211,102,.75),0 2px 8px rgba(0,0,0,.3);animation:none}
