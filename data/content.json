@@ -5,10 +5,10 @@
     "email": ""
   },
   "stats": [
-    { "id": "champions",    "label": "National & State Champions", "value": "28+", "icon": "🏆", "color": "gold" },
-    { "id": "state_titles", "label": "State Titles",               "value": "60+", "icon": "🥇", "color": "red"  },
-    { "id": "years",        "label": "Years of Excellence",        "value": "15+", "icon": "⚡", "color": "gold" },
-    { "id": "students",     "label": "Active Students",            "value": "500+","icon": "👊", "color": "red"  }
+    { "id": "champions",    "label": "National Champions",                     "value": "28+",     "icon": "🥇", "color": "gold" },
+    { "id": "state_titles", "label": "State Champions",                        "value": "60+",     "icon": "🏆", "color": "red"  },
+    { "id": "referee",      "label": "International MMA Referee • UFC Fight Pass", "value": "OFFICIAL","icon": "⚖️", "color": "gold" },
+    { "id": "locations",    "label": "Club Locations",                         "value": "2",       "icon": "📍", "color": "red"  }
   ],
   "branches": [
     {
