@@ -613,6 +613,7 @@ button{
         <div class="ni"    data-s="banners"><span class="ni-ic">🎯</span> Banners &amp; Offers</div>
         <div class="ni"    data-s="fees"   ><span class="ni-ic">💰</span> Fee Structure</div>
         <div class="ni"    data-s="branches"><span class="ni-ic">📍</span> Branches</div>
+        <div class="ni"    data-s="champions"><span class="ni-ic">🏆</span> Champions Board</div>
         <div class="ni"    data-s="gallery"><span class="ni-ic">🖼️</span> Gallery</div>
         <div class="ni"    data-s="settings"><span class="ni-ic">⚙️</span> Settings</div>
       </nav>
@@ -730,6 +731,16 @@ button{
           </div>
           <div id="branches-list"></div>
           <button class="btn-add" onclick="addBranch()">＋ Add New Branch</button>
+        </div>
+
+        <!-- ── CHAMPIONS ── -->
+        <div class="sec" id="sec-champions">
+          <div class="sec-header">
+            <h2 class="sec-ttl">Champions Board</h2>
+            <p class="sec-dsc">Add, edit or remove champions. Each entry shows on the Champions Board section of the site.</p>
+          </div>
+          <div id="champions-list"></div>
+          <button class="btn-add" onclick="addChampion()">＋ Add New Champion</button>
         </div>
 
         <!-- ── GALLERY ── -->
@@ -1010,6 +1021,7 @@ function populateAll() {
   document.getElementById('cert-wa').value     = cb.wa_message || '';
   renderFees();
   renderBranches();
+  renderChampions();
   renderGallery();
 }
 
@@ -1239,6 +1251,64 @@ async function addBranch() {
   DATA.branches.push({ id: Date.now().toString(), name:'New Branch', area:'', address:'', pincode:'', maps_url:'', features:[], active:false });
   renderBranches();
   toast('New branch added — fill in details and save.', 'inf');
+}
+
+// ═══════════════════════════════════════════════════════
+//  CHAMPIONS
+// ═══════════════════════════════════════════════════════
+function renderChampions() {
+  const champions = DATA.champions || [];
+  const list = document.getElementById('champions-list');
+  if (!champions.length) { list.innerHTML = '<p class="empty-state">No champions yet. Add your first one!</p>'; return; }
+  list.innerHTML = champions.map((c,i) => `
+    <div class="li" data-i="${i}">
+      <div class="li-header">
+        <strong>${c.name||'Unnamed Champion'}</strong>
+        <div class="li-actions">
+          <div class="tog-row">
+            <label class="tog"><input type="checkbox" ${c.active!==false?'checked':''} onchange="DATA.champions[${i}].active=this.checked"><span class="ts"></span></label>
+            <span>Active</span>
+          </div>
+          <button class="btn-danger" onclick="deleteChampion(${i})">Delete</button>
+        </div>
+      </div>
+      <div class="g2">
+        <div><label class="lbl no-mt">Full Name</label><input value="${c.name||''}" onchange="DATA.champions[${i}].name=this.value"></div>
+        <div><label class="lbl no-mt">Title / Belt</label><input value="${c.title||''}" placeholder="e.g. National MMA Champion" onchange="DATA.champions[${i}].title=this.value"></div>
+        <div><label class="lbl no-mt">Weight Class</label><input value="${c.weight_class||''}" placeholder="e.g. 65kg / Lightweight" onchange="DATA.champions[${i}].weight_class=this.value"></div>
+        <div><label class="lbl no-mt">Year Won</label><input value="${c.year||''}" placeholder="e.g. 2024" onchange="DATA.champions[${i}].year=this.value"></div>
+        <div><label class="lbl no-mt">Sport / Discipline</label>
+          <select onchange="DATA.champions[${i}].sport=this.value">
+            ${['MMA','Boxing','BJJ','Kickboxing','Muay Thai','Wrestling','Grappling','Judo','Karate','Other'].map(s=>`<option value="${s}" ${c.sport===s?'selected':''}>${s}</option>`).join('')}
+          </select>
+        </div>
+        <div><label class="lbl no-mt">Competition Name</label><input value="${c.competition||''}" placeholder="e.g. Kerala State Championship" onchange="DATA.champions[${i}].competition=this.value"></div>
+      </div>
+      <label class="lbl">Photo URL <span style="font-size:.75rem;color:var(--dim);font-weight:400;text-transform:none;letter-spacing:0">(paste image link or leave blank)</span></label>
+      <input value="${c.photo||''}" placeholder="https://..." onchange="DATA.champions[${i}].photo=this.value">
+      <label class="lbl">Short Bio / Achievement</label>
+      <textarea onchange="DATA.champions[${i}].bio=this.value">${c.bio||''}</textarea>
+      <div class="brow"><button class="btn-primary" onclick="saveChampionItem(${i})">Save Champion</button></div>
+    </div>
+  `).join('');
+}
+
+async function saveChampionItem(i) {
+  await saveContent('Update champion: ' + (DATA.champions[i]?.name||''));
+}
+
+async function deleteChampion(i) {
+  if (!confirm('Delete this champion?')) return;
+  DATA.champions.splice(i, 1);
+  renderChampions();
+  await saveContent('Delete champion');
+}
+
+async function addChampion() {
+  if (!DATA.champions) DATA.champions = [];
+  DATA.champions.push({ id: Date.now().toString(), name:'', title:'', weight_class:'', year:'', sport:'MMA', competition:'', photo:'', bio:'', active:true });
+  renderChampions();
+  toast('New champion added — fill in details and save.', 'inf');
 }
 
 // ═══════════════════════════════════════════════════════
