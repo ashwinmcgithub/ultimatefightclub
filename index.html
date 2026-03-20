@@ -923,6 +923,18 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 </section>
 
 
+<!-- CHAMPIONS BOARD (dynamic) -->
+<section id="champions-board" style="display:none;padding:clamp(2.5rem,5vw,4rem) 24px;position:relative;z-index:2;background:rgba(255,215,0,0.03);border-top:1px solid rgba(255,215,0,0.1);border-bottom:1px solid rgba(255,215,0,0.1)">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="sec-header reveal" style="text-align:center;margin-bottom:2.5rem">
+      <span class="sec-label">Hall of Fame</span>
+      <h2>OUR <span class="gold">CHAMPIONS</span></h2>
+      <p>Athletes who have competed and won at state, national and international levels.</p>
+    </div>
+    <div id="champions-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem"></div>
+  </div>
+</section>
+
 <!-- HEAD COACH -->
 <section id="coach" style="padding:clamp(3rem,6vw,5rem) 24px;position:relative;z-index:2">
   <div class="coach-wrap" style="max-width:1100px;margin:0 auto">
@@ -1457,6 +1469,28 @@ document.querySelectorAll('.ach-item.reveal').forEach((c,i)=>c.style.transitionD
         </section>`;
       const vacSec = document.querySelector('.vac-section');
       if (vacSec) vacSec.insertAdjacentHTML('afterend', certHtml);
+    }
+
+    // ── Champions Board ──────────────────────────────────────────
+    const champions = (d.champions || []).filter(c => c.active !== false && c.name);
+    if (champions.length) {
+      const board = document.getElementById('champions-board');
+      const grid  = document.getElementById('champions-grid');
+      board.style.display = 'block';
+      grid.innerHTML = champions.map(c => `
+        <div style="background:#141414;border:1px solid rgba(255,215,0,0.15);border-radius:14px;padding:1.4rem;display:flex;flex-direction:column;gap:.5rem">
+          ${c.photo ? `<img src="${c.photo}" alt="${c.name}" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,215,0,0.3);margin-bottom:.5rem">` : `<div style="width:70px;height:70px;border-radius:50%;background:rgba(220,20,60,0.15);border:2px solid rgba(220,20,60,0.3);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:.5rem">🥊</div>`}
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:2px;color:#FAFAFA">${c.name}</div>
+          <div style="font-size:.8rem;font-weight:700;color:#FFD700;text-transform:uppercase;letter-spacing:1px">${c.title||''}</div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.25rem">
+            ${c.sport ? `<span style="background:rgba(220,20,60,0.12);border:1px solid rgba(220,20,60,0.3);border-radius:50px;padding:2px 10px;font-size:.7rem;font-weight:700;color:#DC143C;letter-spacing:.5px">${c.sport}</span>` : ''}
+            ${c.weight_class ? `<span style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:50px;padding:2px 10px;font-size:.7rem;color:rgba(255,255,255,0.6)">${c.weight_class}</span>` : ''}
+            ${c.year ? `<span style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:50px;padding:2px 10px;font-size:.7rem;color:rgba(255,255,255,0.6)">${c.year}</span>` : ''}
+          </div>
+          ${c.competition ? `<div style="font-size:.82rem;color:rgba(255,255,255,0.5);margin-top:.25rem">${c.competition}</div>` : ''}
+          ${c.bio ? `<div style="font-size:.82rem;color:rgba(255,255,255,0.45);margin-top:.3rem;line-height:1.5">${c.bio}</div>` : ''}
+        </div>
+      `).join('');
     }
 
   } catch(e) {
