@@ -410,11 +410,14 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 @media(max-width:768px){.insta-fallback{grid-template-columns:repeat(2,1fr)}.insta-profile-bar{flex-direction:column;gap:12px;text-align:center}.insta-grid{grid-template-columns:repeat(2,1fr);gap:.85rem;max-width:100%}.insta-grid>a{padding:1.25rem .6rem !important}.insta-grid>a>span:nth-child(3){font-size:.56rem !important;word-break:break-all !important;text-align:center;display:block;width:100%}}
 @media(max-width:400px){.insta-grid{grid-template-columns:1fr}}
 /* ===== VACATION OFFER BANNER ===== */
-.vac-section{padding:clamp(3rem,6vw,5rem) 24px;background:linear-gradient(135deg,rgba(220,20,60,0.1) 0%,rgba(8,8,8,0) 50%,rgba(255,215,0,0.07) 100%);border-top:1px solid rgba(220,20,60,0.2);border-bottom:1px solid rgba(255,215,0,0.15);position:relative;z-index:2;overflow:hidden}
-.vac-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 0%,rgba(220,20,60,0.08),transparent 65%);pointer-events:none}
+.vac-section{padding:clamp(3rem,6vw,5rem) 24px;background:linear-gradient(135deg,rgba(220,20,60,0.2) 0%,rgba(8,8,8,0) 50%,rgba(255,215,0,0.13) 100%);border-top:2px solid rgba(220,20,60,0.55);border-bottom:2px solid rgba(255,215,0,0.35);position:relative;z-index:2;overflow:hidden;animation:vacGlow 3s ease-in-out infinite}
+@keyframes vacGlow{0%,100%{box-shadow:inset 0 6px 40px rgba(220,20,60,0.07)}50%{box-shadow:inset 0 6px 60px rgba(220,20,60,0.18)}}
+.vac-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 85% 90% at 50% 0%,rgba(220,20,60,0.16),transparent 60%);pointer-events:none}
 .vac-inner{max-width:1100px;margin:0 auto;position:relative;z-index:2}
 .vac-header{text-align:center;margin-bottom:2.5rem}
-.vac-tag{display:inline-block;background:rgba(220,20,60,0.15);border:1px solid rgba(220,20,60,0.4);border-radius:50px;padding:6px 20px;font-size:.7rem;font-weight:700;color:var(--red);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1rem}
+.vac-tag{display:inline-block;background:rgba(220,20,60,0.2);border:1px solid rgba(220,20,60,0.6);border-radius:50px;padding:6px 20px;font-size:.7rem;font-weight:700;color:var(--red);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1rem;animation:tagPulse 2.2s ease-in-out infinite}
+@keyframes tagPulse{0%,100%{box-shadow:0 0 8px rgba(220,20,60,0.3)}50%{box-shadow:0 0 22px rgba(220,20,60,0.75),0 0 45px rgba(220,20,60,0.18)}}
+.vac-save{display:inline-block;background:rgba(220,20,60,0.12);border:1px solid rgba(220,20,60,0.35);border-radius:50px;padding:2px 10px;font-size:.65rem;font-weight:700;color:#ff7070;letter-spacing:1px;text-transform:uppercase}
 .vac-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:4px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.6rem}
 .vac-sub{color:var(--muted);font-size:.92rem;font-weight:500;letter-spacing:.5px}
 .vac-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
@@ -572,7 +575,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 <section class="vac-section">
   <div class="vac-inner">
     <div class="vac-header">
-      <span class="vac-tag">🏖️ Limited Time</span>
+      <span class="vac-tag">🔥 Summer Special — Limited Time</span>
       <h2 class="vac-title">2 MONTH VACATION SPECIAL OFFER</h2>
       <p class="vac-sub">Daily Training &bull; Mon – Sat &bull; All Disciplines Included</p>
     </div>
@@ -581,6 +584,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       <!-- Students up to 17 -->
       <a class="vac-card vac-card--link" href="https://wa.me/917736376100?text=Hi%20Coach%2C%20I%27m%20interested%20in%20the%202%20Month%20Vacation%20Special%20package%20for%20Students%20(Up%20to%2017%20years)%20%E2%80%94%20daily%20training%20Mon%E2%80%93Sat%20at%20%E2%82%B95%2C499!">
         <div class="vac-badge">👦👧 Students</div>
+        <div class="vac-save">SAVE ₹1,501</div>
         <div class="vac-age">Up to 17 Years — Boys &amp; Girls</div>
         <div class="vac-pricing">
           <span class="vac-old">₹7,000</span>
@@ -593,6 +597,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       <!-- Women 18+ -->
       <a class="vac-card vac-card--featured vac-card--link" href="https://wa.me/917736376100?text=Hi%20Coach%2C%20I%27m%20interested%20in%20the%202%20Month%20Vacation%20Special%20package%20for%20Women%20(18%2B)%20%E2%80%94%20daily%20training%20Mon%E2%80%93Sat%20at%20%E2%82%B96%2C499!">
         <div class="vac-badge">👩 Women</div>
+        <div class="vac-save">SAVE ₹1,501</div>
         <div class="vac-age">18 Years &amp; Above</div>
         <div class="vac-pricing">
           <span class="vac-old">₹8,000</span>
@@ -605,6 +610,7 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
       <!-- Men 18+ -->
       <a class="vac-card vac-card--link" href="https://wa.me/917736376100?text=Hi%20Coach%2C%20I%27m%20interested%20in%20the%202%20Month%20Vacation%20Special%20package%20for%20Gents%20(18%2B)%20%E2%80%94%20daily%20training%20Mon%E2%80%93Sat%20at%20%E2%82%B96%2C999!">
         <div class="vac-badge">👨 Gents</div>
+        <div class="vac-save">SAVE ₹2,001</div>
         <div class="vac-age">18 Years &amp; Above</div>
         <div class="vac-pricing">
           <span class="vac-old">₹9,000</span>
@@ -1424,6 +1430,9 @@ document.querySelectorAll('.ach-item.reveal').forEach((c,i)=>c.style.transitionD
       d.stats.forEach((s, i) => { if (hstats[i]) hstats[i].textContent = s.value; });
     }
 
+    // ── Locale-safe Indian number formatter (avoids Malayalam digit issue) ──
+    function fmtINR(n){var s=Math.round(n).toString();if(s.length<=3)return s;return s.slice(0,-3).replace(/\B(?=(\d{2})+(?!\d))/g,',')+','+s.slice(-3);}
+
     // ── Vacation Offer Banner ────────────────────────────────────
     const vac = d.vacation_banner;
     const sec = document.querySelector('.vac-section');
@@ -1447,8 +1456,8 @@ document.querySelectorAll('.ach-item.reveal').forEach((c,i)=>c.style.transitionD
           const newEl = el.querySelector('.vac-new');
           if (badge) badge.textContent = c.label       || badge.textContent;
           if (age)   age.textContent   = c.age_group   || age.textContent;
-          if (oldEl && c.original_price) oldEl.textContent = '₹' + c.original_price.toLocaleString('en-IN');
-          if (newEl && c.offer_price)    newEl.textContent = '₹' + c.offer_price.toLocaleString('en-IN');
+          if (oldEl && c.original_price) oldEl.textContent = '₹' + fmtINR(c.original_price);
+          if (newEl && c.offer_price)    newEl.textContent = '₹' + fmtINR(c.offer_price);
         });
       }
     }
