@@ -415,10 +415,11 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
 .vac-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 85% 90% at 50% 0%,rgba(220,20,60,0.16),transparent 60%);pointer-events:none}
 .vac-inner{max-width:1100px;margin:0 auto;position:relative;z-index:2}
 .vac-header{text-align:center;margin-bottom:2.5rem}
-.vac-tag{display:inline-block;background:rgba(220,20,60,0.2);border:1px solid rgba(220,20,60,0.6);border-radius:50px;padding:6px 20px;font-size:.7rem;font-weight:700;color:var(--red);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1rem;animation:tagPulse 2.2s ease-in-out infinite}
-@keyframes tagPulse{0%,100%{box-shadow:0 0 8px rgba(220,20,60,0.3)}50%{box-shadow:0 0 22px rgba(220,20,60,0.75),0 0 45px rgba(220,20,60,0.18)}}
+.vac-tag{display:inline-block;background:rgba(220,20,60,0.2);border:1px solid rgba(220,20,60,0.6);border-radius:50px;padding:6px 20px;font-size:.7rem;font-weight:700;color:var(--red);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1rem;animation:tagBlink 1.1s ease-in-out infinite}
+@keyframes tagBlink{0%,100%{opacity:1;box-shadow:0 0 10px rgba(220,20,60,0.5),0 0 30px rgba(220,20,60,0.2);background:rgba(220,20,60,0.25)}50%{opacity:.35;box-shadow:none;background:rgba(220,20,60,0.05)}}
 .vac-save{display:inline-block;background:rgba(220,20,60,0.12);border:1px solid rgba(220,20,60,0.35);border-radius:50px;padding:2px 10px;font-size:.65rem;font-weight:700;color:#ff7070;letter-spacing:1px;text-transform:uppercase}
-.vac-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:4px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.6rem}
+.vac-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:4px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.6rem;animation:titleFlash 2s ease-in-out infinite}
+@keyframes titleFlash{0%,100%{filter:brightness(1)}50%{filter:brightness(1.4) drop-shadow(0 0 12px rgba(255,215,0,0.5))}}
 .vac-sub{color:var(--muted);font-size:.92rem;font-weight:500;letter-spacing:.5px}
 .vac-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .vac-card{background:var(--card);border:1px solid rgba(255,255,255,0.08);border-radius:22px;padding:2.2rem 1.75rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.7rem;position:relative;overflow:hidden;transition:all .4s}
