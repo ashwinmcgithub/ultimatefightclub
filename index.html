@@ -587,8 +587,8 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         <div class="vac-save">SAVE ₹1,501</div>
         <div class="vac-age">Up to 17 Years — Boys &amp; Girls</div>
         <div class="vac-pricing">
-          <span class="vac-old">₹7,000</span>
-          <span class="vac-new">₹5,499</span>
+          <span class="vac-old" translate="no">₹7,000</span>
+          <span class="vac-new" translate="no">₹5,499</span>
         </div>
         <span class="vac-btn vac-btn--desk">ENROLL NOW &rarr;</span>
         <span class="vac-btn vac-btn--mob">TAP TO JOIN &rarr;</span>
@@ -600,8 +600,8 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         <div class="vac-save">SAVE ₹1,501</div>
         <div class="vac-age">18 Years &amp; Above</div>
         <div class="vac-pricing">
-          <span class="vac-old">₹8,000</span>
-          <span class="vac-new">₹6,499</span>
+          <span class="vac-old" translate="no">₹8,000</span>
+          <span class="vac-new" translate="no">₹6,499</span>
         </div>
         <span class="vac-btn vac-btn--desk">ENROLL NOW &rarr;</span>
         <span class="vac-btn vac-btn--mob">TAP TO JOIN &rarr;</span>
@@ -613,8 +613,8 @@ footer{background:#030303;border-top:1px solid rgba(220,20,60,0.1);padding:clamp
         <div class="vac-save">SAVE ₹2,001</div>
         <div class="vac-age">18 Years &amp; Above</div>
         <div class="vac-pricing">
-          <span class="vac-old">₹9,000</span>
-          <span class="vac-new">₹6,999</span>
+          <span class="vac-old" translate="no">₹9,000</span>
+          <span class="vac-new" translate="no">₹6,999</span>
         </div>
         <span class="vac-btn vac-btn--desk">ENROLL NOW &rarr;</span>
         <span class="vac-btn vac-btn--mob">TAP TO JOIN &rarr;</span>
@@ -1456,8 +1456,8 @@ document.querySelectorAll('.ach-item.reveal').forEach((c,i)=>c.style.transitionD
           const newEl = el.querySelector('.vac-new');
           if (badge) badge.textContent = c.label       || badge.textContent;
           if (age)   age.textContent   = c.age_group   || age.textContent;
-          if (oldEl && c.original_price) oldEl.textContent = '₹' + fmtINR(c.original_price);
-          if (newEl && c.offer_price)    newEl.textContent = '₹' + fmtINR(c.offer_price);
+          if (oldEl && c.original_price) { oldEl.textContent = '₹' + fmtINR(c.original_price); oldEl.setAttribute('translate','no'); }
+          if (newEl && c.offer_price)    { newEl.textContent = '₹' + fmtINR(c.offer_price);    newEl.setAttribute('translate','no'); }
         });
       }
     }
