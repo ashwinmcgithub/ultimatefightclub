@@ -58,17 +58,17 @@ CREATE TABLE IF NOT EXISTS fee_structure (
   age_group       text,
   original_price  integer,
   offer_price     integer NOT NULL,
-  duration        text DEFAULT '2 Months',
+  duration        text DEFAULT 'Monthly',
   description     text,
   wa_message      text,
   is_active       boolean DEFAULT true,
   sort_order      integer DEFAULT 0
 );
 
--- 6. BANNERS (vacation offer, certification, etc.)
+-- 6. BANNERS (certification, general, etc.)
 CREATE TABLE IF NOT EXISTS banners (
   id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  type        text UNIQUE NOT NULL,  -- 'vacation_offer' | 'certification' | 'general'
+  type        text UNIQUE NOT NULL,  -- 'certification' | 'general'
   title       text,
   subtitle    text,
   tag_label   text,
@@ -135,21 +135,6 @@ INSERT INTO branches (name, area, address, pincode, maps_url, features, sort_ord
    'https://maps.google.com/?q=Ultimate+Fight+Club+Kolenchery+Ernakulam+Kerala',
    ARRAY['Boxing Ring','Kickboxing Zone','Open Mat Area','Cardio Zone'], 2);
 
--- Vacation offer banner
-INSERT INTO banners (type, title, subtitle, tag_label, is_active, content) VALUES
-  ('vacation_offer',
-   '2 MONTH VACATION SPECIAL OFFER',
-   'Daily Training • Mon – Sat • All Disciplines Included',
-   '🏖️ Limited Time',
-   true,
-   '[
-     {"label":"👦👧 Students","age_group":"Up to 17 Years — Boys & Girls","original_price":7000,"offer_price":5499,"wa_message":"Hi Coach, I am interested in the 2 Month Vacation Special package for Students (Up to 17 years) — daily training Mon–Sat at ₹5,499!"},
-     {"label":"👩 Women","age_group":"18 Years & Above","original_price":8000,"offer_price":6499,"wa_message":"Hi Coach, I am interested in the 2 Month Vacation Special package for Women (18+) — daily training Mon–Sat at ₹6,499!"},
-     {"label":"👨 Gents","age_group":"18 Years & Above","original_price":9000,"offer_price":6999,"wa_message":"Hi Coach, I am interested in the 2 Month Vacation Special package for Gents (18+) — daily training Mon–Sat at ₹6,999!"}
-   ]'::jsonb
-  )
-ON CONFLICT (type) DO NOTHING;
-
 -- Certification banner (hidden by default — enable when needed)
 INSERT INTO banners (type, title, subtitle, tag_label, is_active, content) VALUES
   ('certification',
@@ -163,7 +148,7 @@ ON CONFLICT (type) DO NOTHING;
 
 -- Fee structure
 INSERT INTO fee_structure (category, label, age_group, original_price, offer_price, duration, sort_order) VALUES
-  ('students', 'Students Package', 'Up to 17 Years — Boys & Girls', 7000, 5499, '2 Months', 1),
-  ('women',    'Women Package',    '18 Years & Above',              8000, 6499, '2 Months', 2),
-  ('gents',    'Gents Package',    '18 Years & Above',              9000, 6999, '2 Months', 3)
+  ('students', 'Students Package', 'Up to 17 Years — Boys & Girls', 7000, 5499, 'Monthly', 1),
+  ('women',    'Women Package',    '18 Years & Above',              8000, 6499, 'Monthly', 2),
+  ('gents',    'Gents Package',    '18 Years & Above',              9000, 6999, 'Monthly', 3)
 ON CONFLICT DO NOTHING;

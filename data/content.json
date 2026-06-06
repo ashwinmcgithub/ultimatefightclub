@@ -66,35 +66,6 @@
                          "active":  true
                      }
                  ],
-    "vacation_banner":  {
-                            "active":  true,
-                            "tag":  "🏖️ Limited Time",
-                            "title":  "2 MONTH VACATION SPECIAL OFFER",
-                            "subtitle":  "Daily Training • Mon – Sat • All Disciplines Included",
-                            "cards":  [
-                                          {
-                                              "label":  "👦👧 Students",
-                                              "age_group":  "Up to 17 Years — Boys \u0026 Girls",
-                                              "original_price":  7000,
-                                              "offer_price":  5499,
-                                              "wa_message":  "Hi Coach, I am interested in the 2 Month Vacation Special package for Students (Up to 17 years) — daily training Mon–Sat at ₹5,499!"
-                                          },
-                                          {
-                                              "label":  "👩 Women",
-                                              "age_group":  "18 Years \u0026 Above",
-                                              "original_price":  8000,
-                                              "offer_price":  6499,
-                                              "wa_message":  "Hi Coach, I am interested in the 2 Month Vacation Special package for Women (18+) — daily training Mon–Sat at ₹6,499!"
-                                          },
-                                          {
-                                              "label":  "👨 Gents",
-                                              "age_group":  "18 Years \u0026 Above",
-                                              "original_price":  9000,
-                                              "offer_price":  6999,
-                                              "wa_message":  "Hi Coach, I am interested in the 2 Month Vacation Special package for Gents (18+) — daily training Mon–Sat at ₹6,999!"
-                                          }
-                                      ]
-                        },
     "certification_banner":  {
                                  "active":  false,
                                  "tag":  "🎓 Now Enrolling",
@@ -111,7 +82,7 @@
                      "age_group":  "Up to 17 Years — Boys \u0026 Girls",
                      "original_price":  7000,
                      "offer_price":  5499,
-                     "duration":  "2 Months",
+                     "duration":  "Monthly",
                      "active":  true
                  },
                  {
@@ -121,7 +92,7 @@
                      "age_group":  "18 Years \u0026 Above",
                      "original_price":  8000,
                      "offer_price":  6499,
-                     "duration":  "2 Months",
+                     "duration":  "Monthly",
                      "active":  true
                  },
                  {
@@ -131,7 +102,7 @@
                      "age_group":  "18 Years \u0026 Above",
                      "original_price":  9000,
                      "offer_price":  6999,
-                     "duration":  "2 Months",
+                     "duration":  "Monthly",
                      "active":  true
                  }
              ],

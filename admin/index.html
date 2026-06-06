@@ -663,27 +663,6 @@ button{
             <p class="sec-dsc">Control the promotional banners shown on the homepage.</p>
           </div>
 
-          <!-- Vacation Offer -->
-          <div class="card">
-            <div class="card-header">
-              <h3>🏖️ Vacation Special Offer</h3>
-              <div class="tog-row">
-                <label class="tog"><input type="checkbox" id="vac-on"><span class="ts"></span></label>
-                <span>Show on site</span>
-              </div>
-            </div>
-            <label class="lbl no-mt">Tag Label</label>
-            <input id="vac-tag" placeholder="🏖️ Limited Time">
-            <label class="lbl">Banner Title</label>
-            <input id="vac-title" placeholder="2 MONTH VACATION SPECIAL OFFER">
-            <label class="lbl">Subtitle</label>
-            <input id="vac-sub">
-
-            <div class="sub-heading">Offer Cards</div>
-            <div id="vac-cards"></div>
-            <div class="brow"><button class="btn-primary" onclick="saveVac()">Save Vacation Banner</button></div>
-          </div>
-
           <!-- Certification -->
           <div class="card">
             <div class="card-header">
@@ -711,7 +690,7 @@ button{
         <div class="sec on" id="sec-fees">
           <div class="sec-header">
             <h2 class="sec-ttl">Fee Structure</h2>
-            <p class="sec-dsc">Add, edit or remove pricing tiers. These power the offer banner and membership page.</p>
+            <p class="sec-dsc">Add, edit or remove pricing tiers. These power the membership page and pricing records.</p>
           </div>
           <div id="fees-list"></div>
           <button class="btn-add" onclick="addFee()">＋ Add New Pricing Tier</button>
@@ -1000,12 +979,6 @@ function populateAll() {
   document.getElementById('c-wa').value    = c.whatsapp || '';
   document.getElementById('c-email').value = c.email || '';
   renderStats();
-  const vb = DATA.vacation_banner || {};
-  document.getElementById('vac-on').checked   = !!vb.active;
-  document.getElementById('vac-tag').value    = vb.tag || '';
-  document.getElementById('vac-title').value  = vb.title || '';
-  document.getElementById('vac-sub').value    = vb.subtitle || '';
-  renderVacCards(vb.cards || []);
   const cb = DATA.certification_banner || {};
   document.getElementById('cert-on').checked   = !!cb.active;
   document.getElementById('cert-tag').value    = cb.tag || '';
@@ -1093,42 +1066,6 @@ async function saveStats() {
 }
 
 // ═══════════════════════════════════════════════════════
-//  VACATION BANNER
-// ═══════════════════════════════════════════════════════
-function renderVacCards(cards) {
-  document.getElementById('vac-cards').innerHTML = cards.map((c,i) => `
-    <div class="bc" data-i="${i}">
-      <div class="bc-ttl">Card ${i+1}</div>
-      <div class="g4">
-        <div><label class="lbl no-mt">Label</label><input class="bci-lbl" value="${c.label||''}"></div>
-        <div><label class="lbl no-mt">Age Group</label><input class="bci-age" value="${c.age_group||''}"></div>
-        <div><label class="lbl no-mt">Original ₹</label><input class="bci-orig" type="number" value="${c.original_price||''}"></div>
-        <div><label class="lbl no-mt">Offer ₹</label><input class="bci-off" type="number" value="${c.offer_price||''}"></div>
-      </div>
-      <label class="lbl">WhatsApp Message</label>
-      <input class="bci-wa" value="${c.wa_message||''}">
-    </div>
-  `).join('');
-}
-
-async function saveVac() {
-  const cards = [...document.querySelectorAll('#vac-cards .bc')].map(el => ({
-    label:          el.querySelector('.bci-lbl').value.trim(),
-    age_group:      el.querySelector('.bci-age').value.trim(),
-    original_price: parseInt(el.querySelector('.bci-orig').value)||null,
-    offer_price:    parseInt(el.querySelector('.bci-off').value)||0,
-    wa_message:     el.querySelector('.bci-wa').value.trim()
-  }));
-  DATA.vacation_banner = {
-    active:   document.getElementById('vac-on').checked,
-    tag:      document.getElementById('vac-tag').value.trim(),
-    title:    document.getElementById('vac-title').value.trim(),
-    subtitle: document.getElementById('vac-sub').value.trim(),
-    cards
-  };
-  await saveContent('Update vacation banner');
-}
-
 async function saveCert() {
   DATA.certification_banner = {
     active:      document.getElementById('cert-on').checked,
@@ -1165,7 +1102,7 @@ function renderFees() {
         <div><label class="lbl no-mt">Age Group</label><input value="${f.age_group||''}" onchange="DATA.fees[${i}].age_group=this.value"></div>
         <div><label class="lbl no-mt">Original Price ₹</label><input type="number" value="${f.original_price||''}" onchange="DATA.fees[${i}].original_price=parseInt(this.value)||null"></div>
         <div><label class="lbl no-mt">Offer Price ₹</label><input type="number" value="${f.offer_price||''}" onchange="DATA.fees[${i}].offer_price=parseInt(this.value)||0"></div>
-        <div><label class="lbl no-mt">Duration</label><input value="${f.duration||''}" placeholder="2 Months" onchange="DATA.fees[${i}].duration=this.value"></div>
+        <div><label class="lbl no-mt">Duration</label><input value="${f.duration||''}" placeholder="Monthly" onchange="DATA.fees[${i}].duration=this.value"></div>
         <div><label class="lbl no-mt">Category</label>
           <select onchange="DATA.fees[${i}].category=this.value">
             ${['students','women','gents','other'].map(c=>`<option value="${c}" ${f.category===c?'selected':''}>${c}</option>`).join('')}
